@@ -23,31 +23,31 @@ const ContactUs = () => {
         <hr />
         <div className="star-container">
           <input type="radio" name="star" id="five" />
-          <label for="five">
+          <label htmlFor="five">
             <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="four" />
-          <label for="four">
+          <label htmlFor="four">
             <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="three" />
-          <label for="three">
+          <label htmlFor="three">
             <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="two" />
-          <label for="two">
+          <label htmlFor="two">
             <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="one" />
-          <label for="one">
+          <label htmlFor="one">
             <svg className="star">
               <use xlinkHref="#star" />
             </svg>
@@ -62,15 +62,15 @@ const ContactUs = () => {
               y2="65.4921875%"
               id="grad"
             >
-              <stop stop-color="#02a89e" offset="0%"></stop>
-              <stop stop-color="#02a89e" offset="60%"></stop>
-              <stop stop-color="#02a89e" offset="100%"></stop>
+              <stop stopColor="#02a89e" offset="0%"></stop>
+              <stop stopColor="#02a89e" offset="60%"></stop>
+              <stop stopColor="#02a89e" offset="100%"></stop>
             </linearGradient>
             <symbol id="star" viewBox="153 89 106 108">
               <polygon
                 id="star-shape"
                 stroke="url(#grad)"
-                stroke-width="5"
+                strokeWidth="5"
                 fill="currentColor"
                 points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"
               ></polygon>
@@ -86,21 +86,6 @@ const ContactUs = () => {
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
-            {/* <i
-              class="fa fa-facebook-square"
-              aria-hidden="true"
-              style="color: #02a89e;"
-            ></i>
-            <i
-              class="fa fa-facebook-square"
-              aria-hidden="true"
-              style="color: #02a89e;"
-            ></i>
-            <i
-              class="fa fa-facebook-square"
-              aria-hidden="true"
-              style="color: #02a89e;"
-            ></i> */}
           </p>
         </div>
       </ContactUsContainer>

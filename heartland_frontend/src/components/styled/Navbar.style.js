@@ -16,17 +16,20 @@ export const Navbar = styled.div`
       margin-left: 10px;
       padding: 20px;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
 
       li {
-        float: left;
+        /* float: left; */
 
         a {
           display: block;
           color: ${({ fg }) => fg};
           text-align: center;
-          font-size: 25px;
+          font-size: 20px;
           padding: 14px 36px;
           text-decoration: none;
+          text-align: center;
 
           &:hover {
             color: #02a89e;

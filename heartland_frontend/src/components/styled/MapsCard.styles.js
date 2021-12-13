@@ -15,6 +15,16 @@ const MapsCardsStyles = styled.div`
     font-size: 2em;
     color: black;
   }
+  @media screen and (max-width: 768px) {
+    width: 336px;
+    height: 325px;
+
+    h3 {
+      font-size: 1.5em;
+      left: 90px;
+      bottom: 90px;
+    }
+  }
 `;
 
 export default MapsCardsStyles;
