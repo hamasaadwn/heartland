@@ -1,6 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import cookies from "js-cookie";
+import i18next from "i18next";
 
 import GlobalStyles from "./components/styled/Global";
 

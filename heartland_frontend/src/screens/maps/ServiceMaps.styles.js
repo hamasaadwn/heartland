@@ -8,7 +8,7 @@ export const ServiceContainer = styled.div`
     flex-direction: row-reverse;
     padding-left: 20px;
     top: 30vh;
-    z-index: 5;
+    z-index: 2;
 
     @media screen and (max-width: 768px) {
       right: 20px;

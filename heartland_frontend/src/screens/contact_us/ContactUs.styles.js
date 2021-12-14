@@ -16,6 +16,16 @@ export const ContactUsContainer = styled.div`
       color: #02a89e;
       font-size: 60px;
     }
+
+    @media screen and (max-width: 768px) {
+      h2 {
+        font-size: 100px;
+      }
+
+      p {
+        font-size: 40px;
+      }
+    }
   }
 
   hr {
@@ -30,9 +40,22 @@ export const ContactUsContainer = styled.div`
     padding: 100px;
     color: white;
 
+    @media screen and (max-width: 768px) {
+      padding: 50px;
+
+      p {
+        padding: 20px 0;
+      }
+    }
+
     .fa-b-styles {
       color: #02a89e;
-      font-size: 44px;
+      font-size: 34px;
+    }
+
+    .social-icons {
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -70,6 +93,10 @@ export const ContactUsContainer = styled.div`
     color: transparent;
     transition: color 0.2s ease-in-out;
     margin: 40px;
+    @media screen and (max-width: 768px) {
+      margin: 10px;
+      width: 45px;
+    }
   }
 
   /* set direction to row-reverse so 5th star is at the end and ~ can be used to fill all sibling stars that precede last starred element*/

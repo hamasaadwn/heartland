@@ -13,6 +13,7 @@ const ContactUs = () => {
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
   }, []);
+
   return (
     <Container>
       <ContactUsContainer>
@@ -81,12 +82,12 @@ const ContactUs = () => {
         <div className="contact-info">
           <p>phone &#160; +0964 000 000 0000</p>
           <p>Email &#160; email@gmail.com</p>
-          <p>
-            Social Media &#160;{" "}
+          <div className="social-icons">
+            <p>Social Media &#160;</p>
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
-          </p>
+          </div>
         </div>
       </ContactUsContainer>
     </Container>
