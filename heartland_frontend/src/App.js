@@ -23,6 +23,16 @@ function App() {
   const location = useLocation();
   const { black } = useSelector((state) => state.color);
 
+  const currentLanguageCode = cookies.get("i18next") || "en";
+
+  useEffect(() => {
+    if (currentLanguageCode === "ar") {
+      document.body.dir = "rtl";
+    } else {
+      document.body.dir = "ltr";
+    }
+  }, []);
+
   return (
     <Fragment>
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}

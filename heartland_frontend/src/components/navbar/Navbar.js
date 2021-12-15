@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { Navbar as Navs } from "../styled/Navbar.style";
 
 const Navbar = ({ bg, fg }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const menuHandler = () => {
@@ -31,7 +33,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Home
+              {t("home")}
             </NavLink>
           </li>
           <li>
@@ -41,7 +43,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              About Us
+              {t("about_us")}
             </NavLink>
           </li>
           <li>
@@ -51,7 +53,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Human traffiking
+              {t("human_trafficing")}
             </NavLink>
           </li>
           <li>
@@ -61,7 +63,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              International &#38; Iraq law
+              {t("international_and_iraqi_law")}
             </NavLink>
           </li>
           <li>
@@ -82,7 +84,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Service Map
+              {t("service_map")}
             </NavLink>
           </li>
           <li>
@@ -92,7 +94,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Activities
+              {t("activities")}
             </NavLink>
           </li>
           <li>
@@ -102,7 +104,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Guide
+              {t("guide")}
             </NavLink>
           </li>
           <li>
@@ -112,7 +114,7 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              Contact Us
+              {t("contact_us")}
             </NavLink>
           </li>
         </ul>
