@@ -27,8 +27,8 @@ export const AboutContainer = styled.div`
 
   .paragraph {
     font-size: 23px;
-    padding-left: 40px;
     text-align: justify;
+    width: 90vw;
   }
 
   @media screen and (max-width: 768px) {
@@ -48,7 +48,7 @@ export const AboutContainer = styled.div`
       font-size: 18px;
       padding: 0;
       margin: auto;
-      width: 90vw;
+
       text-align: justify;
     }
   }

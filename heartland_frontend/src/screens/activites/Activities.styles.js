@@ -27,9 +27,9 @@ export const ActivitesContainer = styled.div`
 
   .paragraph {
     font-size: 23px;
-    padding-left: 40px;
     text-align: justify;
     color: #02a89e;
+    width: 90vw;
   }
 
   @media screen and (max-width: 768px) {
@@ -40,7 +40,6 @@ export const ActivitesContainer = styled.div`
 
     .img {
       height: 49vw;
-      width: 90vw;
       margin: 25px auto;
       float: none;
     }
