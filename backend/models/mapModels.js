@@ -27,7 +27,7 @@ const mapSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    socialMedia: [
+    branch: [
       {
         address: { String },
         phone: { String },

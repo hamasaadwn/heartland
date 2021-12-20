@@ -13,7 +13,6 @@ const contentSchema = mongoose.Schema(
     },
     contentKu: {
       type: String,
-      required: true,
     },
     contentAr: {
       type: String,

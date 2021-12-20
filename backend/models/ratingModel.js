@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 
 const RatingSchema = mongoose.Schema(
   {
-    rating: {
+    rate: {
       type: Number,
+      min: 0,
+      max: 5,
     },
     scope: {
       type: String,
