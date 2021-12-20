@@ -1,5 +1,8 @@
 import generateToken from "../utils/GenerateToken.js";
-import { registerValidator, loginValidator } from "../utils/UserValidator.js";
+import {
+  registerValidator,
+  loginValidator,
+} from "../utils/validation/UserValidator.js";
 import User from "../models/userModel.js";
 
 // @desc    register a new user
