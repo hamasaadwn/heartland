@@ -5,6 +5,7 @@ const isEmpity = (string) => {
 };
 
 const MapValidation = (data) => {
+  let errors = {};
   if (isEmpity(data.name)) {
     errors.name = "name must not be empity";
   } else if (data.name.length > 20) {
@@ -38,22 +39,19 @@ const MapValidation = (data) => {
   if (isEmpity(data.branch.address)) {
     errors.branch.address = "branch.address must not be empity";
   } else if (data.branch.address.length > 60) {
-    errors.branch.address =
-      "branch.address must be 60 characters or less";
+    errors.branch.address = "branch.address must be 60 characters or less";
   }
 
   if (isEmpity(data.branch.phone)) {
     errors.branch.phone = "branch.phone must not be empity";
   } else if (data.branch.phone.length > 60) {
-    errors.branch.phone =
-      "branch.phone must be 60 characters or less";
+    errors.branch.phone = "branch.phone must be 60 characters or less";
   }
 
   if (isEmpity(data.branch.email)) {
     errors.branch.email = "branch.email must not be empity";
   } else if (data.branch.email.length > 60) {
-    errors.branch.email =
-      "branch.email must be 60 characters or less";
+    errors.branch.email = "branch.email must be 60 characters or less";
   }
 
   if (isEmpity(data.branch.lang)) {

@@ -5,6 +5,7 @@ const isEmpity = (string) => {
 };
 
 const RatingValidation = (data) => {
+  let errors = {};
   if (isEmpity(data.title)) {
     errors.title = "Title must not be empity";
   } else if (data.title.length > 150) {

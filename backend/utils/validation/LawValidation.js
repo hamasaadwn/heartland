@@ -5,6 +5,8 @@ const isEmpity = (string) => {
 };
 
 const LawValidation = (data) => {
+  let errors = {};
+
   if (isEmpity(data.title)) {
     errors.title = "Title must not be empity";
   } else if (data.title.length > 150) {
@@ -21,8 +23,8 @@ const LawValidation = (data) => {
 
   if (isEmpity(data.type)) {
     errors.type = "type must not be empity";
-  } else if (data.type !== "International" || data.type !== "Iraq") {
-    errors.title = "Type must only be International or Iraq";
+  } else if (data.type !== "International" && data.type !== "Iraq") {
+    errors.type = "Type must only be International or Iraq";
   }
 
   return {

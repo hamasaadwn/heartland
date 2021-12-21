@@ -5,6 +5,7 @@ const isEmpity = (string) => {
 };
 
 const ContentValidation = (data) => {
+  let errors = {};
   if (isEmpity(data.contentEn)) {
     errors.contentEn = "Content for english must not be empity";
   }

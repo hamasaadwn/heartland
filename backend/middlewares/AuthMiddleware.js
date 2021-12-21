@@ -37,4 +37,13 @@ const admin = (req, res, next) => {
   }
 };
 
-export { protect, admin };
+const author = (req, res, next) => {
+  if (req.user && req.user.isAuthor) {
+    next();
+  } else {
+    res.status(401);
+    res.json({ error: "Not authorized" });
+  }
+};
+
+export { protect, admin, author };
