@@ -33,4 +33,17 @@ const LawValidation = (data) => {
   };
 };
 
-export { LawValidation };
+const searchValidation = (data) => {
+  let errors = {};
+
+  if (data.length > 120) {
+    errors.search = "The Search should be less than 120 characters";
+  }
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false,
+  };
+};
+
+export { LawValidation, searchValidation };

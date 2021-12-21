@@ -1,5 +1,8 @@
 import LawPosts from "../models/lawPostsModel.js";
-import { LawValidation } from "../utils/validation/LawValidation.js";
+import {
+  LawValidation,
+  searchValidation,
+} from "../utils/validation/LawValidation.js";
 
 // @desc Create new post
 // @route Post api/posts
@@ -98,4 +101,123 @@ const deletePostById = async (req, res) => {
   } catch (err) {}
 };
 
-export { createPost, updatePost, deletePostById };
+// @desc    fetch all posts
+// @route   GET api/posts
+// @access  public
+const getAllPosts = async (req, res) => {
+  const pageSize = 43;
+  const page = Number(req.query.pageNumber) || 1;
+  try {
+    const count = await LawPosts.countDocuments({});
+
+    const posts = await LawPosts.find({})
+      .sort({ createdAt: -1 })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+
+    res.json({ posts, pages: Math.ceil(count / pageSize), page });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "an error happened while fetching data" });
+  }
+};
+
+// @desc    fetch posts by type
+// @route   GET api/posts/t/:type
+// @access  public
+const getPostsByType = async (req, res) => {
+  const pageSize = 43;
+  const page = Number(req.query.pageNumber) || 1;
+  try {
+    const count = await LawPosts.countDocuments({});
+
+    const posts = await LawPosts.find({ type: req.params.type })
+      .sort({ createdAt: -1 })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+
+    res.json({ posts, pages: Math.ceil(count / pageSize), page });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "an error happened while fetching data" });
+  }
+};
+
+// @desc    fetch posts by id
+// @route   GET api/posts/:id
+// @access  public
+const getPostsById = async (req, res) => {
+  try {
+    const post = await LawPosts.findById(req.params.id).populate("user");
+
+    post.counter += 1;
+    post.save();
+
+    post.user ? (post.user.password = "") : "";
+
+    if (post) {
+      res.json(post);
+    } else {
+      res.status(404);
+      res.json({ general: "this post is unavailable" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "an error happened while fetching data" });
+  }
+};
+
+// @desc    fetch posts by keyword
+// @route   GET api/posts/s
+// @access  public
+const postsSearch = async (req, res) => {
+  const { valid, errors } = searchValidation(req.query.keyword);
+
+  if (!valid) return res.status(400).json(errors);
+
+  const keyword = req.query.keyword
+    ? {
+        $or: [
+          {
+            title: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          },
+          {
+            describtion: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          },
+        ],
+      }
+    : {};
+
+  const pageSize = 43;
+  const page = Number(req.query.pageNumber) || 1;
+
+  const count = await LawPosts.countDocuments({ ...keyword });
+
+  const posts = await LawPosts.find({ ...keyword })
+    .sort({
+      createdAt: -1,
+    })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ posts, page, pages: Math.ceil(count / pageSize) });
+};
+
+export {
+  createPost,
+  updatePost,
+  deletePostById,
+  getAllPosts,
+  getPostsByType,
+  getPostsById,
+  postsSearch,
+};
