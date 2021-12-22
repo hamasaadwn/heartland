@@ -14,11 +14,11 @@ const ContentValidation = (data) => {
   }
 
   if (
-    data.type !== "About" ||
-    data.type !== "Human Trafficing" ||
+    data.type !== "About" &&
+    data.type !== "Human Trafficing" &&
     data.type !== "Activity"
   ) {
-    errors.rate =
+    errors.type =
       "Accepted content types (About, Human Trafficing, and Activity)";
   }
 
