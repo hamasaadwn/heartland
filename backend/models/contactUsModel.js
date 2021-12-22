@@ -7,12 +7,8 @@ const contactUsSchema = mongoose.Schema(
       required: true,
       ref: "user",
     },
-    phone: [String],
-    email: [String],
-    socialMedia: [{
-        socialMedia: {String},
-        link: {String}
-    }],
+    value: { type: String, required: true },
+    type: { type: String, required: true },
   },
   {
     timestamps: true,

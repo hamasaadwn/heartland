@@ -15,7 +15,7 @@ const createOrUpdateContent = async (req, res) => {
     const data =
       (await Content.findOne({
         type: type,
-      })) || new Content({ test: "test" });
+      })) || new Content({});
 
     data.type = type;
     data.contentAr = contentAr;
