@@ -29,11 +29,11 @@ const mapSchema = mongoose.Schema(
     },
     branch: [
       {
-        address: { String },
-        phone: { String },
-        email: { String },
-        lang: { String },
-        lat: { String },
+        address: { type: String },
+        phone: { type: String },
+        email: { type: String },
+        lang: { type: String },
+        lat: { type: String },
       },
     ],
   },
