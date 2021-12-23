@@ -18,6 +18,7 @@ import Guide from "./screens/guide/Guide";
 import TrainingTools from "./screens/guide/training_tool/TrainingTools";
 import AssessmentForm from "./screens/guide/assessment_form/AssessmentForm";
 import ContactUs from "./screens/contact_us/ContactUs";
+import Login from "./screens/login/Login";
 
 function App() {
   const location = useLocation();
@@ -37,7 +38,7 @@ function App() {
     <Fragment>
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
-      {location.pathname === "/" ? (
+      {location.pathname === "/" || location.pathname === "/login_page_2022" ? (
         <div></div>
       ) : location.pathname === "/about" ||
         location.pathname === "/international" ||
@@ -60,6 +61,7 @@ function App() {
         <Route exact path="/trainingtool" element={<TrainingTools />} />
         <Route exact path="/assessmentform" element={<AssessmentForm />} />
         <Route exact path="/contact" element={<ContactUs />} />
+        <Route exact path="/login_page_2022" element={<Login />} />
       </Routes>
     </Fragment>
   );
