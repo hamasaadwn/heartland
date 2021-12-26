@@ -1,12 +1,27 @@
-import { BLACK_BACKGROUND, LIGHT_BACKGROUND } from "../constants/rootConstants";
+import {
+  BLACK_BACKGROUND,
+  CHANGE_LANGUAGE,
+  LIGHT_BACKGROUND,
+} from "../constants/rootConstants";
 
-export const changeBackgroundReducer = (state = {}, action) => {
+export const changeStatesReducer = (state = {}, action) => {
   switch (action.type) {
     case BLACK_BACKGROUND:
-      return { black: true };
+      return { ...state, black: true };
     case LIGHT_BACKGROUND:
-      return { black: false };
+      return { ...state, black: false };
+    case CHANGE_LANGUAGE:
+      return { ...state, language: action.payload };
     default:
       return state;
   }
 };
+
+// export const changeLanguageReducer = (state = {}, action) => {
+//   switch (action.type) {
+//     case CHANGE_LANGUAGE:
+//       return { language: action.payload };
+//     default:
+//       return state;
+//   }
+// };

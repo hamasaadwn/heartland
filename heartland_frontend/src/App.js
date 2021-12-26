@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
 import i18next from "i18next";
 
@@ -19,14 +19,17 @@ import TrainingTools from "./screens/guide/training_tool/TrainingTools";
 import AssessmentForm from "./screens/guide/assessment_form/AssessmentForm";
 import ContactUs from "./screens/contact_us/ContactUs";
 import Login from "./screens/login/Login";
+import { changeLanguage } from "./actions/rootActions";
 
 function App() {
   const location = useLocation();
-  const { black } = useSelector((state) => state.color);
+  const dispatch = useDispatch();
+  const { black } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
 
   useEffect(() => {
+    dispatch(changeLanguage(currentLanguageCode));
     if (currentLanguageCode === "ar") {
       document.body.dir = "rtl";
     } else {

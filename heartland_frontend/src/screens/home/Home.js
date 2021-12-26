@@ -7,7 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import cookies from "js-cookie";
 
-import { changeBackgroundToBlack } from "../../actions/rootActions";
+import {
+  changeBackgroundToBlack,
+  changeLanguage,
+} from "../../actions/rootActions";
 
 import { CreateMargin, HomeContainer, SideMenuContainer } from "./Home.styles";
 const Home = () => {
@@ -33,14 +36,20 @@ const Home = () => {
             <h1 className="side_menu_first">
               <span
                 style={{ cursor: "pointer" }}
-                onClick={() => i18next.changeLanguage("en")}
+                onClick={() => {
+                  dispatch(changeLanguage("en"));
+                  i18next.changeLanguage("en");
+                }}
               >
                 EN
               </span>{" "}
               -{" "}
               <span
                 style={{ cursor: "pointer" }}
-                onClick={() => i18next.changeLanguage("ar")}
+                onClick={() => {
+                  dispatch(changeLanguage("ar"));
+                  i18next.changeLanguage("ar");
+                }}
               >
                 AR
               </span>

@@ -2,11 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import { changeBackgroundReducer } from "./reducers/rootReducer";
+import { changeStatesReducer } from "./reducers/rootReducer";
 import { userLoginReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
-  color: changeBackgroundReducer,
+  root: changeStatesReducer,
   user: userLoginReducer,
 });
 
@@ -15,7 +15,7 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   : null;
 
 const initialState = {
-  color: { black: true },
+  root: { black: true },
   user: { userInfo: userInfoFromStorage },
 };
 
