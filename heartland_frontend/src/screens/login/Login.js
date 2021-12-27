@@ -8,6 +8,7 @@ import { LoginCard } from "../../components/styled/LoginCard.style";
 import { Spacer } from "../../components/styled/Spacer.style";
 import { LoginContainer } from "./Login.style";
 import { login } from "../../actions/userActions";
+import ErrorMessages from "../../components/messages/ErrorMessages";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,6 +24,14 @@ const Login = () => {
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   const { loading, errors, userInfo } = userLogin;
+
+  // useEffect(() => {
+  //   if (errors)
+  //     // for (const item in errors) {
+  //     //   toast.error(errors[item]);
+  //     // }
+  //   // errors.forEach((e) => toast.error(e));
+  // }, [errors]);
 
   useEffect(() => {
     if (userInfo) {
@@ -82,8 +91,8 @@ const Login = () => {
             Login
           </Button>
         </form>
-
         <Spacer top="20px" />
+        {errors && <ErrorMessages errors={errors} />}
       </LoginCard>
     </LoginContainer>
   );

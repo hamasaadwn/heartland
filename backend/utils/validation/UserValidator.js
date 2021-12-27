@@ -44,27 +44,51 @@ const registerValidator = (data) => {
 };
 
 const loginValidator = (data) => {
-  let errors = {};
+  let errors = [];
 
   if (isEmpity(data.email)) {
-    errors.email = "پێوسیتە ئیمەیڵ داخڵ کرێ";
+    errors.push({
+      messageEn: "Email must be provided",
+      messageAr: "يجب توفير البريد الإلكتروني",
+      field: "email",
+    });
   } else if (!isEmail(data.email)) {
-    errors.email = "ئیمەیڵ پیویستە فۆرمی ئیمەیڵی هەبێ";
+    errors.push({
+      messageEn: "The email format is wrong",
+      messageAr: "تنسيق البريد الإلكتروني غير صحيح",
+      field: "email",
+    });
   } else if (data.email.length > 32) {
-    errors.email = "ئیمەیڵ پێویستە لە 32 پیت زیاتر نەبێت";
+    errors.push({
+      messageEn: "the email must be less than 32 characters",
+      messageAr: "يجب أن يكون البريد الإلكتروني أقل من 32 حرفا",
+      field: "email",
+    });
   }
 
   if (isEmpity(data.password)) {
-    errors.password = "پێوستە پاسوۆرد داخڵ کرێ";
+    errors.push({
+      messageEn: "The password must not be empty",
+      messageAr: "يجب ألا تكون كلمة المرور فارغة",
+      field: "password",
+    });
   } else if (data.password.length < 8) {
-    errors.password = "پێویستە پاسوۆرد لە 8 پیت زیاتر بێت";
+    errors.push({
+      messageEn: "Password must be more than 8 characters",
+      messageAr: "يجب أن تكون كلمة المرور أكثر من 8 أحرف",
+      field: "password",
+    });
   } else if (data.password.length > 32) {
-    errors.password = "پێویستە پاسوۆرد لە 32 پیت زیاتر نەبێت";
+    errors.push({
+      messageEn: "Password must be less than 32 characters",
+      messageAr: "يجب أن تكون كلمة المرور أقل من 32 حرفا",
+      field: "password",
+    });
   }
 
   return {
     errors,
-    valid: Object.keys(errors).length === 0 ? true : false,
+    valid: errors.length === 0 ? true : false,
   };
 };
 

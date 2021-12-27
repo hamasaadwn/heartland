@@ -59,7 +59,7 @@ const authUser = async (req, res) => {
   if (!valid) return res.status(400).json(errors);
 
   const { email, password } = req.body;
-
+  let error = [];
   try {
     const user = await User.findOne({ email: email.toLowerCase() });
 
@@ -74,12 +74,22 @@ const authUser = async (req, res) => {
       });
     } else {
       res.status(401);
-      res.json({ general: "ئیمەیڵ یان وشەی تێپەرت هەڵەیە" });
+      error.push({
+        messageEn: "Incorrect email or password",
+        messageAr: "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+        field: "general",
+      });
+      res.json(error);
     }
   } catch (err) {
     console.log(err);
     res.status(400);
-    res.json({ general: "Error" });
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
   }
 };
 
