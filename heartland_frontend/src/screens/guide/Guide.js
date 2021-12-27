@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { changeBackgroundToBlack } from "../../actions/rootActions";
+import {
+  changeBackgroundToBlack,
+  changeNavbar,
+} from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
 import { GuideContainer } from "./Guide.styles";
 
@@ -10,6 +13,7 @@ const Guide = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
+    dispatch(changeNavbar("black"));
   }, []);
 
   return (

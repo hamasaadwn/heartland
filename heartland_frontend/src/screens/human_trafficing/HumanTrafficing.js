@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { Container } from "../../components/styled/Container.style";
-import { changeBackgroundToBlack } from "../../actions/rootActions";
+import {
+  changeBackgroundToBlack,
+  changeNavbar,
+} from "../../actions/rootActions";
 import { HumanTrafficingContainer } from "./HumanTrafficing.styles";
 
 const HumanTrafficing = () => {
@@ -10,6 +13,7 @@ const HumanTrafficing = () => {
 
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
+    dispatch(changeNavbar("black"));
   }, []);
 
   return (

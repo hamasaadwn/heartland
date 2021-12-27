@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { Container } from "../../components/styled/Container.style";
-import { changeBackgroundToWhite } from "../../actions/rootActions";
+import {
+  changeBackgroundToWhite,
+  changeNavbar,
+} from "../../actions/rootActions";
 
 import { InternationalContainer } from "./International.styles";
 
@@ -11,6 +14,7 @@ const International = () => {
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
+    dispatch(changeNavbar("white"));
   }, []);
 
   return (

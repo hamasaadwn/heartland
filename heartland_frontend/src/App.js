@@ -20,11 +20,12 @@ import AssessmentForm from "./screens/guide/assessment_form/AssessmentForm";
 import ContactUs from "./screens/contact_us/ContactUs";
 import Login from "./screens/login/Login";
 import { changeLanguage } from "./actions/rootActions";
+import Users from "./screens/admin/users/Users";
 
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { black } = useSelector((state) => state.root);
+  const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
 
@@ -41,33 +42,37 @@ function App() {
     <Fragment>
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
-      {location.pathname === "/" || location.pathname === "/login_page_2022" ? (
-        <div></div>
-      ) : location.pathname === "/about" ||
-        location.pathname === "/international" ||
-        location.pathname === "/anbar" ||
-        location.pathname === "/servicemap" ||
-        location.pathname === "/assessmentform" ? (
+      {navbar === "white" ? (
         <Navbar fg="black" bg="#F2F2F2" />
-      ) : (
+      ) : navbar === "black" ? (
         <Navbar fg="white" bg="black" />
+      ) : (
+        ""
       )}
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/login_page_2022" element={<Login />} />
+        <Route exact path="/admin/*" element={<AdminRoutes />} />
+        {/* /////////////////// */}
         <Route exact path="/about" element={<About />} />
-        <Route exact path="/ht" element={<HumanTrafficing />} />
         <Route exact path="/international" element={<International />} />
-        <Route exact path="/servicemap" element={<ServiceMaps />} />
         <Route exact path="/anbar" element={<Anbar />} />
+        <Route exact path="/servicemap" element={<ServiceMaps />} />
+        <Route exact path="/assessmentform" element={<AssessmentForm />} />
+        <Route exact path="/ht" element={<HumanTrafficing />} />
         <Route exact path="/activities" element={<Activities />} />
         <Route exact path="/guide" element={<Guide />} />
         <Route exact path="/trainingtool" element={<TrainingTools />} />
-        <Route exact path="/assessmentform" element={<AssessmentForm />} />
         <Route exact path="/contact" element={<ContactUs />} />
-        <Route exact path="/login_page_2022" element={<Login />} />
       </Routes>
     </Fragment>
   );
 }
+
+const AdminRoutes = () => (
+  <Routes>
+    <Route path="/users" element={<Users />} />
+  </Routes>
+);
 
 export default App;

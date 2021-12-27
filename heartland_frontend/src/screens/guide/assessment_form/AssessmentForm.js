@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { changeBackgroundToWhite } from "../../../actions/rootActions";
+import {
+  changeBackgroundToWhite,
+  changeNavbar,
+} from "../../../actions/rootActions";
 import { Container } from "../../../components/styled/Container.style";
 import { AssessmentFormContainer } from "./AssessmentForm.styles";
 
@@ -10,6 +13,7 @@ const AssessmentForm = () => {
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
+    dispatch(changeNavbar("white"));
   }, []);
 
   return (

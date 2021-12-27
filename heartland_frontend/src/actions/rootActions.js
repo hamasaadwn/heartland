@@ -1,6 +1,7 @@
 import {
   BLACK_BACKGROUND,
   CHANGE_LANGUAGE,
+  CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
 } from "../constants/rootConstants";
 
@@ -23,6 +24,14 @@ export const changeBackgroundToWhite = () => async (dispatch) => {
 export const changeLanguage = (language) => async (dispatch) => {
   try {
     dispatch({ type: CHANGE_LANGUAGE, payload: language });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const changeNavbar = (navbar) => async (dispatch) => {
+  try {
+    dispatch({ type: CHANGE_NAVBAR, payload: navbar });
   } catch (err) {
     console.log(err);
   }

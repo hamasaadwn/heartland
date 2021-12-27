@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 
-import { changeBackgroundToBlack } from "../../actions/rootActions";
+import {
+  changeBackgroundToBlack,
+  changeNavbar,
+} from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
 import { ContactUsContainer } from "./ContactUs.styles";
 
@@ -12,6 +15,7 @@ const ContactUs = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
+    dispatch(changeNavbar("black"));
   }, []);
 
   return (

@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { changeBackgroundToWhite } from "../../../actions/rootActions";
+import {
+  changeBackgroundToWhite,
+  changeNavbar,
+} from "../../../actions/rootActions";
 import { Container } from "../../../components/styled/Container.style";
 import { LittleBox } from "../../../components/styled/LittleBox.styles";
 
@@ -13,6 +16,7 @@ const Anbar = () => {
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
+    dispatch(changeNavbar("white"));
   }, []);
 
   return (

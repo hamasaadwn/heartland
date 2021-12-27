@@ -10,6 +10,7 @@ import cookies from "js-cookie";
 import {
   changeBackgroundToBlack,
   changeLanguage,
+  changeNavbar,
 } from "../../actions/rootActions";
 
 import { CreateMargin, HomeContainer, SideMenuContainer } from "./Home.styles";
@@ -24,6 +25,7 @@ const Home = () => {
       document.body.dir = "ltr";
     }
     dispatch(changeBackgroundToBlack());
+    dispatch(changeNavbar("none"));
   }, [i18next.language]);
 
   const { t } = useTranslation();

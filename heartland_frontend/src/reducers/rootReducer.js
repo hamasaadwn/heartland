@@ -1,6 +1,7 @@
 import {
   BLACK_BACKGROUND,
   CHANGE_LANGUAGE,
+  CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
 } from "../constants/rootConstants";
 
@@ -12,6 +13,8 @@ export const changeStatesReducer = (state = {}, action) => {
       return { ...state, black: false };
     case CHANGE_LANGUAGE:
       return { ...state, language: action.payload };
+    case CHANGE_NAVBAR:
+      return { ...state, navbar: action.payload };
     default:
       return state;
   }

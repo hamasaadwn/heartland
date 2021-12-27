@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { changeBackgroundToBlack } from "../../../actions/rootActions";
+import {
+  changeBackgroundToBlack,
+  changeNavbar,
+} from "../../../actions/rootActions";
 import { Container } from "../../../components/styled/Container.style";
 import { TrainingToolsContainer } from "./TrainingTools.style";
 
@@ -9,6 +12,7 @@ const TrainingTools = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
+    dispatch(changeNavbar("black"));
   }, []);
 
   return (

@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { changeBackgroundToWhite } from "../../actions/rootActions";
+import {
+  changeBackgroundToWhite,
+  changeNavbar,
+} from "../../actions/rootActions";
 import MapCards from "../../components/cards/MapCards";
 import { Container } from "../../components/styled/Container.style";
 
@@ -13,6 +16,7 @@ const ServiceMaps = () => {
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
+    dispatch(changeNavbar("white"));
   }, []);
 
   return (
