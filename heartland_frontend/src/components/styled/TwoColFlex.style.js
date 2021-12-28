@@ -6,6 +6,6 @@ export const TwoColFlex = styled.div`
 
   div {
     width: 50%;
-    padding: 0 4px;
+    padding: 4px 4px;
   }
 `;
