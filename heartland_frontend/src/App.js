@@ -21,6 +21,7 @@ import ContactUs from "./screens/contact_us/ContactUs";
 import Login from "./screens/login/Login";
 import { changeLanguage } from "./actions/rootActions";
 import Users from "./screens/admin/users/Users";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
   const location = useLocation();
@@ -46,6 +47,8 @@ function App() {
         <Navbar fg="black" bg="#F2F2F2" />
       ) : navbar === "black" ? (
         <Navbar fg="white" bg="black" />
+      ) : navbar === "side" ? (
+        <Sidebar />
       ) : (
         ""
       )}
