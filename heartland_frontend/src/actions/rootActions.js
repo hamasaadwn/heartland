@@ -1,6 +1,7 @@
 import {
   BLACK_BACKGROUND,
   CHANGE_LANGUAGE,
+  CHANGE_MODAL,
   CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
 } from "../constants/rootConstants";
@@ -32,6 +33,14 @@ export const changeLanguage = (language) => async (dispatch) => {
 export const changeNavbar = (navbar) => async (dispatch) => {
   try {
     dispatch({ type: CHANGE_NAVBAR, payload: navbar });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const changeUserModal = (modal) => async (dispatch) => {
+  try {
+    dispatch({ type: CHANGE_MODAL, payload: modal });
   } catch (err) {
     console.log(err);
   }

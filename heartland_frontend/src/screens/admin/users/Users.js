@@ -6,15 +6,21 @@ import { faUserEdit, faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   changeBackgroundToWhite,
   changeNavbar,
+  changeUserModal,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { IconButton } from "../../../components/styled/IconButton.style";
 import { Table } from "../../../components/styled/Table.style";
 import { allUsers } from "../../../actions/userActions";
+import { Button } from "../../../components/styled/Button.style";
+import AddUserModal from "../../../components/modals/AddUserModal";
+import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 
 const Users = () => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
+
+  const { userModal } = useSelector((state) => state.root);
 
   const { users } = userList;
 
@@ -26,6 +32,20 @@ const Users = () => {
 
   return (
     <AdminContainer>
+      {userModal && <AddUserModal />}
+      <TwoColFlex>
+        <div>
+          <Button
+            bg="#02a89e"
+            fg="#ffffff"
+            onClick={() => dispatch(changeUserModal(true))}
+          >
+            Add User
+          </Button>
+        </div>
+        <div></div>
+      </TwoColFlex>
+
       <Table>
         <thead>
           <th>name</th>
@@ -59,48 +79,6 @@ const Users = () => {
               </tr>
             ))}
         </tbody>
-        {/* <tr>
-          <td>Hama</td>
-          <td>hamasaadwn@gmail.com</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserEdit} className="style-fa-search" />
-            </IconButton>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserTimes} className="style-fa-search" />
-            </IconButton>
-          </td>
-        </tr>
-        <tr>
-          <td>Hama</td>
-          <td>hamasaadwn@gmail.com</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserEdit} className="style-fa-search" />
-            </IconButton>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserTimes} className="style-fa-search" />
-            </IconButton>
-          </td>
-        </tr>
-        <tr>
-          <td>Hama</td>
-          <td>hamasaadwn@gmail.com</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserEdit} className="style-fa-search" />
-            </IconButton>
-            <IconButton bg="#e3e3e3" fg="#000000">
-              <FontAwesomeIcon icon={faUserTimes} className="style-fa-search" />
-            </IconButton>
-          </td>
-        </tr> */}
       </Table>
     </AdminContainer>
   );

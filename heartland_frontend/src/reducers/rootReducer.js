@@ -3,6 +3,7 @@ import {
   CHANGE_LANGUAGE,
   CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
+  CHANGE_MODAL,
 } from "../constants/rootConstants";
 
 export const changeStatesReducer = (state = {}, action) => {
@@ -15,6 +16,8 @@ export const changeStatesReducer = (state = {}, action) => {
       return { ...state, language: action.payload };
     case CHANGE_NAVBAR:
       return { ...state, navbar: action.payload };
+    case CHANGE_MODAL:
+      return { ...state, userModal: action.payload };
     default:
       return state;
   }
