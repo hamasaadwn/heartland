@@ -72,10 +72,13 @@ function App() {
   );
 }
 
-const AdminRoutes = () => (
-  <Routes>
-    <Route path="/users" element={<Users />} />
-  </Routes>
-);
+const AdminRoutes = () => {
+  const userLogin = useSelector((state) => state.user);
+  const { userInfo } = userLogin;
+
+  return (
+    <Routes>{userInfo && <Route path="/users" element={<Users />} />}</Routes>
+  );
+};
 
 export default App;
