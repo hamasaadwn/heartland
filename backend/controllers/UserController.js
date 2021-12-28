@@ -93,4 +93,23 @@ const authUser = async (req, res) => {
   }
 };
 
-export { registerUser, authUser };
+// @desc    auth user and get token
+// @route   GET api/users
+// @access  Private admin
+const allUsers = async (req, res) => {
+  try {
+    const users = await User.find({}).select("-password");
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    error.push({
+      messageEn: "Server Error",
+      messageAr: "Server Error",
+      field: "general",
+    });
+    res.json(error);
+  }
+};
+
+export { registerUser, authUser, allUsers };
