@@ -47,6 +47,8 @@ const AddUserModal = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    dispatch(resetUserData());
+    setPassErr([]);
     if (password !== confirmPassword) {
       setPassErr([
         {
