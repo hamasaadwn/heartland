@@ -9,6 +9,9 @@ import {
   LOAD_ALL_USERS_RESET,
   ADD_USER_TO_USERLIST,
   REMOVE_USER_FROM_USERLIST,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -43,6 +46,22 @@ export const userListReducer = (state = { users: [] }, action) => {
         loading: false,
         users: state.users.filter((u) => u._id !== action.payload),
       };
+    default:
+      return state;
+  }
+};
+
+export const userRegisterReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_REGISTER_REQUEST:
+      return { loading: true };
+    case USER_REGISTER_SUCCESS:
+      return {
+        loading: false,
+        success: "User has been added successfully",
+      };
+    case USER_REGISTER_FAIL:
+      return { loading: false, errors: action.payload };
     default:
       return state;
   }

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconButton } from "../styled/IconButton.style";
 import { ModalContainer } from "../styled/Modal.style";
 import { changeUserModal } from "../../actions/rootActions";
 import { TwoColFlex } from "../styled/TwoColFlex.style";
 import { Input } from "../styled/Input.style";
 import { Button } from "../styled/Button.style";
+import { Spacer } from "../styled/Spacer.style";
+import { register } from "../../actions/userActions";
 
 const AddUserModal = () => {
   const dispatch = useDispatch();
@@ -35,14 +36,29 @@ const AddUserModal = () => {
     });
   };
 
+  const { name, email, confirmPassword, password, isAdmin, isAuthor } =
+    formData;
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // try {
-    //   await dispatch(login(formData.email, formData.password));
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    if (password !== confirmPassword) {
+      // addToast("پاسۆردەکان جیاوازن", { appearance: "error" });
+    } else {
+      try {
+        await dispatch(register(name, email, password, isAdmin, isAuthor));
+        dispatch(changeUserModal(false));
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          isAdmin: false,
+          isAuthor: true,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return (
@@ -117,7 +133,7 @@ const AddUserModal = () => {
                 name="isAdmin"
                 checked={formData.isAdmin}
                 onChange={setCheckbox}
-                disabled="true"
+                disabled={true}
               />
               {"  "}Admin
             </div>
@@ -129,11 +145,12 @@ const AddUserModal = () => {
                 name="isAuthor"
                 checked={formData.isAuthor}
                 onChange={setCheckbox}
-                disabled="true"
+                disabled={true}
               />
               {"  "}Author
             </div>
           </TwoColFlex>
+          <Spacer top="20px" />
           <Button bg="#02a89e" fg="#ffffff">
             Login
           </Button>

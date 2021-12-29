@@ -25,14 +25,6 @@ const Login = () => {
 
   const { loading, errors, userInfo } = userLogin;
 
-  // useEffect(() => {
-  //   if (errors)
-  //     // for (const item in errors) {
-  //     //   toast.error(errors[item]);
-  //     // }
-  //   // errors.forEach((e) => toast.error(e));
-  // }, [errors]);
-
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);

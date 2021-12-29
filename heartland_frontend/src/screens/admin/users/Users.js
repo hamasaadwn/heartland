@@ -48,11 +48,13 @@ const Users = () => {
 
       <Table>
         <thead>
-          <th>name</th>
-          <th>email</th>
-          <th>is admin</th>
-          <th>is author</th>
-          <th>Actions</th>
+          <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>is admin</th>
+            <th>is author</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
           {users &&

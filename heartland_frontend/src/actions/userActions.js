@@ -9,6 +9,9 @@ import {
   LOAD_ALL_USERS_RESET,
   ADD_USER_TO_USERLIST,
   REMOVE_USER_FROM_USERLIST,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -69,3 +72,43 @@ export const allUsers = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const register =
+  (name, email, password, isAdmin, isAuthor) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: USER_REGISTER_REQUEST });
+
+      const {
+        user: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axios.post(
+        "/api/users",
+        { name, email, password, isAdmin, isAuthor },
+        config
+      );
+
+      dispatch({
+        type: USER_REGISTER_SUCCESS,
+        payload: data,
+      });
+
+      dispatch({
+        type: ADD_USER_TO_USERLIST,
+        payload: data,
+      });
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        dispatch({ type: USER_REGISTER_FAIL, payload: err.response.data });
+      }
+    }
+  };
