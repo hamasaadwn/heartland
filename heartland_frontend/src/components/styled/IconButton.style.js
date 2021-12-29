@@ -11,4 +11,5 @@ export const IconButton = styled.button`
   padding: 4px;
   margin: 0 4px;
   font-size: 16px;
+  cursor: pointer;
 `;

@@ -117,3 +117,23 @@ export const register =
 export const resetUserData = () => async (dispatch) => {
   dispatch({ type: USER_REGISTER_RESET });
 };
+
+export const removeUser = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axios.delete(`/api/users/${id}`, config);
+
+    dispatch({ type: REMOVE_USER_FROM_USERLIST, payload: id });
+  } catch (err) {
+    console.log(err);
+  }
+};

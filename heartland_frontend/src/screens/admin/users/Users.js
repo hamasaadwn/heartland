@@ -11,7 +11,7 @@ import {
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { IconButton } from "../../../components/styled/IconButton.style";
 import { Table } from "../../../components/styled/Table.style";
-import { allUsers } from "../../../actions/userActions";
+import { allUsers, removeUser } from "../../../actions/userActions";
 import { Button } from "../../../components/styled/Button.style";
 import AddUserModal from "../../../components/modals/AddUserModal";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
@@ -29,6 +29,22 @@ const Users = () => {
     dispatch(changeBackgroundToWhite());
     dispatch(allUsers());
   }, []);
+
+  const deleteHandler = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this user?\nهل تريد بالتأكيد حذف هذا المستخدم؟"
+      )
+    ) {
+      try {
+        await dispatch(removeUser(id));
+        // addToast("بەکارهێنەر لابرا بە سەرکەوتووی", { appearance: "success" });
+      } catch (err) {
+        console.log(err);
+        // addToast("لابردنی بەکارهێنەر سەرکەوتوو نەبوو", { appearance: "error" });
+      }
+    }
+  };
 
   return (
     <AdminContainer>
@@ -66,16 +82,14 @@ const Users = () => {
                 <td>{u.isAuthor ? "✓" : "✕"}</td>
                 <td>
                   <IconButton bg="#e3e3e3" fg="#000000">
-                    <FontAwesomeIcon
-                      icon={faUserEdit}
-                      className="style-fa-search"
-                    />
+                    <FontAwesomeIcon icon={faUserEdit} />
                   </IconButton>
-                  <IconButton bg="#e3e3e3" fg="#000000">
-                    <FontAwesomeIcon
-                      icon={faUserTimes}
-                      className="style-fa-search"
-                    />
+                  <IconButton
+                    bg="#e3e3e3"
+                    fg="#000000"
+                    onClick={() => deleteHandler(u._id)}
+                  >
+                    <FontAwesomeIcon icon={faUserTimes} />
                   </IconButton>
                 </td>
               </tr>
