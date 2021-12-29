@@ -81,9 +81,9 @@ const Users = () => {
                 <td>{u.isAdmin ? "✓" : "✕"}</td>
                 <td>{u.isAuthor ? "✓" : "✕"}</td>
                 <td>
-                  <IconButton bg="#e3e3e3" fg="#000000">
+                  {/* <IconButton bg="#e3e3e3" fg="#000000">
                     <FontAwesomeIcon icon={faUserEdit} />
-                  </IconButton>
+                  </IconButton> */}
                   <IconButton
                     bg="#e3e3e3"
                     fg="#000000"
