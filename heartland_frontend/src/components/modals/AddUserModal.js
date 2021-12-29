@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,10 +8,14 @@ import { TwoColFlex } from "../styled/TwoColFlex.style";
 import { Input } from "../styled/Input.style";
 import { Button } from "../styled/Button.style";
 import { Spacer } from "../styled/Spacer.style";
-import { register } from "../../actions/userActions";
+import { register, resetUserData } from "../../actions/userActions";
+import ErrorMessages from "../messages/ErrorMessages";
 
 const AddUserModal = () => {
   const dispatch = useDispatch();
+
+  const regUser = useSelector((state) => state.regUser);
+  const { errors, success } = regUser;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,6 +25,8 @@ const AddUserModal = () => {
     isAdmin: false,
     isAuthor: true,
   });
+
+  const [passErr, setPassErr] = useState([]);
 
   const setInput = (event) => {
     setFormData({
@@ -42,24 +48,37 @@ const AddUserModal = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      // addToast("پاسۆردەکان جیاوازن", { appearance: "error" });
+      setPassErr([
+        {
+          messageEn: "Passwords Should match",
+          messageAr: "يجب أن تتطابق كلمات المرور",
+          field: "general",
+        },
+      ]);
     } else {
       try {
         await dispatch(register(name, email, password, isAdmin, isAuthor));
-        dispatch(changeUserModal(false));
-        setFormData({
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-          isAdmin: false,
-          isAuthor: true,
-        });
+        // console.log(errors);
       } catch (err) {
         console.log(err);
       }
     }
   };
+
+  useEffect(() => {
+    if (success) {
+      dispatch(changeUserModal(false));
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        isAdmin: false,
+        isAuthor: true,
+      });
+    }
+    dispatch(resetUserData());
+  }, [success]);
 
   return (
     <ModalContainer>
@@ -150,6 +169,8 @@ const AddUserModal = () => {
               {"  "}Author
             </div>
           </TwoColFlex>
+          {errors && <ErrorMessages errors={errors} />}
+          {passErr && <ErrorMessages errors={passErr} />}
           <Spacer top="20px" />
           <Button bg="#02a89e" fg="#ffffff">
             Login

@@ -12,6 +12,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_REGISTER_RESET,
 } from "../constants/userConstants";
 
 import axios from "axios";
@@ -112,3 +113,7 @@ export const register =
       }
     }
   };
+
+export const resetUserData = () => async (dispatch) => {
+  dispatch({ type: USER_REGISTER_RESET });
+};

@@ -15,12 +15,19 @@ const registerUser = async (req, res) => {
 
   const { name, email, password } = req.body;
 
+  const error = [];
+
   try {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
       res.status(400);
-      res.json({ general: "This email is already in use" });
+      error.push({
+        messageEn: "This email is already in use",
+        messageAr: "هذا البريد الإلكتروني قيد الاستخدام بالفعل",
+        field: "general",
+      });
+      res.json(error);
       return;
     }
 
@@ -41,12 +48,21 @@ const registerUser = async (req, res) => {
       });
     } else {
       res.status(400);
-      throw new Error("Invalid user data");
+      error.push({
+        messageEn: "Invalid user data",
+        messageAr: "بيانات مستخدم غير صالحة",
+        field: "general",
+      });
+      res.json(error);
     }
   } catch (err) {
     console.log(err);
-    res.status(400);
-    res.json({ general: "There is an error" });
+    error.push({
+      messageEn: "An error occurred",
+      messageAr: "حدث خطأ",
+      field: "general",
+    });
+    res.json(error);
   }
 };
 
