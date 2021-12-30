@@ -1,25 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { loadContent, resetContent } from "../../../actions/contentActions";
 
 import {
   changeBackgroundToWhite,
   changeNavbar,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
+import { Button } from "../../../components/styled/Button.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 
 const Content = () => {
   const dispatch = useDispatch();
+
+  const [formData, setFormData] = useState({
+    type: "About",
+    contentEn: "",
+    contentAr: "",
+  });
+
   useEffect(() => {
+    dispatch(resetContent());
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
   }, []);
 
-  const [formData, setFormData] = useState({
-    type: "",
-    contentEn: "",
-    contentAr: "",
-  });
+  useEffect(async () => {
+    try {
+      const result = await dispatch(loadContent(formData.type));
+      if (result) {
+        setFormData({
+          ...formData,
+          contentEn: result.contentEn,
+          contentAr: result.contentAr,
+        });
+      } else {
+        setFormData({
+          ...formData,
+          contentEn: "",
+          contentAr: "",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, [formData.type]);
 
   const setInput = (event) => {
     setFormData({
@@ -28,17 +53,20 @@ const Content = () => {
     });
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <AdminContainer>
-      <form>
+      <form onSubmit={submitHandler}>
         <div>
           <label>
             Select content:{" "}
-            <select name="type" value={formData.name} onChange={setInput}>
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
+            <select name="type" value={formData.type} onChange={setInput}>
+              <option value="About">About</option>
+              <option value="Human Trafficing">Human Trafficing</option>
+              <option value="Activity">Activity</option>
             </select>
           </label>
         </div>
@@ -52,6 +80,10 @@ const Content = () => {
               direction: "rtl",
               resize: "vertical",
             }}
+            name="contentAr"
+            value={formData.contentAr}
+            onChange={setInput}
+            placeholder="النص هنا...."
           />
         </div>
         <Spacer top="20px" />
@@ -59,8 +91,16 @@ const Content = () => {
           <label>English Content:</label>
           <textarea
             style={{ width: "100%", height: "500px", resize: "vertical" }}
+            name="contentEn"
+            value={formData.contentEn}
+            onChange={setInput}
+            placeholder="Text Here...."
           />
         </div>
+        <Spacer top="20px" />
+        <Button bg="#02a89e" fg="#ffffff">
+          Submit
+        </Button>
       </form>
     </AdminContainer>
   );
