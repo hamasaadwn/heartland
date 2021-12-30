@@ -22,6 +22,7 @@ import Login from "./screens/login/Login";
 import { changeLanguage } from "./actions/rootActions";
 import Users from "./screens/admin/users/Users";
 import Sidebar from "./components/sidebar/Sidebar";
+import Content from "./screens/admin/content/Content";
 
 function App() {
   const location = useLocation();
@@ -77,7 +78,14 @@ const AdminRoutes = () => {
   const { userInfo } = userLogin;
 
   return (
-    <Routes>{userInfo && <Route path="/users" element={<Users />} />}</Routes>
+    <Fragment>
+      <Routes>
+        {userInfo && <Route exact path="/users" element={<Users />} />}
+      </Routes>
+      <Routes>
+        {userInfo && <Route exact path="/content" element={<Content />} />}
+      </Routes>
+    </Fragment>
   );
 };
 

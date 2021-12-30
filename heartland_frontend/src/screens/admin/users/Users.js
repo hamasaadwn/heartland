@@ -65,10 +65,10 @@ const Users = () => {
       <Table>
         <thead>
           <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>is admin</th>
-            <th>is author</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Is admin</th>
+            <th>Is author</th>
             <th>Actions</th>
           </tr>
         </thead>
