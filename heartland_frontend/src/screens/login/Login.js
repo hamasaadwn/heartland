@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { Button } from "../../components/styled/Button.style";
-import { Input } from "../../components/styled/Input.style";
+import { Button } from "../../components/styled/form/Button.style";
+import { Input } from "../../components/styled/form/Input.style";
 import { LoginCard } from "../../components/styled/LoginCard.style";
 import { Spacer } from "../../components/styled/Spacer.style";
 import { LoginContainer } from "./Login.style";

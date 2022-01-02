@@ -9,10 +9,10 @@ import {
   changeUserModal,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
-import { IconButton } from "../../../components/styled/IconButton.style";
+import { IconButton } from "../../../components/styled/form/IconButton.style";
 import { Table } from "../../../components/styled/Table.style";
 import { allUsers, removeUser } from "../../../actions/userActions";
-import { Button } from "../../../components/styled/Button.style";
+import { Button } from "../../../components/styled/form/Button.style";
 import AddUserModal from "../../../components/modals/AddUserModal";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 

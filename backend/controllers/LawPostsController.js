@@ -12,7 +12,8 @@ const createPost = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type } = req.body;
+  const { title, describtion, image, pictures, tags, type, language } =
+    req.body;
 
   try {
     const LawPost = new LawPosts({
@@ -23,6 +24,7 @@ const createPost = async (req, res) => {
       tags,
       type,
       user: req.user._id,
+      language,
     });
 
     const LawPostt = await LawPost.save();
@@ -51,7 +53,8 @@ const updatePost = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type } = req.body;
+  const { title, describtion, image, pictures, tags, type, language } =
+    req.body;
 
   try {
     const post = await LawPosts.findById(req.params.id);
@@ -64,6 +67,7 @@ const updatePost = async (req, res) => {
         post.pictures = pictures;
         post.tags = tags;
         post.type = type;
+        post.language = language;
 
         const updatedPost = await post.save();
         res.json(updatedPost);

@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadPosts } from "../../../actions/postActions";
+import { Link } from "react-router-dom";
 
+import { loadPosts } from "../../../actions/postActions";
 import {
   changeBackgroundToWhite,
   changeNavbar,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
+import { Button } from "../../../components/styled/form/Button.style";
 import { Table } from "../../../components/styled/Table.style";
 
 const Posts = () => {
@@ -23,6 +25,11 @@ const Posts = () => {
 
   return (
     <AdminContainer>
+      <Link to="/dashboard/posts/addpost">
+        <Button bg="#02a89e" fg="#ffffff">
+          Add Post
+        </Button>
+      </Link>
       <Table>
         <thead>
           <tr>

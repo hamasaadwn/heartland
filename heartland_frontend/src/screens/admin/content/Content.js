@@ -11,7 +11,8 @@ import {
   changeNavbar,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
-import { Button } from "../../../components/styled/Button.style";
+import { Button } from "../../../components/styled/form/Button.style";
+import { TextArea } from "../../../components/styled/form/TextArea.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 
 const Content = () => {
@@ -89,13 +90,7 @@ const Content = () => {
         <Spacer top="20px" />
         <div>
           <label>Arabic Content:</label>
-          <textarea
-            style={{
-              width: "100%",
-              height: "500px",
-              direction: "rtl",
-              resize: "vertical",
-            }}
+          <TextArea
             name="contentAr"
             value={formData.contentAr}
             onChange={setInput}
@@ -105,8 +100,7 @@ const Content = () => {
         <Spacer top="20px" />
         <div>
           <label>English Content:</label>
-          <textarea
-            style={{ width: "100%", height: "500px", resize: "vertical" }}
+          <TextArea
             name="contentEn"
             value={formData.contentEn}
             onChange={setInput}
