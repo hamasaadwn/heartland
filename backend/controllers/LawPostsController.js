@@ -145,6 +145,37 @@ const getPostsByType = async (req, res) => {
   }
 };
 
+// @desc    fetch posts by type
+// @route   GET api/posts/author
+// @access  private author
+const getPostsByAuthor = async (req, res) => {
+  // const pageSize = 43;
+  // const page = Number(req.query.pageNumber) || 1;
+  const userId = req.user._id;
+
+  try {
+    // const count = await LawPosts.countDocuments({});
+
+    if (req.user.isAdmin) {
+      const posts = await LawPosts.find({}).sort({
+        createdAt: -1,
+      });
+
+      res.json(posts);
+    } else if (req.user.isAuthor) {
+      const posts = await LawPosts.find({ user: userId }).sort({
+        createdAt: -1,
+      });
+
+      res.json(posts);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "an error happened while fetching data" });
+  }
+};
+
 // @desc    fetch posts by id
 // @route   GET api/posts/:id
 // @access  public
@@ -220,4 +251,5 @@ export {
   getPostsByType,
   getPostsById,
   postsSearch,
+  getPostsByAuthor,
 };

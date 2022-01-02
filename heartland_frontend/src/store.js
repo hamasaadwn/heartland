@@ -12,6 +12,7 @@ import {
   loadContentReducer,
   updateContentReducer,
 } from "./reducers/contentReducer";
+import { loadPostsReducer } from "./reducers/postReducer";
 
 const reducer = combineReducers({
   root: changeStatesReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   regUser: userRegisterReducer,
   content: loadContentReducer,
   updateContent: updateContentReducer,
+  posts: loadPostsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

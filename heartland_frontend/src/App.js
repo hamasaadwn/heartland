@@ -23,6 +23,7 @@ import { changeLanguage } from "./actions/rootActions";
 import Users from "./screens/admin/users/Users";
 import Sidebar from "./components/sidebar/Sidebar";
 import Content from "./screens/admin/content/Content";
+import Posts from "./screens/admin/posts/Posts";
 
 function App() {
   const location = useLocation();
@@ -84,6 +85,9 @@ const AdminRoutes = () => {
       </Routes>
       <Routes>
         {userInfo && <Route exact path="/content" element={<Content />} />}
+      </Routes>
+      <Routes>
+        {userInfo && <Route exact path="/posts" element={<Posts />} />}
       </Routes>
     </Fragment>
   );

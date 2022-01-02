@@ -7,6 +7,7 @@ import {
   getPostsByType,
   getPostsById,
   postsSearch,
+  getPostsByAuthor,
 } from "../controllers/LawPostsController.js";
 import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
@@ -14,6 +15,7 @@ const router = express.Router();
 
 router.route("/").post(protect, author, createPost).get(getAllPosts);
 router.route("/s").get(postsSearch);
+router.route("/author").get(protect, author, getPostsByAuthor);
 router
   .route("/:id")
   .put(protect, author, updatePost)
