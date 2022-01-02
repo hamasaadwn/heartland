@@ -3,6 +3,9 @@ import {
   LOAD_CONTENT_SUCCESS,
   LOAD_CONTENT_FAIL,
   RESET_CONTENT,
+  UPDATE_CONTENT_REQUEST,
+  UPDATE_CONTENT_SUCCESS,
+  UPDATE_CONTENT_FAIL,
 } from "../constants/contentConstants";
 
 import axios from "axios";
@@ -35,3 +38,38 @@ export const loadContent = (type) => async (dispatch) => {
 export const resetContent = () => (dispatch) => {
   dispatch({ type: RESET_CONTENT });
 };
+
+export const createOrUpdateContent =
+  (type, contentEn, contentAr) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: UPDATE_CONTENT_REQUEST });
+
+      const {
+        user: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axios.post(
+        `/api/content/${type}`,
+        { type, contentEn, contentAr },
+        config
+      );
+
+      dispatch({
+        type: UPDATE_CONTENT_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        dispatch({ type: UPDATE_CONTENT_FAIL, payload: err.response.data });
+      }
+    }
+  };

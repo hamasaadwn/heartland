@@ -56,7 +56,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login_page_2022" element={<Login />} />
-        <Route exact path="/admin/*" element={<AdminRoutes />} />
+        <Route exact path="/dashboard/*" element={<AdminRoutes />} />
         {/* /////////////////// */}
         <Route exact path="/about" element={<About />} />
         <Route exact path="/international" element={<International />} />

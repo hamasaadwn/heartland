@@ -8,7 +8,10 @@ import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, createOrUpdateContent);
-router.route("/:type").get(getContentByType);
+// router.route("/");
+router
+  .route("/:type")
+  .get(getContentByType)
+  .post(protect, admin, createOrUpdateContent);
 
 export default router;

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadContent, resetContent } from "../../../actions/contentActions";
+import {
+  createOrUpdateContent,
+  loadContent,
+  resetContent,
+} from "../../../actions/contentActions";
 
 import {
   changeBackgroundToWhite,
@@ -55,6 +59,18 @@ const Content = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      await dispatch(
+        createOrUpdateContent(
+          formData.type,
+          formData.contentEn,
+          formData.contentAr
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
