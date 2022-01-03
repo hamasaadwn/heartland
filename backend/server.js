@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
+import path from "path";
 
 import connectDB from "./config/db.js";
 
@@ -10,6 +11,7 @@ import ratingRoutes from "./routes/RatingRoutes.js";
 import contentRoutes from "./routes/ContentRoutes.js";
 import contactRoutes from "./routes/ContactRoutes.js";
 import mapRoutes from "./routes/MapRoutes.js";
+import uploadRoutes from "./routes/UploadRoutes.js";
 
 dotenv.config();
 
@@ -25,5 +27,10 @@ app.use("/api/rating", ratingRoutes);
 app.use("/api/content", contentRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/maps", mapRoutes);
+app.use("/api/upload", uploadRoutes);
+
+//make uploads static
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.listen(4000, () => console.log("Server listening on port 4000!"));

@@ -12,7 +12,7 @@ import {
   loadContentReducer,
   updateContentReducer,
 } from "./reducers/contentReducer";
-import { loadPostsReducer } from "./reducers/postReducer";
+import { addPostsReducer, loadPostsReducer } from "./reducers/postReducer";
 
 const reducer = combineReducers({
   root: changeStatesReducer,
@@ -22,6 +22,7 @@ const reducer = combineReducers({
   content: loadContentReducer,
   updateContent: updateContentReducer,
   posts: loadPostsReducer,
+  post: addPostsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

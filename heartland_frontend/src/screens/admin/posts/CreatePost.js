@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import {
   changeBackgroundToWhite,
@@ -7,19 +8,24 @@ import {
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { Input } from "../../../components/styled/form/Input.style";
+import { TextArea } from "../../../components/styled/form/TextArea.style";
+import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
+import { Button } from "../../../components/styled/form/Button.style";
+import { addPost } from "../../../actions/postActions";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
 
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     describtion: "",
     image: "",
     pictures: [],
-    tags: [],
     video: "",
-    language: "",
+    language: "en",
+    type: "International",
   });
 
   useEffect(() => {
@@ -34,14 +40,86 @@ const CreatePost = () => {
     });
   };
 
+  //upload image handler
+  const uploadImageHandler = async (e) => {
+    const file = e.target.files[0];
+    const formDataU = new FormData();
+    formDataU.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload", formDataU, config);
+
+      setFormData({ ...formData, image: data });
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
+      //   appearance: "error",
+      // });
+      setUploading(false);
+    }
+  };
+
+  //upload pictures handler
+  const uploadPicturesHandler = async (e) => {
+    const files = e.target.files;
+
+    const formDataU = new FormData();
+    for (const key of Object.keys(files)) {
+      formDataU.append("pictures", files[key]);
+    }
+
+    // setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload/multi", formDataU, config);
+
+      setFormData({ ...formData, pictures: data });
+      // setUploading(false);
+    } catch (error) {
+      console.error(error);
+      // addToast("دانانی وێنە سەرکەوتوو نەبوو", {
+      //   appearance: "error",
+      // });
+      // setUploading(false);
+    }
+  };
+
+  const { title, describtion, image, pictures, video, language, type } =
+    formData;
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(
+        addPost(title, describtion, image, pictures, video, language, type)
+      );
+
+      // console.log(errors);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <AdminContainer>
-      <form>
+      <form onSubmit={submitHandler}>
         <div>
           <label>Title</label>
           <Input
-            bg="#3d3d3d20"
-            fg="#ffffffdb"
+            bg="#ffffffdb"
+            fg="#3d3d3d80"
             placeholder="Title"
             type="text"
             name="title"
@@ -51,6 +129,73 @@ const CreatePost = () => {
             maxLength="150"
           />
         </div>
+        <Spacer top="20px" />
+        <div>
+          <label>Description</label>
+          <TextArea
+            placeholder="Description"
+            type="text"
+            name="describtion"
+            value={formData.describtion}
+            onChange={setInput}
+            required={true}
+          />
+        </div>
+        <Spacer top="20px" />
+        <TwoColFlex>
+          <div>
+            <label>Main Image </label>
+            <input type="file" name="image" onChange={uploadImageHandler} />
+          </div>
+
+          <div>
+            <label>Album </label>
+            <input
+              type="file"
+              name="pictures"
+              onChange={uploadPicturesHandler}
+              multiple={true}
+            />
+          </div>
+        </TwoColFlex>
+        <Spacer top="20px" />
+        <div>
+          <label>Youtube Video</label>
+          <Input
+            bg="#ffffffdb"
+            fg="#3d3d3d80"
+            placeholder="Youtube Video"
+            type="text"
+            name="video"
+            value={formData.video}
+            onChange={setInput}
+          />
+        </div>
+        <Spacer top="20px" />
+        <TwoColFlex>
+          <div>
+            <label>Language </label>
+            <select
+              name="language"
+              value={formData.language}
+              onChange={setInput}
+            >
+              <option value="en">English</option>
+              <option value="ar">Arabic</option>
+            </select>
+          </div>
+          <div>
+            <label>Law </label>
+            <select name="type" value={formData.type} onChange={setInput}>
+              <option value="International">International Law</option>
+              <option value="Iraq">Iraqi Law</option>
+            </select>
+          </div>
+        </TwoColFlex>
+        <Spacer top="20px" />
+        <Button bg="#02a89e" fg="#ffffff">
+          Submit
+        </Button>
       </form>
     </AdminContainer>
   );
