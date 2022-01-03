@@ -25,6 +25,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Content from "./screens/admin/content/Content";
 import Posts from "./screens/admin/posts/Posts";
 import CreatePost from "./screens/admin/posts/CreatePost";
+import Contact from "./screens/admin/contact/Contact";
 
 function App() {
   const location = useLocation();
@@ -88,6 +89,7 @@ const AdminRoutes = () => {
           <Route exact path="/posts/addpost" element={<CreatePost />} />
         )}
         {userInfo && <Route exact path="/users" element={<Users />} />}
+        {userInfo && <Route exact path="/contact" element={<Contact />} />}
       </Routes>
     </Fragment>
   );

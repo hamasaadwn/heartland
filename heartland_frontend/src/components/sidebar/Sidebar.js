@@ -19,6 +19,9 @@ const Sidebar = () => {
         <li>
           <NavLink to="/dashboard/posts">Posts</NavLink>
         </li>
+        <li>
+          <NavLink to="/dashboard/contact">Contact</NavLink>
+        </li>
       </ul>
     </Side>
   );
