@@ -26,6 +26,7 @@ import Content from "./screens/admin/content/Content";
 import Posts from "./screens/admin/posts/Posts";
 import CreatePost from "./screens/admin/posts/CreatePost";
 import Contact from "./screens/admin/contact/Contact";
+import Maps from "./screens/admin/map/Maps";
 
 function App() {
   const location = useLocation();
@@ -90,6 +91,7 @@ const AdminRoutes = () => {
         )}
         {userInfo && <Route exact path="/users" element={<Users />} />}
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
+        {userInfo && <Route exact path="/maps" element={<Maps />} />}
       </Routes>
     </Fragment>
   );

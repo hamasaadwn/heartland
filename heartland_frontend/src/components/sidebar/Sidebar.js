@@ -22,6 +22,9 @@ const Sidebar = () => {
         <li>
           <NavLink to="/dashboard/contact">Contact</NavLink>
         </li>
+        <li>
+          <NavLink to="/dashboard/maps">Maps</NavLink>
+        </li>
       </ul>
     </Side>
   );
