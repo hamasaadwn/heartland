@@ -25,7 +25,7 @@ const Maps = () => {
 
   return (
     <AdminContainer>
-      <Link to="/dashboard/posts/addcity">
+      <Link to="/dashboard/maps/addcity">
         <Button bg="#02a89e" fg="#ffffff">
           Add City
         </Button>
