@@ -1,6 +1,12 @@
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadContact } from "../../../actions/contactActions";
+import {
+  createOrUpdateContact,
+  loadContact,
+  removeContact,
+} from "../../../actions/contactActions";
 
 import {
   changeBackgroundToWhite,
@@ -8,6 +14,7 @@ import {
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { Button } from "../../../components/styled/form/Button.style";
+import { IconButton } from "../../../components/styled/form/IconButton.style";
 import { Input } from "../../../components/styled/form/Input.style";
 import { Select } from "../../../components/styled/form/Select.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
@@ -36,9 +43,43 @@ const Contact = () => {
     });
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await dispatch(
+        createOrUpdateContact(formData.type, formData.value)
+      );
+      if (data) {
+        setFormData({
+          type: "phone",
+          value: "",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteHandler = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this contact info?\nهل تريد بالتأكيد حذف معلومات جهة الاتصال هذه؟"
+      )
+    ) {
+      try {
+        await dispatch(removeContact(id));
+        // addToast("بەکارهێنەر لابرا بە سەرکەوتووی", { appearance: "success" });
+      } catch (err) {
+        console.log(err);
+        // addToast("لابردنی بەکارهێنەر سەرکەوتوو نەبوو", { appearance: "error" });
+      }
+    }
+  };
+
   return (
     <AdminContainer>
-      <form>
+      <form onSubmit={submitHandler}>
         <TwoColFlex>
           <div>
             <label>Type</label>
@@ -91,7 +132,15 @@ const Contact = () => {
               <tr key={c._id}>
                 <td>{c.type}</td>
                 <td>{c.value}</td>
-                <td>Actions</td>
+                <td>
+                  <IconButton
+                    bg="#e3e3e3"
+                    fg="#000000"
+                    onClick={() => deleteHandler(c._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </IconButton>
+                </td>
               </tr>
             ))}
         </tbody>

@@ -28,7 +28,7 @@ const createOrUpdateContact = async (req, res) => {
 
 const getAllContactInfo = async (req, res) => {
   try {
-    const data = await ContactUs.find({});
+    const data = await ContactUs.find({}).sort({ createdAt: -1 });
     res.json(data);
   } catch (err) {
     console.log(err);
@@ -37,4 +37,22 @@ const getAllContactInfo = async (req, res) => {
   }
 };
 
-export { createOrUpdateContact, getAllContactInfo };
+const deleteContact = async (req, res) => {
+  try {
+    const contact = await ContactUs.findById(req.params.id);
+
+    if (contact) {
+      await contact.deleteOne();
+      res.json({ message: "contact removed", contact });
+    } else {
+      res.status(404);
+      throw new Error("contact not found");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Error!" });
+  }
+};
+
+export { createOrUpdateContact, getAllContactInfo, deleteContact };

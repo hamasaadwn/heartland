@@ -4,6 +4,8 @@ import {
   LOAD_CONTACT_REQUEST,
   LOAD_CONTACT_SUCCESS,
   LOAD_CONTACT_FAIL,
+  ADD_TO_CONTACTS,
+  REMOVE_FROM_CONTACTS,
 } from "../constants/contactConstants";
 
 export const loadContact = (type) => async (dispatch) => {
@@ -29,5 +31,59 @@ export const loadContact = (type) => async (dispatch) => {
     else {
       dispatch({ type: LOAD_CONTACT_FAIL, payload: err.response.data });
     }
+  }
+};
+
+export const createOrUpdateContact =
+  (type, value) => async (dispatch, getState) => {
+    try {
+      const {
+        user: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axios.post(
+        `/api/contact`,
+        { type, value },
+        config
+      );
+
+      dispatch({
+        type: ADD_TO_CONTACTS,
+        payload: data,
+      });
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        // dispatch({ type: UPDATE_CONTENT_FAIL, payload: err.response.data });
+      }
+    }
+  };
+
+export const removeContact = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axios.delete(`/api/contact/${id}`, config);
+
+    dispatch({ type: REMOVE_FROM_CONTACTS, payload: id });
+  } catch (err) {
+    console.log(err);
   }
 };
