@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+
 import {
   changeBackgroundToWhite,
   changeNavbar,
@@ -11,9 +13,12 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
+import { addMap } from "../../../actions/mapsActions";
 
 const AddCity = () => {
   const dispatch = useDispatch();
+
+  const [uploading, setUploading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -46,40 +51,59 @@ const AddCity = () => {
 
   //upload image handler
   const uploadImageHandler = async (e) => {
-    // const file = e.target.files[0];
-    // const formDataU = new FormData();
-    // formDataU.append("image", file);
-    // setUploading(true);
-    // try {
-    //   const config = {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   };
-    //   const { data } = await axios.post("/api/upload", formDataU, config);
-    //   setFormData({ ...formData, [event.target.name]: data });
-    //   setUploading(false);
-    // } catch (error) {
-    //   console.error(error);
-    //   // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
-    //   //   appearance: "error",
-    //   // });
-    //   setUploading(false);
-    // }
+    const file = e.target.files[0];
+    const formDataU = new FormData();
+    formDataU.append("image", file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload", formDataU, config);
+      setFormData({ ...formData, [e.target.name]: data });
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
+      //   appearance: "error",
+      // });
+      setUploading(false);
+    }
   };
+
+  const { name, thumbnail, countryMap, cityMap, cityMapAdd, branch } = formData;
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // try {
-    //   await dispatch(
-    //     addPost(title, describtion, image, pictures, video, language, type)
-    //   );
+    try {
+      const data = await dispatch(
+        addMap(name, thumbnail, countryMap, cityMap, cityMapAdd, branch)
+      );
 
-    //   // console.log(errors);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+      if (data) {
+        setFormData({
+          name: "",
+          thumbnail: "",
+          countryMap: "",
+          cityMap: "",
+          cityMapAdd: "",
+          branch: [
+            {
+              address: "",
+              phone: "",
+              email: "",
+              lat: "",
+              lang: "",
+            },
+          ],
+        });
+      }
+      // console.log(errors);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -102,22 +126,30 @@ const AddCity = () => {
         <TwoColFlex>
           <div>
             <label>Main Image </label>
-            <input type="file" name="image" onChange={uploadImageHandler} />
+            <input type="file" name="thumbnail" onChange={uploadImageHandler} />
           </div>
           <div>
             <label>Country map </label>
-            <input type="file" name="image" onChange={uploadImageHandler} />
+            <input
+              type="file"
+              name="countryMap"
+              onChange={uploadImageHandler}
+            />
           </div>
         </TwoColFlex>
         <Spacer top="20px" />
         <TwoColFlex>
           <div>
             <label>City Map </label>
-            <input type="file" name="image" onChange={uploadImageHandler} />
+            <input type="file" name="cityMap" onChange={uploadImageHandler} />
           </div>
           <div>
             <label>City map with address</label>
-            <input type="file" name="image" onChange={uploadImageHandler} />
+            <input
+              type="file"
+              name="cityMapAdd"
+              onChange={uploadImageHandler}
+            />
           </div>
         </TwoColFlex>
         <Spacer top="20px" />
