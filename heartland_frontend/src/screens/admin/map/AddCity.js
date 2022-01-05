@@ -6,6 +6,8 @@ import {
 } from "../../../actions/rootActions";
 
 import { AdminContainer } from "../../../components/styled/AdminContainer";
+import { Border } from "../../../components/styled/Border.style";
+import { Button } from "../../../components/styled/form/Button.style";
 import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
@@ -19,7 +21,15 @@ const AddCity = () => {
     countryMap: "",
     cityMap: "",
     cityMapAdd: "",
-    branch: [],
+    branch: [
+      {
+        address: "",
+        phone: "",
+        email: "",
+        lat: "",
+        lang: "",
+      },
+    ],
   });
 
   useEffect(() => {
@@ -58,9 +68,23 @@ const AddCity = () => {
     // }
   };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    // try {
+    //   await dispatch(
+    //     addPost(title, describtion, image, pictures, video, language, type)
+    //   );
+
+    //   // console.log(errors);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
+
   return (
     <AdminContainer>
-      <form>
+      <form onSubmit={submitHandler}>
         <div>
           <label>Name</label>
           <Input
@@ -97,6 +121,133 @@ const AddCity = () => {
           </div>
         </TwoColFlex>
         <Spacer top="20px" />
+        {formData.branch.map((b, i) => (
+          <Border>
+            <h2>Branch Info</h2>
+            <hr />
+            <Spacer top="10px" />
+            <TwoColFlex>
+              <div>
+                <label>Address</label>
+
+                <input
+                  bg="#ffffffdb"
+                  fg="#3d3d3d80"
+                  placeholder="Address"
+                  type="text"
+                  name="address"
+                  value={b.address}
+                  onChange={(e) => {
+                    let newArr = [...formData.branch];
+                    newArr[i].address = e.target.value;
+                    setFormData({ ...formData, branch: newArr });
+                  }}
+                  required={true}
+                />
+              </div>
+              <div>
+                <label>Phone</label>
+                <input
+                  bg="#ffffffdb"
+                  fg="#3d3d3d80"
+                  placeholder="Phone"
+                  type="text"
+                  name="phone"
+                  value={b.phone}
+                  onChange={(e) => {
+                    let newArr = [...formData.branch];
+                    newArr[i].phone = e.target.value;
+                    setFormData({ ...formData, branch: newArr });
+                  }}
+                  required={true}
+                />
+              </div>
+            </TwoColFlex>
+            <TwoColFlex>
+              <div>
+                <label>Email</label>
+                <input
+                  bg="#ffffffdb"
+                  fg="#3d3d3d80"
+                  placeholder="Email"
+                  type="text"
+                  name="email"
+                  value={b.email}
+                  onChange={(e) => {
+                    let newArr = [...formData.branch];
+                    newArr[i].email = e.target.value;
+                    setFormData({ ...formData, branch: newArr });
+                  }}
+                  required={true}
+                />
+              </div>
+              <div>
+                <label>Latitude</label>
+                <input
+                  bg="#ffffffdb"
+                  fg="#3d3d3d80"
+                  placeholder="Latitude"
+                  type="text"
+                  name="lat"
+                  value={b.lat}
+                  onChange={(e) => {
+                    let newArr = [...formData.branch];
+                    newArr[i].lat = e.target.value;
+                    setFormData({ ...formData, branch: newArr });
+                  }}
+                  required={true}
+                />
+              </div>
+            </TwoColFlex>
+            <TwoColFlex>
+              <div>
+                <label>Longitude</label>
+                <input
+                  bg="#ffffffdb"
+                  fg="#3d3d3d80"
+                  placeholder="Longitude"
+                  type="text"
+                  name="lang"
+                  value={b.lang}
+                  onChange={(e) => {
+                    let newArr = [...formData.branch];
+                    newArr[i].lang = e.target.value;
+                    setFormData({ ...formData, branch: newArr });
+                  }}
+                  required={true}
+                />
+              </div>
+              <div></div>
+            </TwoColFlex>
+          </Border>
+        ))}
+        <Spacer top="20px" />
+        <TwoColFlex>
+          <div>
+            <Button
+              onClick={() => {
+                setFormData({
+                  ...formData,
+                  branch: [
+                    ...formData.branch,
+                    {
+                      address: "",
+                      phone: "",
+                      email: "",
+                      lat: "",
+                      lang: "",
+                    },
+                  ],
+                });
+              }}
+            >
+              Add A Branch
+            </Button>
+          </div>
+          <div>
+            <Button>Submit</Button>
+          </div>
+        </TwoColFlex>
       </form>
     </AdminContainer>
   );
