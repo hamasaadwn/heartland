@@ -19,7 +19,7 @@ import TrainingTools from "./screens/guide/training_tool/TrainingTools";
 import AssessmentForm from "./screens/guide/assessment_form/AssessmentForm";
 import ContactUs from "./screens/contact_us/ContactUs";
 import Login from "./screens/login/Login";
-import { changeLanguage } from "./actions/rootActions";
+import { changeLanguage, visitors } from "./actions/rootActions";
 import Users from "./screens/admin/users/Users";
 import Sidebar from "./components/sidebar/Sidebar";
 import Content from "./screens/admin/content/Content";
@@ -37,6 +37,7 @@ function App() {
   const currentLanguageCode = cookies.get("i18next") || "en";
 
   useEffect(() => {
+    dispatch(visitors());
     dispatch(changeLanguage(currentLanguageCode));
     if (currentLanguageCode === "ar") {
       document.body.dir = "rtl";

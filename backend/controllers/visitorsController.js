@@ -1,7 +1,7 @@
 import Visitor from "../models/visitorsModel.js";
 
 // @desc visitors
-// @route Post api/visitor
+// @route Get api/visitor
 // @access Public
 const visitorCount = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const visitorCount = async (req, res) => {
     vis.visitors++;
 
     const result = await vis.save();
-    res.json(result);
+    res.json(result.visitors);
   } catch (err) {
     console.log(err);
     res.status(400);

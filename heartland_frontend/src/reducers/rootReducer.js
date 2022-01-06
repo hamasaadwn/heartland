@@ -4,6 +4,7 @@ import {
   CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
   CHANGE_MODAL,
+  COUNT_VISITORS,
 } from "../constants/rootConstants";
 
 export const changeStatesReducer = (state = {}, action) => {
@@ -18,6 +19,8 @@ export const changeStatesReducer = (state = {}, action) => {
       return { ...state, navbar: action.payload };
     case CHANGE_MODAL:
       return { ...state, userModal: action.payload };
+    case COUNT_VISITORS:
+      return { ...state, visitor: action.payload };
     default:
       return state;
   }

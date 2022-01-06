@@ -4,6 +4,6 @@ import { visitorCount } from "../controllers/visitorsController.js";
 
 const router = express.Router();
 
-router.route("/").post(visitorCount);
+router.route("/").get(visitorCount);
 
 export default router;
