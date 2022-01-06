@@ -12,6 +12,7 @@ import contentRoutes from "./routes/ContentRoutes.js";
 import contactRoutes from "./routes/ContactRoutes.js";
 import mapRoutes from "./routes/MapRoutes.js";
 import uploadRoutes from "./routes/UploadRoutes.js";
+import visitorRoutes from "./routes/visitorRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api/content", contentRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/maps", mapRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/visitor", visitorRoutes);
 
 //make uploads static
 const __dirname = path.resolve();
