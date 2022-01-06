@@ -50,7 +50,6 @@ export const changeUserModal = (modal) => async (dispatch) => {
 };
 
 export const visitors = () => async (dispatch) => {
-  console.log("data");
   try {
     const { data } = await axios.get("/api/visitor");
     dispatch({ type: COUNT_VISITORS, payload: data });

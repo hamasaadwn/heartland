@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
@@ -10,20 +11,28 @@ import {
 } from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
 import { ContactUsContainer } from "./ContactUs.styles";
+import { loadContact } from "../../actions/contactActions";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
+
+  const { visitor } = useSelector((state) => state.root);
+  const { contacts } = useSelector((state) => state.contacts);
+
+  const { t } = useTranslation();
+
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
+    dispatch(loadContact());
   }, []);
 
   return (
     <Container>
       <ContactUsContainer>
         <div className="headtext">
-          <h2>Visitors</h2>
-          <p>9,769,526</p>
+          <h2>{t("visitors")}</h2>
+          <p>{visitor}</p>
         </div>
         <hr />
         <div className="star-container">
@@ -84,10 +93,10 @@ const ContactUs = () => {
         </div>
         <hr />
         <div className="contact-info">
-          <p>phone &#160; +0964 000 000 0000</p>
-          <p>Email &#160; email@gmail.com</p>
+          <p>{t("phone")} &#160; +0964 000 000 0000</p>
+          <p>{t("email")} &#160; email@gmail.com</p>
           <div className="social-icons">
-            <p>Social Media &#160;</p>
+            <p>{t("social_media")} &#160;</p>
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
             <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
