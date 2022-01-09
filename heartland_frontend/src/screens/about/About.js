@@ -32,7 +32,6 @@ const About = () => {
         </div>
         <div className="img"></div>
         <div className="paragraph">
-          {console.log(content)}
           {content &&
             (language === "en" ? (
               <p>{content.contentEn}</p>
