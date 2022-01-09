@@ -4,6 +4,9 @@ import {
   LOAD_CONTACT_REQUEST,
   LOAD_CONTACT_SUCCESS,
   LOAD_CONTACT_FAIL,
+  LOAD_CONTACT_CLASSES_REQUEST,
+  LOAD_CONTACT_CLASSES_SUCCESS,
+  LOAD_CONTACT_CLASSES_FAIL,
   ADD_TO_CONTACTS,
   REMOVE_FROM_CONTACTS,
 } from "../constants/contactConstants";
@@ -30,6 +33,44 @@ export const loadContact = (type) => async (dispatch) => {
     if (err.message === "Network Error") console.log(err);
     else {
       dispatch({ type: LOAD_CONTACT_FAIL, payload: err.response.data });
+    }
+  }
+};
+
+export const loadContactList = (type) => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_CONTACT_CLASSES_REQUEST });
+
+    const config = {
+      Headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.get(`/api/contact`, config);
+
+    let newData = { emails: [], nums: [], sm: [] };
+
+    data.map((d) => {
+      if (d.type === "email") {
+        newData.emails.push(d);
+      } else if (d.type === "phone") {
+        newData.nums.push(d);
+      } else {
+        newData.sm.push(d);
+      }
+    });
+
+    dispatch({
+      type: LOAD_CONTACT_CLASSES_SUCCESS,
+      payload: newData,
+    });
+    return data;
+  } catch (err) {
+    console.log(err);
+    if (err.message === "Network Error") console.log(err);
+    else {
+      dispatch({ type: LOAD_CONTACT_CLASSES_FAIL, payload: err.response.data });
     }
   }
 };

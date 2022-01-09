@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookSquare,
+  faInstagramSquare,
+  faLinkedin,
+  faTwitterSquare,
+  faYoutubeSquare,
+} from "@fortawesome/free-brands-svg-icons";
 
 import {
   changeBackgroundToBlack,
@@ -11,20 +17,20 @@ import {
 } from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
 import { ContactUsContainer } from "./ContactUs.styles";
-import { loadContact } from "../../actions/contactActions";
+import { loadContactList } from "../../actions/contactActions";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
 
   const { visitor } = useSelector((state) => state.root);
-  const { contacts } = useSelector((state) => state.contacts);
+  const { contacts } = useSelector((state) => state.contactList);
 
   const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
-    dispatch(loadContact());
+    dispatch(loadContactList());
   }, []);
 
   return (
@@ -93,13 +99,66 @@ const ContactUs = () => {
         </div>
         <hr />
         <div className="contact-info">
-          <p>{t("phone")} &#160; +0964 000 000 0000</p>
-          <p>{t("email")} &#160; email@gmail.com</p>
+          <div>
+            {t("phone")} &#160;
+            {contacts && contacts.nums.map((p) => <p key={p._id}>{p.value}</p>)}
+          </div>
+          <div>
+            {t("email")} &#160;
+            {contacts &&
+              contacts.emails.map((p) => <p key={p._id}>{p.value}</p>)}
+          </div>
           <div className="social-icons">
             <p>{t("social_media")} &#160;</p>
-            <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
-            <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
-            <FontAwesomeIcon icon={faFacebookSquare} className="fa-b-styles" />
+            {contacts &&
+              contacts.sm.map((p) => {
+                if (p.type === "facebook") {
+                  return (
+                    <a href={p.value} key={p._id}>
+                      <FontAwesomeIcon
+                        icon={faFacebookSquare}
+                        className="fa-b-styles"
+                      />
+                    </a>
+                  );
+                } else if (p.type === "twitter") {
+                  return (
+                    <a href={p.value} key={p._id}>
+                      <FontAwesomeIcon
+                        icon={faTwitterSquare}
+                        className="fa-b-styles"
+                      />
+                    </a>
+                  );
+                } else if (p.type === "instagram") {
+                  return (
+                    <a href={p.value} key={p._id}>
+                      <FontAwesomeIcon
+                        icon={faInstagramSquare}
+                        className="fa-b-styles"
+                      />
+                    </a>
+                  );
+                } else if (p.type === "youtube") {
+                  return (
+                    <a href={p.value} key={p._id}>
+                      <FontAwesomeIcon
+                        icon={faYoutubeSquare}
+                        className="fa-b-styles"
+                      />
+                    </a>
+                  );
+                } else if (p.type === "linkedin") {
+                  return (
+                    <a href={p.value} key={p._id}>
+                      <FontAwesomeIcon
+                        icon={faLinkedin}
+                        className="fa-b-styles"
+                      />
+                    </a>
+                  );
+                }
+              })}
           </div>
         </div>
       </ContactUsContainer>

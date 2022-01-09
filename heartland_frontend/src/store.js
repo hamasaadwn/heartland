@@ -13,7 +13,10 @@ import {
   updateContentReducer,
 } from "./reducers/contentReducer";
 import { addPostsReducer, loadPostsReducer } from "./reducers/postReducer";
-import { loadContactReducer } from "./reducers/contactReducer";
+import {
+  loadContactClassedReducer,
+  loadContactReducer,
+} from "./reducers/contactReducer";
 import { loadMapsReducer } from "./reducers/mapReducer";
 
 const reducer = combineReducers({
@@ -26,6 +29,7 @@ const reducer = combineReducers({
   posts: loadPostsReducer,
   post: addPostsReducer,
   contacts: loadContactReducer,
+  contactList: loadContactClassedReducer,
   maps: loadMapsReducer,
 });
 
