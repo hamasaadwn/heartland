@@ -59,7 +59,8 @@ const Home = () => {
           </div>
           <div>
             <h1>
-              HERTLAND <span style={{ color: "#02a89e" }}>ALL</span>IANCE
+              CC<span style={{ color: "#02a89e" }}>C</span>{" "}
+              <span style={{ color: "#aa1829" }}>HT</span>
             </h1>
           </div>
           <div>

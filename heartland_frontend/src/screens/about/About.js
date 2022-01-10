@@ -28,7 +28,7 @@ const About = () => {
     <Container>
       <AboutContainer>
         <div className="about">
-          <h1>{t("about_us")}</h1>
+          <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
         </div>
         <div className="img"></div>
         <div className="paragraph">

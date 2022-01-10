@@ -12,6 +12,21 @@ export const HumanTrafficingContainer = styled.div`
     color: white;
     padding: 90px;
     font-size: 50px;
+
+    h1 {
+      ${({ language }) =>
+        language === "en"
+          ? `
+      border-left: solid 5px #aa1829;
+      padding-left: 20px;
+      `
+          : language === "ar"
+          ? `border-right: solid 5px #aa1829;
+      padding-right: 20px;`
+          : ""}
+
+      margin-top: 100px;
+    }
   }
 
   .ht_text {

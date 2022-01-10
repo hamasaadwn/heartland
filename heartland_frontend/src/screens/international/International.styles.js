@@ -13,6 +13,7 @@ export const InternationalContainer = styled.div`
     .text {
       h2 {
         font-size: 44px;
+        color: #02a89e;
       }
     }
 

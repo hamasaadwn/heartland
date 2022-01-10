@@ -25,12 +25,10 @@ const HumanTrafficing = () => {
 
   return (
     <Container>
-      <HumanTrafficingContainer>
+      <HumanTrafficingContainer language={language}>
         <div className="h1-text">
           <h1>
-            <br />
-            <br />
-            <span style={{ color: "#02a89e" }}>{t("ht_header_1")}</span> <br />
+            <span style={{ color: "#02a89e" }}>{t("ht_header_1")}</span>
             <br /> {t("ht_header_2")}
           </h1>
         </div>

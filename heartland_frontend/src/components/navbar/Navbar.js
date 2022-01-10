@@ -73,8 +73,11 @@ const Navbar = ({ bg, fg }) => {
                 menuHandler();
               }}
             >
-              HEARTLAND <br /> <span style={{ color: "#02a89e" }}>ALLI</span>
-              ANCE
+              <h2>
+                {" "}
+                CC<span style={{ color: "#02a89e" }}>C</span>{" "}
+                <span style={{ color: "#aa1829" }}>HT</span>
+              </h2>
             </NavLink>
           </li>
           <li>
