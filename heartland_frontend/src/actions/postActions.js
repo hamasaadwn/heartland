@@ -47,7 +47,7 @@ export const loadPosts = () => async (dispatch, getState) => {
 };
 
 export const addPost =
-  (title, describtion, image, pictures, video, language, type) =>
+  (title, describtion, image, pictures, video, language, type, pdf) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: ADD_POSTS_REQUEST });
@@ -65,7 +65,7 @@ export const addPost =
 
       const { data } = await axios.post(
         `/api/posts`,
-        { title, describtion, image, pictures, video, language, type },
+        { title, describtion, image, pictures, video, language, type, pdf },
         config
       );
 

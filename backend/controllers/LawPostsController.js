@@ -12,7 +12,7 @@ const createPost = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type, language } =
+  const { title, describtion, image, pictures, tags, type, language, pdf } =
     req.body;
 
   try {
@@ -25,6 +25,7 @@ const createPost = async (req, res) => {
       type,
       user: req.user._id,
       language,
+      pdf,
     });
 
     const LawPostt = await LawPost.save();

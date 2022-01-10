@@ -16,6 +16,15 @@ const storage = multer.diskStorage({
   },
 });
 
+const pdfStorage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, "uploads/pdf/");
+  },
+  filename(req, file, cb) {
+    cb(null, `p${Math.floor(Math.random() * 1000)}-${file.originalname}`);
+  },
+});
+
 function checkFileType(file, cb) {
   const filetypes = /jpg|jpeg|png/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -28,6 +37,18 @@ function checkFileType(file, cb) {
   }
 }
 
+function checkPDF(file, cb) {
+  const filetypes = /pdf/;
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (extname && mimetype) {
+    return cb(null, true);
+  } else {
+    cb("PDF only!");
+  }
+}
+
 const upload = multer({
   storage,
   fileFilter: function (req, file, cb) {
@@ -35,7 +56,18 @@ const upload = multer({
   },
 });
 
+const uploadPDF = multer({
+  storage: pdfStorage,
+  fileFilter: function (req, file, cb) {
+    checkPDF(file, cb);
+  },
+});
+
 router.post("/", upload.single("image"), (req, res) => {
+  res.send(`/${req.file.path}`);
+});
+
+router.post("/pdf", uploadPDF.single("pdf"), (req, res) => {
   res.send(`/${req.file.path}`);
 });
 

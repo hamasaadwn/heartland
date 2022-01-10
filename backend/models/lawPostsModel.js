@@ -19,6 +19,9 @@ const lawPostsSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    pdf: {
+      type: String,
+    },
     pictures: [String],
     tags: [String],
     state: {

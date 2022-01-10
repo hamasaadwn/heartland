@@ -25,6 +25,7 @@ const CreatePost = () => {
     pictures: [],
     video: "",
     language: "en",
+    pdf: "",
     type: "International",
   });
 
@@ -96,14 +97,40 @@ const CreatePost = () => {
     }
   };
 
-  const { title, describtion, image, pictures, video, language, type } =
+  //upload pdf handler
+  const uploadPDFHandler = async (e) => {
+    const file = e.target.files[0];
+    const formDataU = new FormData();
+    formDataU.append("pdf", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post("/api/upload/pdf", formDataU, config);
+
+      setFormData({ ...formData, pdf: data });
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
+      //   appearance: "error",
+      // });
+      setUploading(false);
+    }
+  };
+
+  const { title, describtion, image, pictures, video, language, type, pdf } =
     formData;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
-        addPost(title, describtion, image, pictures, video, language, type)
+        addPost(title, describtion, image, pictures, video, language, type, pdf)
       );
 
       // console.log(errors);
@@ -154,6 +181,15 @@ const CreatePost = () => {
               type="file"
               name="pictures"
               onChange={uploadPicturesHandler}
+              multiple={true}
+            />
+          </div>
+          <div>
+            <label>pdf </label>
+            <input
+              type="file"
+              name="pdf"
+              onChange={uploadPDFHandler}
               multiple={true}
             />
           </div>

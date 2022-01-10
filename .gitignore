@@ -28,3 +28,4 @@ yarn-error.log*
 uploads/*.jpg
 uploads/*.jpeg
 uploads/*.png
+uploads/pdf/*.pdf
