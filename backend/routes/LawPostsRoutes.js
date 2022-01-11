@@ -8,6 +8,7 @@ import {
   getPostsById,
   postsSearch,
   getPostsByAuthor,
+  getPostsByCategoryAndLanguage,
 } from "../controllers/LawPostsController.js";
 import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
@@ -22,5 +23,6 @@ router
   .delete(protect, author, deletePostById)
   .get(getPostsById);
 router.route("/t/:type").get(getPostsByType);
+router.route("/:language/:category").get(getPostsByCategoryAndLanguage);
 
 export default router;

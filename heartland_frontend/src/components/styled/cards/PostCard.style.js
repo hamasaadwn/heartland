@@ -30,6 +30,13 @@ export const PostCard = styled.div`
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+      @media only screen and (max-width: 775px) {
+        height: 150px;
+      }
+      @media only screen and (max-width: 500px) {
+        height: 100px;
+      }
     }
 
     .contentDiv {

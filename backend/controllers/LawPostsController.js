@@ -128,6 +128,34 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+// @desc    fetch all posts
+// @route   GET api/posts/:language/:category
+// @access  public
+const getPostsByCategoryAndLanguage = async (req, res) => {
+  const pageSize = 43;
+  const page = Number(req.query.pageNumber) || 1;
+  try {
+    const count = await LawPosts.countDocuments({
+      language: req.params.language,
+      type: req.params.category,
+    });
+
+    const posts = await LawPosts.find({
+      language: req.params.language,
+      type: req.params.category,
+    })
+      .sort({ createdAt: -1 })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+
+    res.json({ posts, pages: Math.ceil(count / pageSize), page });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "an error happened while fetching data" });
+  }
+};
+
 // @desc    fetch posts by type
 // @route   GET api/posts/t/:type
 // @access  public
@@ -257,4 +285,5 @@ export {
   getPostsById,
   postsSearch,
   getPostsByAuthor,
+  getPostsByCategoryAndLanguage,
 };
