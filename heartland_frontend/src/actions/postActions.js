@@ -69,6 +69,25 @@ export const loadPostsList =
     }
   };
 
+export const loadSinglePost = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: ADD_POSTS_REQUEST });
+
+    const { data } = await axios(`/api/posts/${id}`);
+
+    dispatch({
+      type: ADD_POSTS_SUCCESS,
+      payload: data,
+    });
+    return data;
+  } catch (err) {
+    if (err.message === "Network Error") console.log(err);
+    else {
+      dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+    }
+  }
+};
+
 export const addPost =
   (title, describtion, image, pictures, video, language, type, pdf) =>
   async (dispatch, getState) => {

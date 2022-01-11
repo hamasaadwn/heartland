@@ -29,6 +29,7 @@ import Contact from "./screens/admin/contact/Contact";
 import Maps from "./screens/admin/map/Maps";
 import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
+import Post from "./screens/posts/Post";
 
 function App() {
   const location = useLocation();
@@ -76,6 +77,7 @@ function App() {
         <Route exact path="/trainingtool" element={<TrainingTools />} />
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
+        <Route exact path="/p/:id" element={<Post />} />
       </Routes>
     </Fragment>
   );

@@ -34,13 +34,12 @@ const PostCards = ({ post }) => {
 
   return (
     <PostCard>
-      {console.log(post)}
       <div className="innerDiv">
         <div className="image">
           <img src={post.image} alt="" />
         </div>
         <div className="contentDiv">
-          <Link to="/">
+          <Link to={`/p/${post._id}`}>
             <h2>{post.title}</h2>
             <h6>{timeFormatter(post.createdAt)}</h6>
             <p>
