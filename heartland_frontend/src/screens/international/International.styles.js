@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const InternationalContainer = styled.div`
   background-color: #f2f2f2;
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
   .law_card {
     display: flex;
     flex-wrap: wrap;

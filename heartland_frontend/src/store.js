@@ -12,7 +12,11 @@ import {
   loadContentReducer,
   updateContentReducer,
 } from "./reducers/contentReducer";
-import { addPostsReducer, loadPostsReducer } from "./reducers/postReducer";
+import {
+  addPostsReducer,
+  loadPostsListReducer,
+  loadPostsReducer,
+} from "./reducers/postReducer";
 import {
   loadContactClassedReducer,
   loadContactReducer,
@@ -27,6 +31,7 @@ const reducer = combineReducers({
   content: loadContentReducer,
   updateContent: updateContentReducer,
   posts: loadPostsReducer,
+  postsList: loadPostsListReducer,
   post: addPostsReducer,
   contacts: loadContactReducer,
   contactList: loadContactClassedReducer,

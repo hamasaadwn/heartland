@@ -2,6 +2,9 @@ import {
   LOAD_POSTS_REQUEST,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAIL,
+  LOAD_POSTS_LIST_REQUEST,
+  LOAD_POSTS_LIST_SUCCESS,
+  LOAD_POSTS_LIST_FAIL,
   ADD_POSTS_REQUEST,
   ADD_POSTS_SUCCESS,
   ADD_POSTS_FAIL,
@@ -45,6 +48,26 @@ export const loadPosts = () => async (dispatch, getState) => {
     }
   }
 };
+
+export const loadPostsList =
+  (language, category) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: LOAD_POSTS_LIST_REQUEST });
+
+      const { data } = await axios(`/api/posts/${language}/${category}`);
+
+      dispatch({
+        type: LOAD_POSTS_LIST_SUCCESS,
+        payload: data,
+      });
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        dispatch({ type: LOAD_POSTS_LIST_FAIL, payload: err.response.data });
+      }
+    }
+  };
 
 export const addPost =
   (title, describtion, image, pictures, video, language, type, pdf) =>

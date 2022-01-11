@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { loadPostsList } from "../../actions/postActions";
 
 import {
   changeBackgroundToWhite,
@@ -10,17 +12,25 @@ import { Container } from "../../components/styled/Container.style";
 
 const PostsList = () => {
   const dispatch = useDispatch();
+  const params = useParams();
+
+  const { posts } = useSelector((state) => state.postsList);
+  const { language } = useSelector((state) => state.root);
+
+  const category = params.type;
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
-  }, []);
+    dispatch(loadPostsList(language, category));
+  }, [language]);
 
   return (
     <Container>
-      {[...Array(10)].map((x, i) => {
-        return <PostCards key={i} />;
-      })}
+      {posts &&
+        posts.posts.map((p) => {
+          return <PostCards key={p._id} post={p} />;
+        })}
     </Container>
   );
 };

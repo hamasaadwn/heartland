@@ -75,7 +75,7 @@ function App() {
         <Route exact path="/guide" element={<Guide />} />
         <Route exact path="/trainingtool" element={<TrainingTools />} />
         <Route exact path="/contact" element={<ContactUs />} />
-        <Route exact path="/posts" element={<PostsList />} />
+        <Route exact path="/posts/:type" element={<PostsList />} />
       </Routes>
     </Fragment>
   );

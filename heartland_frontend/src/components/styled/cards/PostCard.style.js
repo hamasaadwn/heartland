@@ -7,6 +7,11 @@ export const PostCard = styled.div`
   border-radius: 10px;
   padding: 2px;
 
+  a {
+    color: #595959;
+    text-decoration: none;
+  }
+
   .innerDiv {
     width: 100%;
     border: solid #cccccc 1px;
