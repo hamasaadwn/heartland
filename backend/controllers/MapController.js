@@ -118,4 +118,18 @@ const getMapById = async (req, res) => {
   }
 };
 
-export { createMap, updateMap, getAllMaps, getMapById };
+// @desc get specific
+// @route Post api/maps/m/:id
+// @access Public
+const getMapByCity = async (req, res) => {
+  try {
+    const posts = await mapModels.findOne({ name: req.params.id });
+    res.json(posts);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "There is an error" });
+  }
+};
+
+export { createMap, updateMap, getAllMaps, getMapById, getMapByCity };

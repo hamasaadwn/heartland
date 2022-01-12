@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loadAllMaps } from "../../actions/mapsActions";
 
 import {
   changeBackgroundToWhite,
@@ -13,9 +14,12 @@ import { ServiceContainer } from "./ServiceMaps.styles";
 const ServiceMaps = () => {
   const dispatch = useDispatch();
 
+  const { maps } = useSelector((state) => state.maps);
+
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
+    dispatch(loadAllMaps());
   }, []);
 
   return (
@@ -79,8 +83,17 @@ const ServiceMaps = () => {
         </div>
 
         <div className="map-image">
-          <MapCards img="/images/img1-01.png" title="Anbar" link="/anbar" />
-          <MapCards img="/images/img2-01.png" title="Baghdad" link="/baghdad" />
+          {maps &&
+            maps.map((m) => (
+              <MapCards
+                img={m.thumbnail}
+                title={m.name}
+                link={`/maps/${m.name}`}
+                key={m._id}
+              />
+            ))}
+
+          {/* <MapCards img="/images/img2-01.png" title="Baghdad" link="/baghdad" />
           <MapCards img="/images/img3-01.png" title="Mosul" link="/mosul" />
           <MapCards img="/images/img4-01.png" title="Erbil" link="/erbil" />
           <MapCards
@@ -88,7 +101,7 @@ const ServiceMaps = () => {
             title="Sulaymaniah"
             link="/slemany"
           />
-          <MapCards img="/images/img6-01.png" title="Kirkuk" link="/kirkuk" />
+          <MapCards img="/images/img6-01.png" title="Kirkuk" link="/kirkuk" /> */}
         </div>
       </ServiceContainer>
     </Container>

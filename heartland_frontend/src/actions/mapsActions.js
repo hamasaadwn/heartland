@@ -5,6 +5,9 @@ import {
   ADD_MAPS_REQUEST,
   ADD_MAPS_SUCCESS,
   ADD_MAPS_FAIL,
+  LOAD_MAP_REQUEST,
+  LOAD_MAP_SUCCESS,
+  LOAD_MAP_FAIL,
 } from "../constants/mapConstants";
 
 import axios from "axios";
@@ -28,6 +31,24 @@ export const loadAllMaps = () => async (dispatch, getState) => {
   } catch (err) {
     dispatch({
       type: LOAD_MAPS_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
+export const loadMapByCity = (city) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LOAD_MAP_REQUEST });
+
+    const { data } = await axios.get(`/api/maps/m/${city}`);
+
+    dispatch({ type: LOAD_MAP_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: LOAD_MAP_FAIL,
       payload:
         err.response && err.response.data.message
           ? err.response.data.message

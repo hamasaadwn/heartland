@@ -5,6 +5,9 @@ import {
   ADD_MAPS_REQUEST,
   ADD_MAPS_SUCCESS,
   ADD_MAPS_FAIL,
+  LOAD_MAP_REQUEST,
+  LOAD_MAP_SUCCESS,
+  LOAD_MAP_FAIL,
 } from "../constants/mapConstants";
 
 export const loadMapsReducer = (state = {}, action) => {
@@ -14,6 +17,19 @@ export const loadMapsReducer = (state = {}, action) => {
     case LOAD_MAPS_SUCCESS:
       return { loading: false, maps: action.payload };
     case LOAD_MAPS_FAIL:
+      return { loading: false, errors: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const loadMapReducer = (state = {}, action) => {
+  switch (action.type) {
+    case LOAD_MAP_REQUEST:
+      return { loading: true };
+    case LOAD_MAP_SUCCESS:
+      return { loading: false, map: action.payload };
+    case LOAD_MAP_FAIL:
       return { loading: false, errors: action.payload };
     default:
       return state;

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { loadMapByCity } from "../../../actions/mapsActions";
 
 import {
   changeBackgroundToWhite,
@@ -13,98 +15,79 @@ import { CityContainer } from "./City.styles";
 
 const Anbar = () => {
   const dispatch = useDispatch();
+  const params = useParams();
+
+  const city = params.city;
+
+  const { map } = useSelector((state) => state.map);
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
+    dispatch(loadMapByCity(city));
   }, []);
 
   return (
     <Container>
       <CityContainer>
-        <div class="h1-t">
-          <h1>Al-anbar</h1>
+        <div className="h1-t">
+          <h1>{map && map.name}</h1>
         </div>
-        <div class="img-map">
-          <img src="/images/img-map1-01.png" alt="" />
-          <img src="/images/img-map2-01.png" alt="" />
-          <img src="/images/img-map3-01.png" alt="" />
+        <div className="img-map">
+          <img src={map && map.countryMap} alt="" />
+          <img src={map && map.cityMap} alt="" />
+          <img src={map && map.cityMapAdd} alt="" />
         </div>
         <div className="detail-container">
           {" "}
-          <div class="map-detail">
-            <p>
-              <LittleBox bg="#00a79b"></LittleBox>
-              <span style={{ color: "#02a89e" }}>L: al anbar </span>
-              <span style={{ color: "#02a89e" }}> - street - house </span>
-              <span style={{ color: "#02a89e" }}> P.number: </span> 000 000 0000{" "}
-              <span style={{ color: "#02a89e" }}>E:</span>
-              Heartlandalliance@gmail.com
-            </p>
-            <br />
-            <p>
-              <LittleBox bg="#0071ba"></LittleBox>
-              <span style={{ color: "#02a89e" }}>L: al anbar</span>
-              <span style={{ color: "#02a89e" }}> - street - house</span>
-              <span style={{ color: "#02a89e" }}>P.number:</span> 000 000 0000{" "}
-              <span style={{ color: "#02a89e" }}>E:</span>
-              Heartlandalliance@gmail.com
-            </p>
-            <br />
-            <p>
-              <LittleBox bg="#0000ff"></LittleBox>
-              <span style={{ color: "#02a89e" }}>L: al anbar</span>
-              <span style={{ color: "#02a89e" }}> - street - house </span>
-              <span style={{ color: "#02a89e" }}>P.number:</span> 000 000 0000{" "}
-              <span style={{ color: "#02a89e" }}>E:</span>
-              Heartlandalliance@gmail.com
-            </p>
-            <br />
-            <p>
-              <LittleBox bg="#2e3190"></LittleBox>
-              <div class="cont4"></div>
-              <span style={{ color: "#02a89e" }}>L: al anbar</span>
-              <span style={{ color: "#02a89e" }}> - street - house</span>
-              {}
-              <span style={{ color: "#02a89e" }}>P.number:</span> 000 000 0000{" "}
-              <span style={{ color: "#02a89e" }}>E:</span>
-              Heartlandalliance@gmail.com
-            </p>
+          <div className="map-detail">
+            {map &&
+              map.branch.map((b) => (
+                <p>
+                  <LittleBox bg="#00a79b"></LittleBox>
+                  <span style={{ color: "#02a89e" }}>name: {b.address}</span>
+                  <span style={{ color: "#02a89e" }}> P.number: </span>{" "}
+                  {b.phone} {"  "}
+                  <span style={{ color: "#02a89e" }}>E:</span>
+                  {b.email}
+                  <br />
+                </p>
+              ))}
           </div>
         </div>
-        <div class="star-container">
+        <div className="star-container">
           <input type="radio" name="star" id="five" />
           <label for="five">
-            <svg class="star">
+            <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="four" />
           <label for="four">
-            <svg class="star">
+            <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="three" />
           <label for="three">
-            <svg class="star">
+            <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="two" />
           <label for="two">
-            <svg class="star">
+            <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
           <input type="radio" name="star" id="one" />
           <label for="one">
-            <svg class="star">
+            <svg className="star">
               <use xlinkHref="#star" />
             </svg>
           </label>
         </div>
-        <div class="star-source">
+        <div className="star-source">
           <svg>
             <linearGradient
               x1="50%"

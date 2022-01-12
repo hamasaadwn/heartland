@@ -68,7 +68,7 @@ function App() {
         {/* /////////////////// */}
         <Route exact path="/about" element={<About />} />
         <Route exact path="/international" element={<International />} />
-        <Route exact path="/anbar" element={<Anbar />} />
+        <Route exact path="/maps/:city" element={<Anbar />} />
         <Route exact path="/servicemap" element={<ServiceMaps />} />
         <Route exact path="/assessmentform" element={<AssessmentForm />} />
         <Route exact path="/ht" element={<HumanTrafficing />} />
