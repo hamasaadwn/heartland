@@ -40,10 +40,7 @@ const Post = () => {
           <br />
           {post && post.pdf ? (
             <div className="downloadPdf">
-              <a
-                href="http://www.africau.edu/images/default/sample.pdf"
-                target="_blank"
-              >
+              <a href={post.pdf} target="_blank">
                 <p>
                   <img src="/images/pdf.png" /> View Attached PDF
                 </p>
@@ -57,8 +54,8 @@ const Post = () => {
           {post && post.pictures ? (
             <div className="album">
               <h2>Album</h2>
-              {post.pictures.map((p) => (
-                <img src={p} alt="" />
+              {post.pictures.map((p, i) => (
+                <img src={p} alt="" key={i} />
               ))}
             </div>
           ) : (
