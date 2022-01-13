@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllMaps } from "../../actions/mapsActions";
+import StarRatings from "react-star-ratings";
 
+import { loadAllMaps } from "../../actions/mapsActions";
 import {
   changeBackgroundToWhite,
   changeNavbar,
@@ -14,6 +15,8 @@ import { ServiceContainer } from "./ServiceMaps.styles";
 const ServiceMaps = () => {
   const dispatch = useDispatch();
 
+  const [rating, setRating] = useState(0);
+
   const { maps } = useSelector((state) => state.maps);
 
   useEffect(() => {
@@ -22,11 +25,23 @@ const ServiceMaps = () => {
     dispatch(loadAllMaps());
   }, []);
 
+  const changeRating = (newRating) => {
+    setRating(newRating);
+    console.log(rating);
+  };
+
   return (
     <Container>
       <ServiceContainer>
-        <div className="star-container">
-          <input type="radio" name="star" id="five" />
+        <div className="star-container-self">
+          <StarRatings
+            rating={rating}
+            starRatedColor="blue"
+            changeRating={changeRating}
+            numberOfStars={5}
+            name="rating"
+          />
+          {/* <input type="radio" name="star" id="five" />
           <label htmlFor="five">
             <svg className="star">
               <use xlinkHref="#star" />
@@ -79,7 +94,7 @@ const ServiceMaps = () => {
                 points="206 162.5 176.610737 185.45085 189.356511 150.407797 158.447174 129.54915 195.713758 130.842203 206 95 216.286242 130.842203 253.552826 129.54915 222.643489 150.407797 235.389263 185.45085"
               ></polygon>
             </symbol>
-          </svg>
+          </svg> */}
         </div>
 
         <div className="map-image">
