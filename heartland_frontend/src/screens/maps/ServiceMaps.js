@@ -36,7 +36,8 @@ const ServiceMaps = () => {
         <div className="star-container-self">
           <StarRatings
             rating={rating}
-            starRatedColor="blue"
+            starRatedColor="#02a89e"
+            starHoverColor="#02a89e"
             changeRating={changeRating}
             numberOfStars={5}
             name="rating"

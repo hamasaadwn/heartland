@@ -5,13 +5,18 @@ export const ServiceContainer = styled.div`
 
   .star-container-self {
     position: fixed;
-    padding-left: 200px;
+    padding-left: 20px;
     top: 30vh;
     z-index: 2;
-    display: flex;
-    flex-direction: row;
-    /* transform-origin: top right;
-    transform: rotate(45deg); */
+
+    .star-ratings {
+      display: flex !important;
+      flex-direction: column-reverse;
+
+      .star-container {
+        padding-left: 7px !important;
+      }
+    }
 
     @media screen and (max-width: 768px) {
       right: 20px;
