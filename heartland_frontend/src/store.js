@@ -22,6 +22,7 @@ import {
   loadContactReducer,
 } from "./reducers/contactReducer";
 import { loadMapReducer, loadMapsReducer } from "./reducers/mapReducer";
+import { ratingReducer } from "./reducers/ratingReducer";
 
 const reducer = combineReducers({
   root: changeStatesReducer,
@@ -37,6 +38,7 @@ const reducer = combineReducers({
   contactList: loadContactClassedReducer,
   maps: loadMapsReducer,
   map: loadMapReducer,
+  rating: ratingReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
