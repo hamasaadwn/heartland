@@ -1,1 +1,3 @@
 export const RATING_SUCCESSFUL = "RATING_SUCCESSFUL";
+
+export const GET_RATING = "GET_RATING";

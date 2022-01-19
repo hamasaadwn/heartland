@@ -1,4 +1,4 @@
-import { RATING_SUCCESSFUL } from "../constants/ratingContants";
+import { RATING_SUCCESSFUL, GET_RATING } from "../constants/ratingContants";
 
 import axios from "axios";
 
@@ -45,5 +45,23 @@ export const rate = (scope, rate) => async (dispatch) => {
     }
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const getRatings = () => async (dispatch, getState) => {
+  try {
+    const { data } = await axios(`/api/rating`);
+
+    dispatch({
+      type: GET_RATING,
+      payload: data,
+    });
+    return data;
+  } catch (err) {
+    if (err.message === "Network Error") console.log(err);
+    else {
+      console.log(err.response.data);
+      // dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+    }
   }
 };

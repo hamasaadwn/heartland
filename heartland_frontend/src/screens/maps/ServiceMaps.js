@@ -18,6 +18,7 @@ const ServiceMaps = () => {
   const [rating, setRating] = useState(0);
 
   const { maps } = useSelector((state) => state.maps);
+  const { avgCountry } = useSelector((state) => state.rating.rating);
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
@@ -34,12 +35,9 @@ const ServiceMaps = () => {
       <ServiceContainer>
         <div className="star-container-self">
           <StarRatings
-            rating={rating}
+            rating={avgCountry}
             starRatedColor="#02a89e"
             starHoverColor="#02a89e"
-            changeRating={changeRating}
-            numberOfStars={5}
-            name="rating"
           />
         </div>
 
