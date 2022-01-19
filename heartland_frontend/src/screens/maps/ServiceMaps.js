@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import StarRatings from "react-star-ratings";
 
 import { loadAllMaps } from "../../actions/mapsActions";
+import { getRatings } from "../../actions/ratingActions";
 import {
   changeBackgroundToWhite,
   changeNavbar,
@@ -15,30 +16,27 @@ import { ServiceContainer } from "./ServiceMaps.styles";
 const ServiceMaps = () => {
   const dispatch = useDispatch();
 
-  const [rating, setRating] = useState(0);
-
   const { maps } = useSelector((state) => state.maps);
-  const { avgCountry } = useSelector((state) => state.rating.rating);
+  const { rating } = useSelector((state) => state.rating);
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
     dispatch(loadAllMaps());
+    dispatch(getRatings());
   }, []);
-
-  const changeRating = (newRating) => {
-    setRating(newRating);
-  };
 
   return (
     <Container>
       <ServiceContainer>
         <div className="star-container-self">
-          <StarRatings
-            rating={avgCountry}
-            starRatedColor="#02a89e"
-            starHoverColor="#02a89e"
-          />
+          {rating && (
+            <StarRatings
+              rating={rating.avgCountry}
+              starRatedColor="#02a89e"
+              starHoverColor="#02a89e"
+            />
+          )}
         </div>
 
         <div className="map-image">

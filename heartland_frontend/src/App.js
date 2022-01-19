@@ -30,7 +30,6 @@ import Maps from "./screens/admin/map/Maps";
 import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
 import Post from "./screens/posts/Post";
-import { getRatings } from "./actions/ratingActions";
 
 function App() {
   const location = useLocation();
@@ -42,7 +41,6 @@ function App() {
   useEffect(() => {
     dispatch(visitors());
     dispatch(changeLanguage(currentLanguageCode));
-    dispatch(getRatings());
     if (currentLanguageCode === "ar") {
       document.body.dir = "rtl";
     } else {
