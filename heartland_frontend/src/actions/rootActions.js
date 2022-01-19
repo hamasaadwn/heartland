@@ -5,6 +5,7 @@ import {
   CHANGE_NAVBAR,
   LIGHT_BACKGROUND,
   COUNT_VISITORS,
+  SHOW_SUCCESS,
 } from "../constants/rootConstants";
 
 import axios from "axios";
@@ -53,6 +54,16 @@ export const visitors = () => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/visitor");
     dispatch({ type: COUNT_VISITORS, payload: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const showSuccess = () => async (dispatch) => {
+  try {
+    dispatch({ type: SHOW_SUCCESS, payload: true });
+
+    setTimeout(() => dispatch({ type: SHOW_SUCCESS, payload: false }), 3000);
   } catch (err) {
     console.log(err);
   }

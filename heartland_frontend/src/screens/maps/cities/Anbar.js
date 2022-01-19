@@ -4,11 +4,14 @@ import { useParams } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 
 import { loadMapByCity } from "../../../actions/mapsActions";
+import { rate } from "../../../actions/ratingActions";
 
 import {
   changeBackgroundToWhite,
   changeNavbar,
+  showSuccess,
 } from "../../../actions/rootActions";
+import HugeSuccess from "../../../components/messages/HugeSuccess";
 import { Container } from "../../../components/styled/Container.style";
 import { LittleBox } from "../../../components/styled/LittleBox.styles";
 
@@ -19,6 +22,7 @@ const Anbar = () => {
   const params = useParams();
 
   const [rating, setRating] = useState(0);
+  const [rated, setRated] = useState(0);
 
   const city = params.city;
 
@@ -35,11 +39,22 @@ const Anbar = () => {
   };
 
   useEffect(() => {
-    console.log(rating);
+    if (rating > 0) {
+      dispatch(rate("service", rating));
+      dispatch(showSuccess());
+      setRated(rating);
+    }
+    const serviceRatingFromStorage = localStorage.getItem("serviceRate")
+      ? JSON.parse(localStorage.getItem("serviceRate"))
+      : null;
+    if (serviceRatingFromStorage) {
+      setRated(serviceRatingFromStorage.rate);
+    }
   }, [rating]);
 
   return (
     <Container>
+      <HugeSuccess />
       <CityContainer>
         <div className="h1-t">
           <h1>{map && map.name}</h1>
@@ -53,10 +68,10 @@ const Anbar = () => {
           {" "}
           <div className="map-detail">
             {map &&
-              map.branch.map((b) => (
-                <p>
+              map.branch.map((b, i) => (
+                <p key={i}>
                   <LittleBox bg="#00a79b"></LittleBox>
-                  <span style={{ color: "#02a89e" }}>name: {b.address}</span>
+                  <span style={{ color: "#02a89e" }}>name:</span> {b.address}
                   <span style={{ color: "#02a89e" }}> P.number: </span>{" "}
                   {b.phone} {"  "}
                   <span style={{ color: "#02a89e" }}>E:</span>
@@ -67,14 +82,22 @@ const Anbar = () => {
           </div>
         </div>
         <div className="star-container-self">
-          <StarRatings
-            rating={rating}
-            starRatedColor="#02a89e"
-            starHoverColor="#02a89e"
-            changeRating={changeRating}
-            numberOfStars={5}
-            name="rating"
-          />
+          {rated ? (
+            <StarRatings
+              rating={rated}
+              starRatedColor="#02a89e"
+              starHoverColor="#02a89e"
+            />
+          ) : (
+            <StarRatings
+              rating={rating}
+              starRatedColor="#02a89e"
+              starHoverColor="#02a89e"
+              changeRating={changeRating}
+              numberOfStars={5}
+              name="rating"
+            />
+          )}
         </div>
       </CityContainer>
     </Container>

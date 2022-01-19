@@ -6,3 +6,5 @@ export const CHANGE_NAVBAR = "CHANGE_NAVBAR";
 export const CHANGE_MODAL = "CHANGE_MODAL";
 
 export const COUNT_VISITORS = "COUNT_VISITORS";
+
+export const SHOW_SUCCESS = "SHOW_SUCCESS";

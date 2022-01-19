@@ -5,6 +5,7 @@ import {
   LIGHT_BACKGROUND,
   CHANGE_MODAL,
   COUNT_VISITORS,
+  SHOW_SUCCESS,
 } from "../constants/rootConstants";
 
 export const changeStatesReducer = (state = {}, action) => {
@@ -21,6 +22,8 @@ export const changeStatesReducer = (state = {}, action) => {
       return { ...state, userModal: action.payload };
     case COUNT_VISITORS:
       return { ...state, visitor: action.payload };
+    case SHOW_SUCCESS:
+      return { ...state, success: action.payload };
     default:
       return state;
   }
