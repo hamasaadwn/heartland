@@ -30,6 +30,7 @@ import Maps from "./screens/admin/map/Maps";
 import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
 import Post from "./screens/posts/Post";
+import Search from "./screens/posts/Search";
 
 function App() {
   const location = useLocation();
@@ -65,6 +66,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
+        <Route exact path="/search" element={<Search />} />
         {/* /////////////////// */}
         <Route exact path="/about" element={<About />} />
         <Route exact path="/international" element={<International />} />

@@ -104,6 +104,10 @@ export const SideMenuContainer = styled.div`
     -webkit-transform: rotate(90deg);
   }
 
+  a {
+    color: black;
+  }
+
   @media only screen and (max-width: 768px) {
     width: 100vw;
     height: 60px;

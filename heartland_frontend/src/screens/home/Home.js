@@ -63,9 +63,9 @@ const Home = () => {
               <span style={{ color: "#aa1829" }}>HT</span>
             </h1>
           </div>
-          <div>
+          <Link to="/search">
             <FontAwesomeIcon icon={faSearch} className="style-fa-search" />
-          </div>
+          </Link>
         </SideMenuContainer>
       </div>
 
