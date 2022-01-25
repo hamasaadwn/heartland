@@ -94,8 +94,11 @@ const Home = () => {
             </Link>
           </div>
           <div className="menu">
-            <Link to="/guide" className="main_menu_link main_menu_link_top">
-              {t("guide")}
+            <Link
+              to="/seeking_help"
+              className="main_menu_link main_menu_link_top"
+            >
+              {t("seeking_help")}
             </Link>
           </div>
           <div className="menu">
@@ -113,10 +116,10 @@ const Home = () => {
           </div>
           <div className="menu">
             <Link
-              to="/activities"
+              to="/useful_tools"
               className="main_menu_link main_menu_link_bottom"
             >
-              {t("activities")}
+              {t("useful_tools")}
             </Link>
           </div>
           <div className="menu">

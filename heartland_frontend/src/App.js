@@ -74,8 +74,8 @@ function App() {
         <Route exact path="/servicemap" element={<ServiceMaps />} />
         <Route exact path="/assessmentform" element={<AssessmentForm />} />
         <Route exact path="/ht" element={<HumanTrafficing />} />
-        <Route exact path="/activities" element={<Activities />} />
-        <Route exact path="/guide" element={<Guide />} />
+        <Route exact path="/useful_tools" element={<Activities />} />
+        <Route exact path="/seeking_help" element={<Guide />} />
         <Route exact path="/trainingtool" element={<TrainingTools />} />
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
