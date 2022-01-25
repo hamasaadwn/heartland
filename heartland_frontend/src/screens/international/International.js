@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { Container } from "../../components/styled/Container.style";
 import {
@@ -12,6 +13,8 @@ import { InternationalContainer } from "./International.styles";
 
 const International = () => {
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
@@ -25,16 +28,16 @@ const International = () => {
           <Link to="/posts/Iraq">
             <div className="text">
               <h2>
-                Iraq
+                {t("iraq_working_laws_t1")}
                 <br />
-                Working law
+                {t("iraq_working_laws_t2")}
               </h2>
             </div>
           </Link>
           <Link to="/posts/Iraq">
             <div className="image">
               <div className="text_positioning">
-                <h2>iraq</h2>
+                <h2>{t("iraq")}</h2>
               </div>
             </div>
           </Link>
@@ -43,16 +46,16 @@ const International = () => {
           <Link to="/posts/International">
             <div className="text">
               <h2>
-                International
+                {t("international_working_laws_t1")}
                 <br />
-                Working Law
+                {t("international_working_laws_t2")}
               </h2>
             </div>
           </Link>
           <Link to="/posts/International">
             <div className="image">
               <div className="text_positioning">
-                <h2>international</h2>
+                <h2>{t("intenational")}</h2>
               </div>
             </div>
           </Link>

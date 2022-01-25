@@ -92,22 +92,22 @@ const Navbar = ({ bg, fg }) => {
           </li>
           <li>
             <NavLink
-              to="/activities"
+              to="/useful_tools"
               onClick={() => {
                 menuHandler();
               }}
             >
-              {t("activities")}
+              {t("useful_tools")}
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/guide"
+              to="/seeking_help"
               onClick={() => {
                 menuHandler();
               }}
             >
-              {t("guide")}
+              {t("seeking_help")}
             </NavLink>
           </li>
           <li>
