@@ -16,6 +16,7 @@ import {
   addPostsReducer,
   loadPostsListReducer,
   loadPostsReducer,
+  searchResultReducer,
 } from "./reducers/postReducer";
 import {
   loadContactClassedReducer,
@@ -39,6 +40,7 @@ const reducer = combineReducers({
   maps: loadMapsReducer,
   map: loadMapReducer,
   rating: ratingReducer,
+  searchResult: searchResultReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

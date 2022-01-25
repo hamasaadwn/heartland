@@ -8,6 +8,9 @@ import {
   ADD_POSTS_REQUEST,
   ADD_POSTS_SUCCESS,
   ADD_POSTS_FAIL,
+  SEARCH_POSTS_REQUEST,
+  SEARCH_POSTS_SUCCESS,
+  SEARCH_POSTS_FAIL,
 } from "../constants/postConstants";
 
 import axios from "axios";
@@ -123,3 +126,22 @@ export const addPost =
       }
     }
   };
+
+export const searchPosts = (keyword) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: SEARCH_POSTS_REQUEST });
+
+    const { data } = await axios(`/api/posts/s?keyword=${keyword}`);
+
+    dispatch({
+      type: SEARCH_POSTS_SUCCESS,
+      payload: data,
+    });
+    return data;
+  } catch (err) {
+    if (err.message === "Network Error") console.log(err);
+    else {
+      dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+    }
+  }
+};
