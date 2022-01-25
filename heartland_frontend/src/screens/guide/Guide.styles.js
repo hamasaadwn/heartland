@@ -11,7 +11,7 @@ export const GuideContainer = styled.div`
     margin-left: 50px;
 
     h1 {
-      color: #fff;
+      color: #aa1829;
       font-size: 70px;
     }
     p {

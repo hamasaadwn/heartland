@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
   changeBackgroundToBlack,
@@ -27,11 +27,11 @@ const Activities = () => {
         <div className="about">
           <h1> {t("useful_tools")}</h1>
           <div>
-            <GreenButton>Emergency Numbers</GreenButton>
+            <GreenButton>{t("emergency_numbers")}</GreenButton>
             <GreenButton onClick={() => navigate("/servicemap")}>
-              Find Us
+              {t("find_us")}
             </GreenButton>
-            <GreenButton>VOT Emergency Contacts</GreenButton>
+            <GreenButton>{t("vot_emergency_contacts")}</GreenButton>
           </div>
         </div>
         <div className="img"></div>
