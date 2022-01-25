@@ -8,7 +8,7 @@ export const ActivitesContainer = styled.div`
   justify-content: space-around;
 
   .about {
-    color: #02a89e;
+    color: #aa1829;
     font-size: 70px;
     margin-left: 50px;
   }
