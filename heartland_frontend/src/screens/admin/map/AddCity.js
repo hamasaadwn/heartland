@@ -227,7 +227,6 @@ const AddCity = () => {
                     newArr[i].lat = e.target.value;
                     setFormData({ ...formData, branch: newArr });
                   }}
-                  required={true}
                 />
               </div>
             </TwoColFlex>
@@ -246,7 +245,6 @@ const AddCity = () => {
                     newArr[i].lang = e.target.value;
                     setFormData({ ...formData, branch: newArr });
                   }}
-                  required={true}
                 />
               </div>
               <div></div>

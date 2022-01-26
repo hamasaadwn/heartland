@@ -175,7 +175,7 @@ const AddUserModal = () => {
           {passErr && <ErrorMessages errors={passErr} />}
           <Spacer top="20px" />
           <Button bg="#02a89e" fg="#ffffff">
-            Login
+            Create
           </Button>
         </form>
       </div>
