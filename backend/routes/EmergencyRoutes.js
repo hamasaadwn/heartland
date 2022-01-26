@@ -2,16 +2,17 @@ import express from "express";
 
 import {
   createOrUpdateEmergency,
-  getContentByType,
+  getEmergencyByType,
+  getEmergencies,
 } from "../controllers/EmergencyController.js";
 import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
-// router.route("/");
 router
-  .route("/:type")
-  .get(getContentByType)
-  .post(protect, admin, getEmergencyByType);
+  .route("/")
+  .post(protect, admin, createOrUpdateEmergency)
+  .get(getEmergencies);
+router.route("/:type").get(getEmergencyByType);
 
 export default router;

@@ -31,6 +31,7 @@ import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
 import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
+import Emergency from "./screens/admin/emergancy/Emergency";
 
 function App() {
   const location = useLocation();
@@ -101,6 +102,7 @@ const AdminRoutes = () => {
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
         {userInfo && <Route exact path="/maps" element={<Maps />} />}
         {userInfo && <Route exact path="/maps/addcity" element={<AddCity />} />}
+        {userInfo && <Route exact path="/emergency" element={<Emergency />} />}
       </Routes>
     </Fragment>
   );

@@ -13,6 +13,7 @@ import contactRoutes from "./routes/ContactRoutes.js";
 import mapRoutes from "./routes/MapRoutes.js";
 import uploadRoutes from "./routes/UploadRoutes.js";
 import visitorRoutes from "./routes/visitorRoutes.js";
+import emergencyRoutes from "./routes/EmergencyRoutes.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/maps", mapRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/visitor", visitorRoutes);
+app.use("/api/emergency", emergencyRoutes);
 
 //make uploads static
 const __dirname = path.resolve();

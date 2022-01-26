@@ -1,4 +1,4 @@
-import Emergency from "../models/EmergencyModel";
+import Emergency from "../models/EmergencyModel.js";
 
 // @desc Create Or update a content type
 // @route Post api/emergency
@@ -8,9 +8,10 @@ const createOrUpdateEmergency = async (req, res) => {
 
   try {
     const data =
-      (await Emergency.findOne({
-        type: type,
-      })) || new Content({});
+      // (await Emergency.findOne({
+      //   type: type,
+      // })) ||
+      new Emergency({});
 
     data.type = type;
     data.nameEN = nameEN;
@@ -28,12 +29,27 @@ const createOrUpdateEmergency = async (req, res) => {
   }
 };
 
+// @desc Get all emergencies
+// @route GEt api/content/
+// @access Public
+const getEmergencies = async (req, res) => {
+  try {
+    const data = await Emergency.find({});
+
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Error!" });
+  }
+};
+
 // @desc Get emergency by type
 // @route Post api/content/:type
 // @access Public
 const getEmergencyByType = async (req, res) => {
   try {
-    const data = await Emergency.findOne({
+    const data = await Emergency.find({
       type: req.params.type,
     });
 
@@ -45,4 +61,4 @@ const getEmergencyByType = async (req, res) => {
   }
 };
 
-export { createOrUpdateEmergency, getEmergencyByType };
+export { createOrUpdateEmergency, getEmergencyByType, getEmergencies };
