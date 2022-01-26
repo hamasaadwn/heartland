@@ -225,6 +225,10 @@ const CreatePost = () => {
             <select name="type" value={formData.type} onChange={setInput}>
               <option value="International">International Law</option>
               <option value="Iraq">Iraqi Law</option>
+              <option value="Training">Training</option>
+              <option value="Guide">Guide</option>
+              <option value="Form">Form</option>
+              <option value="Flyer And Brochure">Flyer And Brochure</option>
             </select>
           </div>
         </TwoColFlex>

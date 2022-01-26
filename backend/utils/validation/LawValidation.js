@@ -23,7 +23,14 @@ const LawValidation = (data) => {
 
   if (isEmpity(data.type)) {
     errors.type = "type must not be empity";
-  } else if (data.type !== "International" && data.type !== "Iraq") {
+  } else if (
+    data.type !== "International" &&
+    data.type !== "Iraq" &&
+    data.type !== "Training" &&
+    data.type !== "Guide" &&
+    data.type !== "Form" &&
+    data.type !== "Flyer And Brochure"
+  ) {
     errors.type = "Type must only be International or Iraq";
   }
 
