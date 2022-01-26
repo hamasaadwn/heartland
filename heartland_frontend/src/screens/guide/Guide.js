@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import {
   changeBackgroundToBlack,
@@ -12,6 +13,7 @@ import { GreenButton } from "../../components/styled/form/GreenButton.style";
 
 const Guide = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -25,10 +27,18 @@ const Guide = () => {
         <div className="about">
           <h1>{t("seeking_help")}</h1>
           <div>
-            <GreenButton>{t("training")}</GreenButton>
-            <GreenButton>{t("guide")}</GreenButton>
-            <GreenButton>{t("form")}</GreenButton>
-            <GreenButton>{t("flyer_and_brochure")}</GreenButton>
+            <GreenButton onClick={() => navigate("/posts/Training")}>
+              {t("training")}
+            </GreenButton>
+            <GreenButton onClick={() => navigate("/posts/Guide")}>
+              {t("guide")}
+            </GreenButton>
+            <GreenButton onClick={() => navigate("/posts/Form")}>
+              {t("form")}
+            </GreenButton>
+            <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+              {t("flyer_and_brochure")}
+            </GreenButton>
           </div>
         </div>
         <div className="img"></div>
