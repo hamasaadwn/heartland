@@ -8,6 +8,7 @@ import {
   changeNavbar,
 } from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
+import { FlexRow } from "../../components/styled/FlexRow.style";
 import { GuideContainer } from "./Guide.styles";
 import { GreenButton } from "../../components/styled/form/GreenButton.style";
 
@@ -24,24 +25,26 @@ const Guide = () => {
   return (
     <Container>
       <GuideContainer>
-        <div className="about">
-          <h1>{t("seeking_help")}</h1>
-          <div>
-            <GreenButton onClick={() => navigate("/posts/Training")}>
-              {t("training")}
-            </GreenButton>
-            <GreenButton onClick={() => navigate("/posts/Guide")}>
-              {t("guide")}
-            </GreenButton>
-            <GreenButton onClick={() => navigate("/posts/Form")}>
-              {t("form")}
-            </GreenButton>
-            <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
-              {t("flyer_and_brochure")}
-            </GreenButton>
+        <FlexRow>
+          <div className="about">
+            <h1>{t("seeking_help")}</h1>
+            <div>
+              <GreenButton onClick={() => navigate("/posts/Training")}>
+                {t("training")}
+              </GreenButton>
+              <GreenButton onClick={() => navigate("/posts/Guide")}>
+                {t("guide")}
+              </GreenButton>
+              <GreenButton onClick={() => navigate("/posts/Form")}>
+                {t("form")}
+              </GreenButton>
+              <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+                {t("flyer_and_brochure")}
+              </GreenButton>
+            </div>
           </div>
-        </div>
-        <div className="img"></div>
+          <div className="img"></div>
+        </FlexRow>
       </GuideContainer>
     </Container>
   );
