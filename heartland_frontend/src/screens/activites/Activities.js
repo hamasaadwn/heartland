@@ -9,6 +9,7 @@ import {
 } from "../../actions/rootActions";
 import { Container } from "../../components/styled/Container.style";
 import { ActivitesContainer } from "./Activities.styles";
+import { FlexRow } from "../../components/styled/FlexRow.style";
 import { GreenButton } from "../../components/styled/form/GreenButton.style";
 
 const Activities = () => {
@@ -24,18 +25,20 @@ const Activities = () => {
   return (
     <Container>
       <ActivitesContainer>
-        <div className="about">
-          <h1> {t("useful_tools")}</h1>
-          <div>
-            <GreenButton>{t("emergency_numbers")}</GreenButton>
-            <GreenButton onClick={() => navigate("/servicemap")}>
-              {t("find_us")}
-            </GreenButton>
-            <GreenButton>{t("vot_emergency_contacts")}</GreenButton>
+        <FlexRow>
+          <div className="about ">
+            <h2> {t("useful_tools")}</h2>
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+              <GreenButton>{t("emergency_numbers")}</GreenButton>
+              <GreenButton onClick={() => navigate("/servicemap")}>
+                {t("find_us")}
+              </GreenButton>
+              <GreenButton>{t("vot_emergency_contacts")}</GreenButton>
+            </div>
           </div>
-        </div>
-        <div className="img"></div>
-        <div className="paragraph"></div>
+          <div className="img"></div>
+          {/* <div className="paragraph"></div> */}
+        </FlexRow>
       </ActivitesContainer>
     </Container>
   );

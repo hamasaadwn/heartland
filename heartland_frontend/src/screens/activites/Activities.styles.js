@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ActivitesContainer = styled.div`
   background-color: #000;
+    
+
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
@@ -10,7 +12,10 @@ export const ActivitesContainer = styled.div`
   .about {
     color: #aa1829;
     font-size: 70px;
-    margin-left: 50px;
+   width: 40%;
+  }
+  h2{
+    text-align: center;
   }
 
   .img {
@@ -22,7 +27,7 @@ export const ActivitesContainer = styled.div`
       url("/images/myimage.jpg");
     background-size: cover;
     height: 600px;
-    width: 1100px;
+    width: 900px;
   }
 
   .paragraph {

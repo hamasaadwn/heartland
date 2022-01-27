@@ -1,0 +1,16 @@
+@font-face {
+  font-family: k24Font;
+  src: url(../public/assets/locals/fonts/K24KurdishLight-Light.ttf);
+}
+* {
+  font-family: k24Font;
+}
+.testBorder {
+  border: white solid 3px;
+}
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

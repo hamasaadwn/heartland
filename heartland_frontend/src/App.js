@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
 import i18next from "i18next";
-
+import "./App.css"
 import GlobalStyles from "./components/styled/Global";
 
 import Home from "./screens/home/Home";
