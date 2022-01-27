@@ -8,9 +8,3 @@
 .testBorder {
   border: white solid 3px;
 }
-.flexRow {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
