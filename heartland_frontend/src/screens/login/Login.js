@@ -29,7 +29,7 @@ const Login = () => {
     if (userInfo) {
       navigate(redirect);
     }
-  }, [userInfo, history, redirect]);
+  }, [userInfo, navigate, redirect]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

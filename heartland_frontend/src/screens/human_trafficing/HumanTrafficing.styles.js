@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HumanTrafficingContainer = styled.div`
   min-height: 100vh;
   .h1-text {
-    background-image: url("/images/HEARTLAND  ALLIANCE-16.jpg");
+    background-image: url("/images/mainbackground.jpg");
     background-size: cover;
     width: 100%;
     height: 100vh;
