@@ -26,8 +26,9 @@ export const ActivitesContainer = styled.div`
       ),
       url("/images/myimage.jpg");
     background-size: cover;
-    height: 600px;
-    width: 900px;
+    height: 40vmax;
+    width: 60vmax;
+    overflow: hidden;
   }
 
   .paragraph {
@@ -43,11 +44,11 @@ export const ActivitesContainer = styled.div`
       text-align: left;
     }
 
-    .img {
+    /* .img {
       height: 49vw;
-      margin: 25px auto;
+      margin: 0.5vh auto;
       float: none;
-    }
+    } */
 
     .paragraph {
       font-size: 18px;

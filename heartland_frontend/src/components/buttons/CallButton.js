@@ -16,9 +16,6 @@ function CallButton() {
                 <h1>104</h1>
                 <h1 style={{ color: "black" }}>Police Number</h1>
             </div>
-
-
-
         </CallButtons>
     </Container>;
 }

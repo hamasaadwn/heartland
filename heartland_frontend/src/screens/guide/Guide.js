@@ -27,7 +27,7 @@ const Guide = () => {
       <GuideContainer>
         <FlexRow>
           <div className="about">
-            <h1>{t("seeking_help")}</h1>
+            <h1 style={{ textAlign: "center" }}>{t("seeking_help")}</h1>
             <div>
               <GreenButton onClick={() => navigate("/posts/Training")}>
                 {t("training")}

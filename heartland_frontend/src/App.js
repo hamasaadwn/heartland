@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
 import i18next from "i18next";
+import { useBeforeunload } from 'react-beforeunload';
 import "./App.css"
 import GlobalStyles from "./components/styled/Global";
 
@@ -37,6 +38,7 @@ import CallButton from "./components/buttons/CallButton";
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -51,8 +53,18 @@ function App() {
     }
   }, []);
 
+  useBeforeunload((event) => {
+    if (value !== '') {
+      event.preventDefault();
+      window.open('http://localhost:3000/ht', "_blank")
+
+      // window.open('http://localhost:3000/ht', "_blank") || window.location.replace('http://localhost:3000/ht');
+    }
+  });
+
   return (
     <Fragment>
+      {/* <input onChange={(event) => setValue(event.target.value)} value={value} /> */}
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
       {navbar === "white" ? (
