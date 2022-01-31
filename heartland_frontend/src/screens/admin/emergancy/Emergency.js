@@ -23,6 +23,8 @@ import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { Table } from "../../../components/styled/Table.style";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 const Emergency = () => {
   const dispatch = useDispatch();
   const { emergencies } = useSelector((state) => state.emergency);
@@ -90,7 +92,11 @@ const Emergency = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const { data } = await axios.post("/api/upload", formDataU, config);
+      const { data } = await axiosInstance.post(
+        "/api/upload",
+        formDataU,
+        config
+      );
 
       setFormData({ ...formData, icon: data });
       setUploading(false);

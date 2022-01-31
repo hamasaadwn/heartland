@@ -10,6 +10,8 @@ import {
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const loadContent = (type) => async (dispatch) => {
   try {
     dispatch({ type: LOAD_CONTENT_REQUEST });
@@ -20,7 +22,7 @@ export const loadContent = (type) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/api/content/${type}`, config);
+    const { data } = await axiosInstance.get(`/api/content/${type}`, config);
 
     dispatch({
       type: LOAD_CONTENT_SUCCESS,
@@ -55,7 +57,7 @@ export const createOrUpdateContent =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `/api/content/${type}`,
         { type, contentEn, contentAr },
         config

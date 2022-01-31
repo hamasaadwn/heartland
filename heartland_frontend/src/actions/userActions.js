@@ -17,6 +17,8 @@ import {
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
@@ -27,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       "/api/users/login",
       { email, password },
       config
@@ -60,7 +62,7 @@ export const allUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/users", config);
+    const { data } = await axiosInstance.get("/api/users", config);
 
     dispatch({ type: LOAD_ALL_USERS_SUCCESS, payload: data });
   } catch (err) {
@@ -90,7 +92,7 @@ export const register =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         "/api/users",
         { name, email, password, isAdmin, isAuthor },
         config
@@ -130,7 +132,7 @@ export const removeUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`/api/users/${id}`, config);
+    await axiosInstance.delete(`/api/users/${id}`, config);
 
     dispatch({ type: REMOVE_USER_FROM_USERLIST, payload: id });
   } catch (err) {

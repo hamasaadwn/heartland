@@ -14,6 +14,8 @@ import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { Button } from "../../../components/styled/form/Button.style";
 import { addPost } from "../../../actions/postActions";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 const CreatePost = () => {
   const dispatch = useDispatch();
 
@@ -54,7 +56,11 @@ const CreatePost = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const { data } = await axios.post("/api/upload", formDataU, config);
+      const { data } = await axiosInstance.post(
+        "/api/upload",
+        formDataU,
+        config
+      );
 
       setFormData({ ...formData, image: data });
       setUploading(false);
@@ -84,7 +90,11 @@ const CreatePost = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const { data } = await axios.post("/api/upload/multi", formDataU, config);
+      const { data } = await axiosInstance.post(
+        "/api/upload/multi",
+        formDataU,
+        config
+      );
 
       setFormData({ ...formData, pictures: data });
       // setUploading(false);
@@ -110,7 +120,11 @@ const CreatePost = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const { data } = await axios.post("/api/upload/pdf", formDataU, config);
+      const { data } = await axiosInstance.post(
+        "/api/upload/pdf",
+        formDataU,
+        config
+      );
 
       setFormData({ ...formData, pdf: data });
       setUploading(false);

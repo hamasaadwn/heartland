@@ -10,6 +10,8 @@ import {
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const changeBackgroundToBlack = () => async (dispatch) => {
   try {
     dispatch({ type: BLACK_BACKGROUND });
@@ -52,7 +54,7 @@ export const changeUserModal = (modal) => async (dispatch) => {
 
 export const visitors = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("/api/visitor");
+    const { data } = await axiosInstance.get("/api/visitor");
     dispatch({ type: COUNT_VISITORS, payload: data });
   } catch (err) {
     console.log(err);

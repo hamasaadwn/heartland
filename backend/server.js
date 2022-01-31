@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
 import path from "path";
+import cors from "cors";
 
 import connectDB from "./config/db.js";
 
@@ -21,6 +22,7 @@ connectDB();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json({ limit: "3kb" }));
 
 app.use("/api/users", userRoutes);

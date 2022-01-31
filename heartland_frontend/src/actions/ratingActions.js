@@ -2,6 +2,8 @@ import { RATING_SUCCESSFUL, GET_RATING } from "../constants/ratingContants";
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const rate = (scope, rate) => async (dispatch) => {
   try {
     const config = {
@@ -15,7 +17,7 @@ export const rate = (scope, rate) => async (dispatch) => {
         ? JSON.parse(localStorage.getItem("serviceRate"))
         : null;
       if (!serviceFromStorage) {
-        const { data } = await axios.post(
+        const { data } = await axiosInstance.post(
           `/api/rating/${scope}`,
           { rate },
           config
@@ -31,7 +33,7 @@ export const rate = (scope, rate) => async (dispatch) => {
         ? JSON.parse(localStorage.getItem("websiteRate"))
         : null;
       if (!websiteFromStorage) {
-        const { data } = await axios.post(
+        const { data } = await axiosInstance.post(
           `/api/rating/${scope}`,
           { rate },
           config
@@ -50,7 +52,7 @@ export const rate = (scope, rate) => async (dispatch) => {
 
 export const getRatings = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios(`/api/rating`);
+    const { data } = await axiosInstance(`/api/rating`);
 
     dispatch({
       type: GET_RATING,

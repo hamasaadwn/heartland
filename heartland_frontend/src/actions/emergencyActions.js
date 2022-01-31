@@ -8,6 +8,8 @@ import {
   REMOVE_FROM_EMERGENCY,
 } from "../constants/emergencyConstants";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const loadEmergencies = () => async (dispatch) => {
   console.log("test");
   try {
@@ -19,7 +21,7 @@ export const loadEmergencies = () => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/api/emergency`, config);
+    const { data } = await axiosInstance.get(`/api/emergency`, config);
 
     dispatch({
       type: LOAD_EMERGENCY_SUCCESS,
@@ -49,7 +51,7 @@ export const createOrUpdateEmergency =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `/api/emergency`,
         { type, value, nameEN, nameAR, icon },
         config

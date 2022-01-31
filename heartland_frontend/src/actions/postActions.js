@@ -15,6 +15,8 @@ import {
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const loadPosts = () => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD_POSTS_REQUEST });
@@ -37,7 +39,7 @@ export const loadPosts = () => async (dispatch, getState) => {
     //   },
     // };
 
-    const { data } = await axios(config);
+    const { data } = await axiosInstance(config);
 
     dispatch({
       type: LOAD_POSTS_SUCCESS,
@@ -57,7 +59,9 @@ export const loadPostsList =
     try {
       dispatch({ type: LOAD_POSTS_LIST_REQUEST });
 
-      const { data } = await axios(`/api/posts/${language}/${category}`);
+      const { data } = await axiosInstance(
+        `/api/posts/${language}/${category}`
+      );
 
       dispatch({
         type: LOAD_POSTS_LIST_SUCCESS,
@@ -76,7 +80,7 @@ export const loadSinglePost = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: ADD_POSTS_REQUEST });
 
-    const { data } = await axios(`/api/posts/${id}`);
+    const { data } = await axiosInstance(`/api/posts/${id}`);
 
     dispatch({
       type: ADD_POSTS_SUCCESS,
@@ -108,7 +112,7 @@ export const addPost =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `/api/posts`,
         { title, describtion, image, pictures, video, language, type, pdf },
         config
@@ -131,7 +135,7 @@ export const searchPosts = (keyword) => async (dispatch, getState) => {
   try {
     dispatch({ type: SEARCH_POSTS_REQUEST });
 
-    const { data } = await axios(`/api/posts/s?keyword=${keyword}`);
+    const { data } = await axiosInstance(`/api/posts/s?keyword=${keyword}`);
 
     dispatch({
       type: SEARCH_POSTS_SUCCESS,
