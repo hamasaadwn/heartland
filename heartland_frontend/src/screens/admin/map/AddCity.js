@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 import {
@@ -14,6 +14,8 @@ import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { addMap } from "../../../actions/mapsActions";
+
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 const AddCity = () => {
   const dispatch = useDispatch();
@@ -61,7 +63,11 @@ const AddCity = () => {
           "Content-Type": "multipart/form-data",
         },
       };
-      const { data } = await axios.post("/api/upload", formDataU, config);
+      const { data } = await axiosInstance.post(
+        "/api/upload",
+        formDataU,
+        config
+      );
       setFormData({ ...formData, [e.target.name]: data });
       setUploading(false);
     } catch (error) {

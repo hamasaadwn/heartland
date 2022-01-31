@@ -23,7 +23,7 @@ const Post = () => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
     dispatch(loadSinglePost(id));
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <Container>
@@ -40,9 +40,10 @@ const Post = () => {
           <br />
           {post && post.pdf ? (
             <div className="downloadPdf">
-              <a href={post.pdf} target="_blank">
+              <a href={post.pdf} rel="noopener">
                 <p>
-                  <img src="/images/pdf.png" /> View Attached PDF
+                  <img src="/images/pdf.png" alt={post.title} /> View Attached
+                  PDF
                 </p>
               </a>
             </div>

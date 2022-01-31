@@ -80,7 +80,7 @@ const AddUserModal = () => {
       });
     }
     dispatch(resetUserData());
-  }, [success]);
+  }, [success, dispatch]);
 
   return (
     <ModalContainer>

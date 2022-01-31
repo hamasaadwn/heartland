@@ -35,7 +35,7 @@ const Contact = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadContact());
-  }, []);
+  }, [dispatch]);
 
   const setInput = (event) => {
     setFormData({

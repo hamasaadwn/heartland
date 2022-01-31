@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
-import i18next from "i18next";
 import "./App.css";
 import GlobalStyles from "./components/styled/Global";
 
@@ -34,7 +33,6 @@ import Search from "./screens/posts/Search";
 import Emergency from "./screens/admin/emergancy/Emergency";
 
 function App() {
-  const location = useLocation();
   const dispatch = useDispatch();
   const { black, navbar } = useSelector((state) => state.root);
 
@@ -48,7 +46,7 @@ function App() {
     } else {
       document.body.dir = "ltr";
     }
-  }, []);
+  }, [currentLanguageCode, dispatch]);
 
   return (
     <Fragment>

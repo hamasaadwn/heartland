@@ -53,7 +53,7 @@ export const loadContactList = (type) => async (dispatch) => {
 
     let newData = { emails: [], nums: [], sm: [] };
 
-    data.map((d) => {
+    data.forEach((d) => {
       if (d.type === "email") {
         newData.emails.push(d);
       } else if (d.type === "phone") {

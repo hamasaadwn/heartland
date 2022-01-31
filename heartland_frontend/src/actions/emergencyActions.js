@@ -5,7 +5,7 @@ import {
   LOAD_EMERGENCY_SUCCESS,
   LOAD_EMERGENCY_FAIL,
   ADD_TO_EMERGENCY,
-  REMOVE_FROM_EMERGENCY,
+  // REMOVE_FROM_EMERGENCY,
 } from "../constants/emergencyConstants";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });

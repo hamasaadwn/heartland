@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const PostsList = () => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
     dispatch(loadPostsList(language, category));
-  }, [language]);
+  }, [language, dispatch, category]);
 
   return (
     <Container>

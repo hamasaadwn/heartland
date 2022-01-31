@@ -28,27 +28,31 @@ const Content = () => {
     dispatch(resetContent());
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(async () => {
-    try {
-      const result = await dispatch(loadContent(formData.type));
-      if (result) {
-        setFormData({
-          ...formData,
-          contentEn: result.contentEn,
-          contentAr: result.contentAr,
-        });
-      } else {
-        setFormData({
-          ...formData,
-          contentEn: "",
-          contentAr: "",
-        });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await dispatch(loadContent(formData.type));
+        if (result) {
+          setFormData({
+            ...formData,
+            contentEn: result.contentEn,
+            contentAr: result.contentAr,
+          });
+        } else {
+          setFormData({
+            ...formData,
+            contentEn: "",
+            contentAr: "",
+          });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
-    }
+    };
+
+    fetchData();
   }, [formData.type]);
 
   const setInput = (event) => {

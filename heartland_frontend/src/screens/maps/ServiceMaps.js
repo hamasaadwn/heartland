@@ -24,7 +24,7 @@ const ServiceMaps = () => {
     dispatch(changeNavbar("white"));
     dispatch(loadAllMaps());
     dispatch(getRatings());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

@@ -19,7 +19,7 @@ const Search = () => {
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
-  }, []);
+  }, [dispatch]);
 
   // useEffect(() => {
   //   dispatch(searchPosts(keyword));
