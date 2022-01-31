@@ -9,6 +9,7 @@ export const GreenButton = styled.button`
   border-radius: 37px;
   display: block;
   margin-top: 20px;
+  margin-bottom: 4px;
   width: 354px;
   cursor: pointer;
 `;

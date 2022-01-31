@@ -22,26 +22,9 @@ import {
 const RatingModal = () => {
     const dispatch = useDispatch();
 
-    const regUser = useSelector((state) => state.regUser);
+    // const regUser = useSelector((state) => state.regUser);
     const [rating, setRating] = useState(0);
     const [rated, setRated] = useState(0);
-    const { errors, success } = regUser;
-
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        isAdmin: false,
-        isAuthor: true,
-    });
-
-    const [passErr, setPassErr] = useState([]);
-
-
-
-    // const { name, email, confirmPassword, password, isAdmin, isAuthor } =
-    //     formData;
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -64,21 +47,6 @@ const RatingModal = () => {
         //     }
         // }
     };
-
-    // useEffect(() => {
-    //     if (success) {
-    //         dispatch(changeUserModal(false));
-    //         setFormData({
-    //             name: "",
-    //             email: "",
-    //             password: "",
-    //             confirmPassword: "",
-    //             isAdmin: false,
-    //             isAuthor: true,
-    //         });
-    //     }
-    //     dispatch(resetUserData());
-    // }, [success]);
 
     const changeRating = (newRating) => {
         setRating(newRating);
@@ -133,8 +101,8 @@ const RatingModal = () => {
 
 
 
-                    {errors && <ErrorMessages errors={errors} />}
-                    {passErr && <ErrorMessages errors={passErr} />}
+                    {/* {errors && <ErrorMessages errors={errors} />}
+                    {passErr && <ErrorMessages errors={passErr} />} */}
                     <Spacer top="20px" />
                     <Button bg="#02a89e" fg="#ffffff">
                         Rate
