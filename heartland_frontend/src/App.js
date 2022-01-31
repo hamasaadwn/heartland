@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
 import i18next from "i18next";
-import { useBeforeunload } from 'react-beforeunload';
+
 import "./App.css"
 import GlobalStyles from "./components/styled/Global";
 
@@ -34,6 +34,7 @@ import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
 import Test from "./Test";
 import CallButton from "./components/buttons/CallButton";
+import RatingModal from "./components/modals/RatingModal";
 
 function App() {
   const location = useLocation();
@@ -53,18 +54,11 @@ function App() {
     }
   }, []);
 
-  useBeforeunload((event) => {
-    if (value !== '') {
-      event.preventDefault();
-      window.open('http://localhost:3000/ht', "_blank")
 
-      // window.open('http://localhost:3000/ht', "_blank") || window.location.replace('http://localhost:3000/ht');
-    }
-  });
 
   return (
     <Fragment>
-      {/* <input onChange={(event) => setValue(event.target.value)} value={value} /> */}
+
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
       {navbar === "white" ? (
@@ -78,7 +72,7 @@ function App() {
       )}
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/test" element={<CallButton />} />
+        <Route exact path="/test" element={<RatingModal />} />
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
         <Route exact path="/search" element={<Search />} />
