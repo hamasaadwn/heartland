@@ -32,9 +32,10 @@ export const GuideContainer = styled.div`
         rgba(0, 0, 0, 1)
       ),
       url("/images/myimage.jpg");
-    background-size: cover;
-    height: 600px;
-    width: 1100px;
+     background-size: cover;
+    height: 40vmax;
+    width: 60vmax;
+    overflow: hidden;
   }
 
   .paragraph {
@@ -50,12 +51,12 @@ export const GuideContainer = styled.div`
       text-align: left;
     }
 
-    .img {
+    /* .img {
       height: 49vw;
       width: 90vw;
-      margin: 25px auto;
+      margin: 5px auto;
       float: none;
-    }
+    } */
 
     .paragraph {
       font-size: 18px;

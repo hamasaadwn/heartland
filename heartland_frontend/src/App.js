@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
 import "./App.css";
+
 import GlobalStyles from "./components/styled/Global";
 
 import Home from "./screens/home/Home";
@@ -30,10 +31,15 @@ import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
 import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
+
 import Emergency from "./screens/admin/emergancy/Emergency";
+import Test from "./Test";
+import CallButton from "./components/buttons/CallButton";
+import RatingModal from "./components/modals/RatingModal";
 
 function App() {
   const dispatch = useDispatch();
+  const [value, setValue] = useState("");
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -63,6 +69,7 @@ function App() {
       )}
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/test" element={<RatingModal />} />
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
         <Route exact path="/search" element={<Search />} />
