@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const pdfStorage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, "heartland_frontend/public/pdf/");
+    cb(null, "uploads/pdf/");
   },
   filename(req, file, cb) {
     cb(null, `p${Math.floor(Math.random() * 1000)}-${file.originalname}`);
@@ -68,9 +68,10 @@ router.post("/", upload.single("image"), (req, res) => {
 });
 
 router.post("/pdf", uploadPDF.single("pdf"), (req, res) => {
-  let str = req.file.path;
-  let arr = str.split("\\");
-  res.send("/" + arr[2] + "\\" + arr[3]);
+  res.send(`/${req.file.path}`);
+  // let str = req.file.path;
+  // let arr = str.split("\\");
+  // res.send("/" + arr[2] + "\\" + arr[3]);
 });
 
 router.post("/multi", upload.array("pictures"), (req, res) => {
