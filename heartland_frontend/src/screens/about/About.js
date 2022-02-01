@@ -32,15 +32,14 @@ const About = () => {
           <div className="about">
             <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
             <div className="paragraph">
-              {/* {content &&
-            (language === "en" ? (
-              <p>{content.contentEn}</p>
-            ) : language === "ar" ? (
-              <p>{content.contentAr}</p>
-            ) : (
-              ""
-            ))} */}
-              <p>Heartland Alliance International (HAI) has been working in Iraq since 2004, helping victims of human rights abuses heal and obtain justice, and building the capacity of Iraqi human rights activists and organizations. HAI is active in torture prevention and treatment, gender-based vio</p>
+              {content &&
+                (language === "en" ? (
+                  <p>{content.contentEn}</p>
+                ) : language === "ar" ? (
+                  <p>{content.contentAr}</p>
+                ) : (
+                  ""
+                ))}
 
             </div>
           </div>
