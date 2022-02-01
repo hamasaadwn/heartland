@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   width: 99vw;
   height: 99vh;
-  background-image: url("/images/mainbackground.jpg");
+  background-image: url("/images/newbackground.jpg");
   background-size: cover;
   position: relative;
 
