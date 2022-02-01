@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const AboutContainer = styled.div`
   background-color: #f2f2f2;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; */
 
   .about {
     color: #02a89e;
     font-size: 70px;
-    margin-left: 50px;
+    text-align: center;
+padding: 0 5px;
+width: 45%;
   }
 
   .img {
@@ -26,15 +28,18 @@ export const AboutContainer = styled.div`
   }
 
   .paragraph {
-    font-size: 23px;
-    text-align: justify;
-    width: 90vw;
+    font-size: 25px;
+    /* text-align: justify; */
+    width: 100%;
+    color: black;
   }
 
   @media screen and (max-width: 768px) {
     .about {
       font-size: 30px;
-      text-align: left;
+      text-align: center;
+padding: 0 ;
+
     }
 
     .img {
@@ -45,11 +50,11 @@ export const AboutContainer = styled.div`
     }
 
     .paragraph {
-      font-size: 18px;
-      padding: 0;
-      margin: auto;
+      font-size: 20px;
+    
+      
 
-      text-align: justify;
+      
     }
   }
 `;

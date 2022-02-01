@@ -48,15 +48,19 @@ export const GuideContainer = styled.div`
   @media screen and (max-width: 768px) {
     .about {
       font-size: 30px;
-      text-align: left;
+      text-align: center;
+      margin:0 auto
+    }
+    .about h1{
+      font-size: 40px;
     }
 
-    /* .img {
+    .img {
       height: 49vw;
       width: 90vw;
       margin: 5px auto;
       float: none;
-    } */
+    }
 
     .paragraph {
       font-size: 18px;

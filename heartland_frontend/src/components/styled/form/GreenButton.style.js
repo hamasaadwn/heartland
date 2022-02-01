@@ -12,4 +12,8 @@ export const GreenButton = styled.button`
   margin-bottom: 4px;
   width: 354px;
   cursor: pointer;
+   @media screen and (max-width: 768px) {
+  width: 250px;
+    
+  }
 `;
