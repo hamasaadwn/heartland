@@ -33,9 +33,8 @@ import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
 
 import Emergency from "./screens/admin/emergancy/Emergency";
-import Test from "./Test";
-import CallButton from "./components/buttons/CallButton";
 import RatingModal from "./components/modals/RatingModal";
+import EmergencyList from "./screens/emergency/EmergencyList";
 
 function App() {
   const dispatch = useDispatch();
@@ -85,6 +84,7 @@ function App() {
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
         <Route exact path="/p/:id" element={<Post />} />
+        <Route exact path="/emergency" element={<EmergencyList />} />
       </Routes>
     </Fragment>
   );

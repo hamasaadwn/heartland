@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
-import { Container } from "../../components/styled/Container.style";
+import { useSelector } from "react-redux";
+
 import { CallButtons } from "./CallButton.styles";
 
-function CallButton() {
+function CallButton({ data }) {
+  const { number, nameAr, nameEn, icon } = data;
+
+  const { language } = useSelector((state) => state.root);
+
   return (
-    <Container>
+    <a href={`tel:${number}`} style={{ textDecoration: "none" }}>
       <CallButtons>
         <div className="iconCircle">
-          <img src="/images/policeman.png" />
+          <img src={icon} />
         </div>
 
         <div className="text">
-          <h1>104</h1>
-          <h1 style={{ color: "black" }}>Police Number</h1>
+          <h1>{number}</h1>
+          <h1 style={{ color: "black" }}>
+            {language === "en" ? nameEn : language === "ar" ? nameAr : ""}
+          </h1>
         </div>
       </CallButtons>
-    </Container>
+    </a>
   );
 }
 
