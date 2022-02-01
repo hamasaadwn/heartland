@@ -32,7 +32,10 @@ const Post = () => {
           <h2>{post && post.title}</h2>
           <br />
           <div className="image">
-            <img src={post && post.image} alt="" />
+            <img
+              src={post && `${process.env.REACT_APP_API_URL}${post.image}`}
+              alt=""
+            />
           </div>
           <h5>{post && timeFormatter(post.createdAt)}</h5>
           <br />
@@ -40,7 +43,11 @@ const Post = () => {
           <br />
           {post && post.pdf ? (
             <div className="downloadPdf">
-              <a href={post.pdf} rel="noopener">
+              <a
+                href={`${process.env.REACT_APP_API_URL}${post.pdf}`}
+                rel="noopener"
+                target="_blank"
+              >
                 <p>
                   <img src="/images/pdf.png" alt={post.title} /> View Attached
                   PDF
@@ -52,11 +59,15 @@ const Post = () => {
           )}
 
           <br />
-          {post && post.pictures ? (
+          {post && post.pictures && post.pictures.length > 0 ? (
             <div className="album">
               <h2>Album</h2>
               {post.pictures.map((p, i) => (
-                <img src={p} alt="" key={i} />
+                <img
+                  src={`${process.env.REACT_APP_API_URL}${p}`}
+                  alt=""
+                  key={i}
+                />
               ))}
             </div>
           ) : (

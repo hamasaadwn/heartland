@@ -8,7 +8,7 @@ const MapCards = ({ title, img, link }) => {
   console.log(image);
   return (
     <Link to={link}>
-      <MapsCardsStyles img={image}>
+      <MapsCardsStyles img={`${process.env.REACT_APP_API_URL}${image}`}>
         <h3>{title}</h3>
       </MapsCardsStyles>
     </Link>

@@ -39,7 +39,6 @@ import RatingModal from "./components/modals/RatingModal";
 
 function App() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
