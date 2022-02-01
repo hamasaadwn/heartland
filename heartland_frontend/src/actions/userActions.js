@@ -2,11 +2,11 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
-  USER_LOGOUT,
+  // USER_LOGOUT,
   LOAD_ALL_USERS_REQUEST,
   LOAD_ALL_USERS_SUCCESS,
   LOAD_ALL_USERS_FAIL,
-  LOAD_ALL_USERS_RESET,
+  // LOAD_ALL_USERS_RESET,
   ADD_USER_TO_USERLIST,
   REMOVE_USER_FROM_USERLIST,
   USER_REGISTER_REQUEST,
@@ -16,6 +16,8 @@ import {
 } from "../constants/userConstants";
 
 import axios from "axios";
+
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -27,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       "/api/users/login",
       { email, password },
       config
@@ -60,7 +62,7 @@ export const allUsers = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/users", config);
+    const { data } = await axiosInstance.get("/api/users", config);
 
     dispatch({ type: LOAD_ALL_USERS_SUCCESS, payload: data });
   } catch (err) {
@@ -90,7 +92,7 @@ export const register =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         "/api/users",
         { name, email, password, isAdmin, isAuthor },
         config
@@ -130,7 +132,7 @@ export const removeUser = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`/api/users/${id}`, config);
+    await axiosInstance.delete(`/api/users/${id}`, config);
 
     dispatch({ type: REMOVE_USER_FROM_USERLIST, payload: id });
   } catch (err) {

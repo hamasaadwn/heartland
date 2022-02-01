@@ -25,6 +25,9 @@ const Sidebar = () => {
         <li>
           <NavLink to="/dashboard/maps">Maps</NavLink>
         </li>
+        <li>
+          <NavLink to="/dashboard/emergency">Emergency</NavLink>
+        </li>
       </ul>
     </Side>
   );

@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
-import i18next from "i18next";
+import "./App.css";
 
-import "./App.css"
 import GlobalStyles from "./components/styled/Global";
 
 import Home from "./screens/home/Home";
@@ -32,14 +31,15 @@ import AddCity from "./screens/admin/map/AddCity";
 import PostsList from "./screens/posts/PostsList";
 import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
+
+import Emergency from "./screens/admin/emergancy/Emergency";
 import Test from "./Test";
 import CallButton from "./components/buttons/CallButton";
 import RatingModal from "./components/modals/RatingModal";
 
 function App() {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -52,13 +52,10 @@ function App() {
     } else {
       document.body.dir = "ltr";
     }
-  }, []);
-
-
+  }, [currentLanguageCode, dispatch]);
 
   return (
     <Fragment>
-
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
       {navbar === "white" ? (
@@ -110,6 +107,7 @@ const AdminRoutes = () => {
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
         {userInfo && <Route exact path="/maps" element={<Maps />} />}
         {userInfo && <Route exact path="/maps/addcity" element={<AddCity />} />}
+        {userInfo && <Route exact path="/emergency" element={<Emergency />} />}
       </Routes>
     </Fragment>
   );

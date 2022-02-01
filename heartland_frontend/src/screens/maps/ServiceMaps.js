@@ -24,13 +24,13 @@ const ServiceMaps = () => {
     dispatch(changeNavbar("white"));
     dispatch(loadAllMaps());
     dispatch(getRatings());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>
       <ServiceContainer>
         <div className="star-container-self">
-          {rating && (
+          {rating && rating.avgCountry && (
             <StarRatings
               rating={rating.avgCountry}
               starRatedColor="#02a89e"

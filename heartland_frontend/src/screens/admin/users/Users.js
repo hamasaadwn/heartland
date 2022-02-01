@@ -17,6 +17,7 @@ import AddUserModal from "../../../components/modals/AddUserModal";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 
 const Users = () => {
+  console.log("teset");
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
 

@@ -32,7 +32,7 @@ const Anbar = () => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
     dispatch(loadMapByCity(city));
-  }, []);
+  }, [dispatch, city]);
 
   const changeRating = (newRating) => {
     setRating(newRating);
@@ -50,7 +50,7 @@ const Anbar = () => {
     if (serviceRatingFromStorage) {
       setRated(serviceRatingFromStorage.rate);
     }
-  }, [rating]);
+  }, [rating, dispatch]);
 
   return (
     <Container>

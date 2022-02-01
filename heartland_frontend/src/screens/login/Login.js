@@ -23,13 +23,13 @@ const Login = () => {
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
-  const { loading, errors, userInfo } = userLogin;
+  const { errors, userInfo } = userLogin;
 
   useEffect(() => {
     if (userInfo) {
       navigate(redirect);
     }
-  }, [userInfo, history, redirect]);
+  }, [userInfo, navigate, redirect]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

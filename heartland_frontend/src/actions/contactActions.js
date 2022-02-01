@@ -11,6 +11,8 @@ import {
   REMOVE_FROM_CONTACTS,
 } from "../constants/contactConstants";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const loadContact = (type) => async (dispatch) => {
   try {
     dispatch({ type: LOAD_CONTACT_REQUEST });
@@ -21,7 +23,7 @@ export const loadContact = (type) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/api/contact`, config);
+    const { data } = await axiosInstance.get(`/api/contact`, config);
 
     dispatch({
       type: LOAD_CONTACT_SUCCESS,
@@ -47,11 +49,11 @@ export const loadContactList = (type) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(`/api/contact`, config);
+    const { data } = await axiosInstance.get(`/api/contact`, config);
 
     let newData = { emails: [], nums: [], sm: [] };
 
-    data.map((d) => {
+    data.forEach((d) => {
       if (d.type === "email") {
         newData.emails.push(d);
       } else if (d.type === "phone") {
@@ -89,7 +91,7 @@ export const createOrUpdateContact =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `/api/contact`,
         { type, value },
         config
@@ -121,7 +123,7 @@ export const removeContact = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`/api/contact/${id}`, config);
+    await axiosInstance.delete(`/api/contact/${id}`, config);
 
     dispatch({ type: REMOVE_FROM_CONTACTS, payload: id });
   } catch (err) {

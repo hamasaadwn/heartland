@@ -2,6 +2,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   createOrUpdateContact,
   loadContact,
@@ -34,7 +35,7 @@ const Contact = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadContact());
-  }, []);
+  }, [dispatch]);
 
   const setInput = (event) => {
     setFormData({

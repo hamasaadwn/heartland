@@ -12,6 +12,8 @@ import {
 
 import axios from "axios";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 export const loadAllMaps = () => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD_MAPS_REQUEST });
@@ -25,7 +27,7 @@ export const loadAllMaps = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/maps", config);
+    const { data } = await axiosInstance.get("/api/maps", config);
 
     dispatch({ type: LOAD_MAPS_SUCCESS, payload: data });
   } catch (err) {
@@ -43,7 +45,7 @@ export const loadMapByCity = (city) => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD_MAP_REQUEST });
 
-    const { data } = await axios.get(`/api/maps/m/${city}`);
+    const { data } = await axiosInstance.get(`/api/maps/m/${city}`);
 
     dispatch({ type: LOAD_MAP_SUCCESS, payload: data });
   } catch (err) {
@@ -74,7 +76,7 @@ export const addMap =
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axiosInstance.post(
         `/api/maps`,
         { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
         config
