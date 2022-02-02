@@ -24,7 +24,10 @@ import {
 } from "./reducers/contactReducer";
 import { loadMapReducer, loadMapsReducer } from "./reducers/mapReducer";
 import { ratingReducer } from "./reducers/ratingReducer";
-import { loadEmergensiesReducer } from "./reducers/emergencyReducer";
+import {
+  loadEmergensiesByTypeReducer,
+  loadEmergensiesReducer,
+} from "./reducers/emergencyReducer";
 
 const reducer = combineReducers({
   root: changeStatesReducer,
@@ -43,6 +46,7 @@ const reducer = combineReducers({
   rating: ratingReducer,
   searchResult: searchResultReducer,
   emergency: loadEmergensiesReducer,
+  emergencyList: loadEmergensiesByTypeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

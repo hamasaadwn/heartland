@@ -1,23 +1,35 @@
 import React, { useEffect } from "react";
-import LOGO from "../../../public/images/policeman.png"
-import { Container } from "../../components/styled/Container.style";
+import { useSelector } from "react-redux";
+
 import { CallButtons } from "./CallButton.styles";
 
-function CallButton() {
+function CallButton({ data }) {
+  const { value, nameAR, nameEN, icon } = data;
 
+  const { language } = useSelector((state) => state.root);
 
-    return <Container>
-        <CallButtons>
-            <div className="iconCircle">
-                <img src={LOGO} />
-            </div>
+  return (
+    <a href={`tel:${value}`} style={{ textDecoration: "none" }}>
+      <CallButtons>
+        <div className="iconCircle">
+          <img
+            src={
+              icon !== ""
+                ? `${process.env.REACT_APP_API_URL}${icon}`
+                : "/images/defaultIcon.png"
+            }
+          />
+        </div>
 
-            <div className="text">
-                <h1>104</h1>
-                <h1 style={{ color: "black" }}>Police Number</h1>
-            </div>
-        </CallButtons>
-    </Container>;
+        <div className="text">
+          <h1>{value}</h1>
+          <h1 style={{ color: "black" }}>
+            {language === "en" ? nameEN : language === "ar" ? nameAR : ""}
+          </h1>
+        </div>
+      </CallButtons>
+    </a>
+  );
 }
 
 export default CallButton;

@@ -45,7 +45,6 @@ const About = () => {
           </div>
           <div className="img"></div>
         </FlexRow>
-
       </AboutContainer>
     </Container>
   );

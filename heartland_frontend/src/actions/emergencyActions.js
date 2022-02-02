@@ -6,12 +6,14 @@ import {
   LOAD_EMERGENCY_FAIL,
   ADD_TO_EMERGENCY,
   // REMOVE_FROM_EMERGENCY,
+  LOAD_EMERGENCY_TYPE_REQUEST,
+  LOAD_EMERGENCY_TYPE_SUCCESS,
+  LOAD_EMERGENCY_TYPE_FAIL,
 } from "../constants/emergencyConstants";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 export const loadEmergencies = () => async (dispatch) => {
-  console.log("test");
   try {
     dispatch({ type: LOAD_EMERGENCY_REQUEST });
 
@@ -70,3 +72,29 @@ export const createOrUpdateEmergency =
       }
     }
   };
+
+export const loadEmergenciesByType = (type) => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_EMERGENCY_TYPE_REQUEST });
+
+    const config = {
+      Headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axiosInstance.get(`/api/emergency/${type}`, config);
+
+    dispatch({
+      type: LOAD_EMERGENCY_TYPE_SUCCESS,
+      payload: data,
+    });
+    return data;
+  } catch (err) {
+    console.log(err);
+    if (err.message === "Network Error") console.log(err);
+    else {
+      dispatch({ type: LOAD_EMERGENCY_TYPE_FAIL, payload: err.response.data });
+    }
+  }
+};

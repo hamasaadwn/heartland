@@ -60,9 +60,18 @@ const Anbar = () => {
           <h1>{map && map.name}</h1>
         </div>
         <div className="img-map">
-          <img src={map && map.countryMap} alt="" />
-          <img src={map && map.cityMap} alt="" />
-          <img src={map && map.cityMapAdd} alt="" />
+          <img
+            src={map && `${process.env.REACT_APP_API_URL}${map.countryMap}`}
+            alt=""
+          />
+          <img
+            src={map && `${process.env.REACT_APP_API_URL}${map.cityMap}`}
+            alt=""
+          />
+          <img
+            src={map && `${process.env.REACT_APP_API_URL}${map.cityMapAdd}`}
+            alt=""
+          />
         </div>
         <div className="detail-container">
           {" "}

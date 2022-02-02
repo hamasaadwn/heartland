@@ -28,12 +28,22 @@ const Activities = () => {
         <FlexRow>
           <div className="about ">
             <h2> {t("useful_tools")}</h2>
-            <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-              <GreenButton>{t("emergency_numbers")}</GreenButton>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              <GreenButton onClick={() => navigate("/e/Emergency")}>
+                {t("emergency_numbers")}
+              </GreenButton>
               <GreenButton onClick={() => navigate("/servicemap")}>
                 {t("find_us")}
               </GreenButton>
-              <GreenButton>{t("vot_emergency_contacts")}</GreenButton>
+              <GreenButton onClick={() => navigate("/e/VOT")}>
+                {t("vot_emergency_contacts")}
+              </GreenButton>
             </div>
           </div>
           <div className="img"></div>
