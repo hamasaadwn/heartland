@@ -28,7 +28,7 @@ const createOrUpdateContent = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(400);
-    res.json({ general: "Error!" });
+    res.json({ general: "Server Error" });
   }
 };
 

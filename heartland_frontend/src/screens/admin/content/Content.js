@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch /*useSelector*/ } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.min.css";
+
 import {
   createOrUpdateContent,
   loadContent,
@@ -9,6 +13,7 @@ import {
 import {
   changeBackgroundToWhite,
   changeNavbar,
+  showSuccess,
 } from "../../../actions/rootActions";
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { Button } from "../../../components/styled/form/Button.style";
@@ -17,6 +22,8 @@ import { Spacer } from "../../../components/styled/Spacer.style";
 
 const Content = () => {
   const dispatch = useDispatch();
+
+  const { content, errors } = useSelector((state) => state.updateContent);
 
   const [formData, setFormData] = useState({
     type: "About",
@@ -29,6 +36,21 @@ const Content = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (content) {
+      toast.success("Successful", {
+        theme: "colored",
+      });
+    }
+    if (errors) {
+      for (const e in errors) {
+        toast.error(`Error! \n ${errors[e]}`, {
+          theme: "colored",
+        });
+      }
+    }
+  }, [content, errors, dispatch]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,6 +102,7 @@ const Content = () => {
 
   return (
     <AdminContainer>
+      <ToastContainer position="bottom-right" autoClose={5000} />
       <form onSubmit={submitHandler}>
         <div>
           <label>
