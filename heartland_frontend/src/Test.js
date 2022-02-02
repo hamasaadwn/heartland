@@ -1,4 +1,5 @@
 import React from "react";
+import RatingModal from "./components/modals/RatingModal";
 
 import { Container } from "./components/styled/Container.style";
 
@@ -16,7 +17,7 @@ function Test() {
     return (
         <Container>
             <div className="testBorder" style={{ height: "50vh" }}>
-                <div></div>
+                <RatingModal />
             </div>
         </Container>
     );

@@ -39,7 +39,20 @@ import RatingModal from "./components/modals/RatingModal";
 
 function App() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
+  const [rating, setRating] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("websiteRate") === null || undefined || 0) {
+      setTimeout(() => {
+        setRating(true)
+      }, 1000);
+    } else if (localStorage.getItem("websiteRate") !== null || undefined || 0) {
+      setRating(false)
+    }
+
+  }, []);
+
+
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -56,6 +69,7 @@ function App() {
 
   return (
     <Fragment>
+      {rating ? <RatingModal close={() => setRating(false)} /> : null}
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
       {navbar === "white" ? (
@@ -67,6 +81,8 @@ function App() {
       ) : (
         ""
       )}
+
+
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/test" element={<Test />} />
