@@ -8,6 +8,7 @@ import {
   createOrUpdateContent,
   loadContent,
   resetContent,
+  resetUpdatedContent,
 } from "../../../actions/contentActions";
 
 import {
@@ -50,6 +51,7 @@ const Content = () => {
         });
       }
     }
+    dispatch(resetUpdatedContent());
   }, [content, errors, dispatch]);
 
   useEffect(() => {

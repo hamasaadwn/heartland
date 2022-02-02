@@ -6,6 +6,7 @@ import {
   UPDATE_CONTENT_REQUEST,
   UPDATE_CONTENT_SUCCESS,
   UPDATE_CONTENT_FAIL,
+  RESET_UPDATED_CONTENT,
 } from "../constants/contentConstants";
 
 import axios from "axios";
@@ -75,3 +76,7 @@ export const createOrUpdateContent =
       }
     }
   };
+
+export const resetUpdatedContent = () => (dispatch) => {
+  dispatch({ type: RESET_UPDATED_CONTENT });
+};

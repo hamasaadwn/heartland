@@ -6,6 +6,7 @@ import {
   UPDATE_CONTENT_REQUEST,
   UPDATE_CONTENT_SUCCESS,
   UPDATE_CONTENT_FAIL,
+  RESET_UPDATED_CONTENT,
 } from "../constants/contentConstants";
 
 export const loadContentReducer = (state = {}, action) => {
@@ -31,6 +32,8 @@ export const updateContentReducer = (state = {}, action) => {
       return { loading: false, content: action.payload };
     case UPDATE_CONTENT_FAIL:
       return { loading: false, errors: action.payload };
+    case RESET_UPDATED_CONTENT:
+      return {};
     default:
       return state;
   }
