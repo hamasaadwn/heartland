@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import StarRatings from "react-star-ratings";
 import { rate } from "../../actions/ratingActions";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -10,9 +11,10 @@ import { Button } from "../styled/form/Button.style";
 import { Spacer } from "../styled/Spacer.style";
 
 
+
 const RatingModal = (props) => {
     const dispatch = useDispatch();
-
+    const { t } = useTranslation();
     const [rating, setRating] = useState(0);
     const [rated, setRated] = useState(0);
 
@@ -44,7 +46,7 @@ const RatingModal = (props) => {
                 />
 
                 <div>
-                    <h1>Before Leaving Please Rate Us</h1>
+                    <h1>{t("rate")}</h1>
                 </div>
 
 
@@ -69,7 +71,7 @@ const RatingModal = (props) => {
 
                 <Spacer top="20px" />
                 <Button onClick={props.close} bg="#02a89e" fg="#ffffff">
-                    Close
+                    {t("close")}
                 </Button>
 
             </div>
