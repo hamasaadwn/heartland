@@ -98,7 +98,6 @@ const RatingModal = () => {
               />
             )}
           </div>
-          <CallButton />
           {/* {errors && <ErrorMessages errors={errors} />}
                     {passErr && <ErrorMessages errors={passErr} />} */}
           <Spacer top="20px" />
