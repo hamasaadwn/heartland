@@ -80,6 +80,7 @@ const RatingModal = () => {
                         <h1>Before Leaving Please Rate Us</h1>
                     </div>
 
+
                     <div className="star-container-self">
                         {rated ? (
                             <StarRatings
@@ -99,8 +100,6 @@ const RatingModal = () => {
                         )}
                     </div>
 
-                    {/* {errors && <ErrorMessages errors={errors} />}
-                    {passErr && <ErrorMessages errors={passErr} />} */}
                     <Spacer top="20px" />
                     <Button bg="#02a89e" fg="#ffffff">
                         Rate
