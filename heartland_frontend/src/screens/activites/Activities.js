@@ -35,13 +35,15 @@ const Activities = () => {
                 flexDirection: "column",
               }}
             >
-              <GreenButton onClick={() => navigate("/emergency")}>
+              <GreenButton onClick={() => navigate("/e/Emergency")}>
                 {t("emergency_numbers")}
               </GreenButton>
               <GreenButton onClick={() => navigate("/servicemap")}>
                 {t("find_us")}
               </GreenButton>
-              <GreenButton>{t("vot_emergency_contacts")}</GreenButton>
+              <GreenButton onClick={() => navigate("/e/VOT")}>
+                {t("vot_emergency_contacts")}
+              </GreenButton>
             </div>
           </div>
           <div className="img"></div>

@@ -121,7 +121,7 @@ const Emergency = () => {
               onChange={setInput}
               require={true}
             >
-              <option value="Emergency Contacts">Emergency Contacts</option>
+              <option value="Emergency">Emergency Contacts</option>
               <option value="VOT">VOT</option>
             </Select>
           </div>

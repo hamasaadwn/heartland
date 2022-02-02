@@ -84,7 +84,7 @@ function App() {
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
         <Route exact path="/p/:id" element={<Post />} />
-        <Route exact path="/emergency" element={<EmergencyList />} />
+        <Route exact path="/e/:type" element={<EmergencyList />} />
       </Routes>
     </Fragment>
   );

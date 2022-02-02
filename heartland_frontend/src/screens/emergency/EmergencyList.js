@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { loadEmergenciesByType } from "../../actions/emergencyActions";
 
 import {
   changeBackgroundToBlack,
@@ -11,29 +13,23 @@ import { EmergencyContainer } from "./Emergency.styled";
 
 const EmergencyList = () => {
   const dispatch = useDispatch();
+  const params = useParams();
+
+  const type = params.type;
+
+  const { emergencies } = useSelector((state) => state.emergencyList);
 
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
-  }, []);
-
-  const testDAta = {
-    number: "1",
-    nameEn: "Test",
-    nameAr: "التێست",
-    icon: "/images/policeman.png",
-  };
+    dispatch(loadEmergenciesByType(type));
+  }, [dispatch, type]);
 
   return (
     <Container>
       <EmergencyContainer>
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
-        <CallButton data={testDAta} />
+        {emergencies &&
+          emergencies.map((e) => <CallButton key={e._id} data={e} />)}
       </EmergencyContainer>
     </Container>
   );
