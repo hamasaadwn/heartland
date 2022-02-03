@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const AboutContainer = styled.div`
-  ${(props) => {
-    console.log(props);
-  }}
   background-color: #f2f2f2;
   height: 100vh;
   /* display: flex;
