@@ -27,22 +27,19 @@ const Activities = () => {
       <ActivitesContainer>
         <FlexRow>
           <div className="about ">
-            <h2> {t("useful_tools")}</h2>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <GreenButton onClick={() => navigate("/e/Emergency")}>
-                {t("emergency_numbers")}
+            <h1> {t("useful_tools")}</h1>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+              <GreenButton onClick={() => navigate("/posts/Training")}>
+                {t("training")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/servicemap")}>
-                {t("find_us")}
+              <GreenButton onClick={() => navigate("/posts/Guide")}>
+                {t("guide")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/e/VOT")}>
-                {t("vot_emergency_contacts")}
+              <GreenButton onClick={() => navigate("/posts/Form")}>
+                {t("form")}
+              </GreenButton>
+              <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+                {t("flyer_and_brochure")}
               </GreenButton>
             </div>
           </div>
@@ -55,3 +52,21 @@ const Activities = () => {
 };
 
 export default Activities;
+
+// <div
+//   style={{
+//     display: "flex",
+//     alignItems: "center",
+//     flexDirection: "column",
+//   }}
+// >
+//   <GreenButton onClick={() => navigate("/e/Emergency")}>
+//     {t("emergency_numbers")}
+//   </GreenButton>
+//   <GreenButton onClick={() => navigate("/servicemap")}>
+//     {t("find_us")}
+//   </GreenButton>
+//   <GreenButton onClick={() => navigate("/e/VOT")}>
+//     {t("vot_emergency_contacts")}
+//   </GreenButton>
+// </div>

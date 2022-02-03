@@ -14,8 +14,9 @@ export const ActivitesContainer = styled.div`
     font-size: 70px;
    width: 40%;
   }
-  h2{
+  h1{
     text-align: center;
+    font-size: 70px;
   }
 
   .img {
