@@ -40,6 +40,7 @@ const About = () => {
                 ) : (
                   ""
                 ))}
+
             </div>
           </div>
           <div className="img"></div>

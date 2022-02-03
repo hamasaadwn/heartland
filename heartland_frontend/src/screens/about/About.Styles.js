@@ -10,8 +10,10 @@ export const AboutContainer = styled.div`
     color: #02a89e;
     font-size: 70px;
     text-align: center;
+
     padding: 0 5px;
     width: 45%;
+
   }
   .img {
     background-image: linear-gradient(
@@ -34,7 +36,9 @@ export const AboutContainer = styled.div`
     .about {
       font-size: 30px;
       text-align: center;
+
       padding: 0;
+
     }
     .img {
       height: 49vw;
@@ -44,6 +48,9 @@ export const AboutContainer = styled.div`
     }
     .paragraph {
       font-size: 20px;
+
+
+
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import cookies from "js-cookie";
@@ -33,11 +33,26 @@ import Post from "./screens/posts/Post";
 import Search from "./screens/posts/Search";
 
 import Emergency from "./screens/admin/emergancy/Emergency";
+import Test from "./Test";
+import CallButton from "./components/buttons/CallButton";
 import RatingModal from "./components/modals/RatingModal";
-import EmergencyList from "./screens/emergency/EmergencyList";
 
 function App() {
   const dispatch = useDispatch();
+  const [rating, setRating] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("websiteRate") === null || undefined || 0) {
+      setTimeout(() => {
+        setRating(true)
+      }, 1000);
+    } else if (localStorage.getItem("websiteRate") !== null || undefined || 0) {
+      setRating(false)
+    }
+
+  }, []);
+
+
   const { black, navbar } = useSelector((state) => state.root);
 
   const currentLanguageCode = cookies.get("i18next") || "en";
@@ -54,6 +69,7 @@ function App() {
 
   return (
     <Fragment>
+      {rating ? <RatingModal close={() => setRating(false)} /> : null}
       {black ? <GlobalStyles bg="black" /> : <GlobalStyles bg="#F2F2F2" />}
 
       {navbar === "white" ? (
@@ -65,8 +81,12 @@ function App() {
       ) : (
         ""
       )}
+
+
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/test" element={<Test />} />
+
         <Route exact path="/test" element={<RatingModal />} />
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
@@ -84,7 +104,6 @@ function App() {
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
         <Route exact path="/p/:id" element={<Post />} />
-        <Route exact path="/e/:type" element={<EmergencyList />} />
       </Routes>
     </Fragment>
   );
