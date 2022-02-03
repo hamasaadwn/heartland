@@ -5,7 +5,6 @@ import MapsCardsStyles from "../styled/MapsCard.styles";
 
 const MapCards = ({ title, img, link }) => {
   let image = img.replace("\\", "/");
-  console.log(image);
   return (
     <Link to={link}>
       <MapsCardsStyles img={`${process.env.REACT_APP_API_URL}${image}`}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
@@ -16,6 +16,8 @@ const About = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
+  const [img, setImg] = useState("");
+
   const { content } = useSelector((state) => state.content);
   const { language } = useSelector((state) => state.root);
 
@@ -25,27 +27,33 @@ const About = () => {
     dispatch(loadContent("About"));
   }, []);
 
+  useEffect(() => {
+    if (content) {
+      setImg(process.env.REACT_APP_API_URL + content.image.replace("\\", "/"));
+    }
+  }, [content]);
+
   return (
     <Container>
-      <AboutContainer>
-        <FlexRow>
-          <div className="about">
-            <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
-            <div className="paragraph">
-              {content &&
-                (language === "en" ? (
+      {content && (
+        <AboutContainer img={content.image && img}>
+          <FlexRow>
+            <div className="about">
+              <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
+              <div className="paragraph">
+                {language === "en" ? (
                   <p>{content.contentEn}</p>
                 ) : language === "ar" ? (
                   <p>{content.contentAr}</p>
                 ) : (
                   ""
-                ))}
-
+                )}
+              </div>
             </div>
-          </div>
-          <div className="img"></div>
-        </FlexRow>
-      </AboutContainer>
+            <div className="img"></div>
+          </FlexRow>
+        </AboutContainer>
+      )}
     </Container>
   );
 };

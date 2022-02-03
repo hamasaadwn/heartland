@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 import "react-toastify/dist/ReactToastify.min.css";
 
@@ -20,15 +21,20 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { TextArea } from "../../../components/styled/form/TextArea.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 
+const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
 const Content = () => {
   const dispatch = useDispatch();
 
   const { content, errors } = useSelector((state) => state.updateContent);
 
+  const [uploading, setUploading] = useState(false);
+
   const [formData, setFormData] = useState({
     type: "About",
     contentEn: "",
     contentAr: "",
+    image: "",
   });
 
   useEffect(() => {
@@ -62,6 +68,7 @@ const Content = () => {
             ...formData,
             contentEn: result.contentEn,
             contentAr: result.contentAr,
+            image: result.image,
           });
         } else {
           setFormData({
@@ -93,11 +100,41 @@ const Content = () => {
         createOrUpdateContent(
           formData.type,
           formData.contentEn,
-          formData.contentAr
+          formData.contentAr,
+          formData.image
         )
       );
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  //upload image handler
+  const uploadImageHandler = async (e) => {
+    const file = e.target.files[0];
+    const formDataU = new FormData();
+    formDataU.append("image", file);
+    setUploading(true);
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axiosInstance.post(
+        "/api/upload",
+        formDataU,
+        config
+      );
+      setFormData({ ...formData, image: data });
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("Error! File Type is not supported", {
+        theme: "colored",
+      });
+      setUploading(false);
     }
   };
 
@@ -135,6 +172,14 @@ const Content = () => {
             placeholder="Text Here...."
           />
         </div>
+        <Spacer top="20px" />
+        {formData.type === "About" && (
+          <div>
+            <label>Main Image </label>
+            <input type="file" name="image" onChange={uploadImageHandler} />
+          </div>
+        )}
+
         <Spacer top="20px" />
         <Button bg="#02a89e" fg="#ffffff">
           Submit

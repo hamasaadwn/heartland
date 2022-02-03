@@ -43,7 +43,7 @@ export const resetContent = () => (dispatch) => {
 };
 
 export const createOrUpdateContent =
-  (type, contentEn, contentAr) => async (dispatch, getState) => {
+  (type, contentEn, contentAr, image) => async (dispatch, getState) => {
     try {
       dispatch({ type: UPDATE_CONTENT_REQUEST });
 
@@ -60,7 +60,7 @@ export const createOrUpdateContent =
 
       const { data } = await axiosInstance.post(
         `/api/content/${type}`,
-        { type, contentEn, contentAr },
+        { type, contentEn, contentAr, image },
         config
       );
 

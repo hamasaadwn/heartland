@@ -9,7 +9,7 @@ const createOrUpdateContent = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { contentEn, contentKu, contentAr, type } = req.body;
+  const { contentEn, contentKu, contentAr, type, image } = req.body;
 
   try {
     const data =
@@ -21,6 +21,7 @@ const createOrUpdateContent = async (req, res) => {
     data.contentAr = contentAr;
     data.contentEn = contentEn;
     data.contentKu = contentKu;
+    data.image = image;
     data.user = req.user.id;
 
     const result = await data.save();
