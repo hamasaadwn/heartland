@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
@@ -13,11 +13,15 @@ import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { Button } from "../../../components/styled/form/Button.style";
 import { addPost } from "../../../actions/postActions";
+import { toast, ToastContainer } from "react-toastify";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 const CreatePost = () => {
   const dispatch = useDispatch();
+  const refs = useRef([]);
+
+  const { errors } = useSelector((state) => state.post);
 
   const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
@@ -34,7 +38,17 @@ const CreatePost = () => {
   useEffect(() => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (errors) {
+      for (const e in errors) {
+        toast.error(`Error! \n ${errors[e]}`, {
+          theme: "colored",
+        });
+      }
+    }
+  }, [errors]);
 
   const setInput = (event) => {
     setFormData({
@@ -61,14 +75,13 @@ const CreatePost = () => {
         formDataU,
         config
       );
-
       setFormData({ ...formData, image: data });
       setUploading(false);
     } catch (error) {
       console.error(error);
-      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
-      //   appearance: "error",
-      // });
+      toast.error("Error! File Type is not supported", {
+        theme: "colored",
+      });
       setUploading(false);
     }
   };
@@ -100,9 +113,9 @@ const CreatePost = () => {
       // setUploading(false);
     } catch (error) {
       console.error(error);
-      // addToast("دانانی وێنە سەرکەوتوو نەبوو", {
-      //   appearance: "error",
-      // });
+      toast.error("Error! File Type is not supported", {
+        theme: "colored",
+      });
       // setUploading(false);
     }
   };
@@ -130,9 +143,9 @@ const CreatePost = () => {
       setUploading(false);
     } catch (error) {
       console.error(error);
-      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
-      //   appearance: "error",
-      // });
+      toast.error("Error! File Type is not supported", {
+        theme: "colored",
+      });
       setUploading(false);
     }
   };
@@ -143,10 +156,27 @@ const CreatePost = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(
+      const data = await dispatch(
         addPost(title, describtion, image, pictures, video, language, type, pdf)
       );
-
+      if (data) {
+        setFormData({
+          title: "",
+          describtion: "",
+          image: "",
+          pictures: [],
+          video: "",
+          language: "en",
+          pdf: "",
+          type: "International",
+        });
+        refs.current[0].value = "";
+        refs.current[1].value = "";
+        refs.current[2].value = "";
+        toast.success("Successful", {
+          theme: "colored",
+        });
+      }
       // console.log(errors);
     } catch (err) {
       console.log(err);
@@ -155,6 +185,7 @@ const CreatePost = () => {
 
   return (
     <AdminContainer>
+      <ToastContainer position="bottom-right" autoClose={5000} />
       <form onSubmit={submitHandler}>
         <div>
           <label>Title</label>
@@ -186,7 +217,14 @@ const CreatePost = () => {
         <TwoColFlex>
           <div>
             <label>Main Image </label>
-            <input type="file" name="image" onChange={uploadImageHandler} />
+            <input
+              type="file"
+              name="image"
+              onChange={uploadImageHandler}
+              ref={(element) => {
+                refs.current[0] = element;
+              }}
+            />
           </div>
 
           <div>
@@ -196,6 +234,9 @@ const CreatePost = () => {
               name="pictures"
               onChange={uploadPicturesHandler}
               multiple={true}
+              ref={(element) => {
+                refs.current[1] = element;
+              }}
             />
           </div>
           <div>
@@ -205,6 +246,9 @@ const CreatePost = () => {
               name="pdf"
               onChange={uploadPDFHandler}
               multiple={true}
+              ref={(element) => {
+                refs.current[2] = element;
+              }}
             />
           </div>
         </TwoColFlex>

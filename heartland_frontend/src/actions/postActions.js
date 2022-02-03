@@ -122,6 +122,8 @@ export const addPost =
         type: ADD_POSTS_SUCCESS,
         payload: data,
       });
+
+      return data;
     } catch (err) {
       if (err.message === "Network Error") console.log(err);
       else {
