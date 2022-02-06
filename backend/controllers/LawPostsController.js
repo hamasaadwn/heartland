@@ -132,7 +132,7 @@ const getAllPosts = async (req, res) => {
 // @route   GET api/posts/:language/:category
 // @access  public
 const getPostsByCategoryAndLanguage = async (req, res) => {
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
   try {
     const count = await LawPosts.countDocuments({
@@ -160,7 +160,7 @@ const getPostsByCategoryAndLanguage = async (req, res) => {
 // @route   GET api/posts/t/:type
 // @access  public
 const getPostsByType = async (req, res) => {
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
   try {
     const count = await LawPosts.countDocuments({});
@@ -261,7 +261,7 @@ const postsSearch = async (req, res) => {
       }
     : {};
 
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
 
   const count = await LawPosts.countDocuments({ ...keyword });
