@@ -22,7 +22,11 @@ import {
   loadContactClassedReducer,
   loadContactReducer,
 } from "./reducers/contactReducer";
-import { loadMapReducer, loadMapsReducer } from "./reducers/mapReducer";
+import {
+  addMapsReducer,
+  loadMapReducer,
+  loadMapsReducer,
+} from "./reducers/mapReducer";
 import { ratingReducer } from "./reducers/ratingReducer";
 import {
   loadEmergensiesByTypeReducer,
@@ -43,6 +47,7 @@ const reducer = combineReducers({
   contactList: loadContactClassedReducer,
   maps: loadMapsReducer,
   map: loadMapReducer,
+  addedMap: addMapsReducer,
   rating: ratingReducer,
   searchResult: searchResultReducer,
   emergency: loadEmergensiesReducer,

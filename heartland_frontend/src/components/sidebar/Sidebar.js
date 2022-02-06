@@ -35,9 +35,6 @@ const Sidebar = () => {
           <NavLink to="/dashboard/emergency">Emergency</NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/emergency">Emergency</NavLink>
-        </li>
-        <li>
           <Button
             onClick={() => {
               dispatch(logout());

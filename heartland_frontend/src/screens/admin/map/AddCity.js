@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import {
@@ -14,11 +14,15 @@ import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { addMap } from "../../../actions/mapsActions";
+import { toast, ToastContainer } from "react-toastify";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 const AddCity = () => {
   const dispatch = useDispatch();
+  const refs = useRef([]);
+
+  const { errors } = useSelector((state) => state.addedMap);
 
   const [uploading, setUploading] = useState(false);
 
@@ -43,6 +47,16 @@ const AddCity = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
   }, []);
+
+  useEffect(() => {
+    if (errors) {
+      for (const e in errors) {
+        toast.error(`Error! \n ${errors[e]}`, {
+          theme: "colored",
+        });
+      }
+    }
+  }, [errors]);
 
   const setInput = (event) => {
     setFormData({
@@ -72,9 +86,9 @@ const AddCity = () => {
       setUploading(false);
     } catch (error) {
       console.error(error);
-      // addToast("دانانی وێنەکە سەرکەوتە نەبوو", {
-      //   appearance: "error",
-      // });
+      toast.error("Error! File Type is not supported", {
+        theme: "colored",
+      });
       setUploading(false);
     }
   };
@@ -105,6 +119,13 @@ const AddCity = () => {
             },
           ],
         });
+        refs.current[0].value = "";
+        refs.current[1].value = "";
+        refs.current[2].value = "";
+        refs.current[3].value = "";
+        toast.success("Successful", {
+          theme: "colored",
+        });
       }
       // console.log(errors);
     } catch (err) {
@@ -114,6 +135,7 @@ const AddCity = () => {
 
   return (
     <AdminContainer>
+      <ToastContainer position="bottom-right" autoClose={5000} />
       <form onSubmit={submitHandler}>
         <div>
           <label>Name</label>
@@ -132,7 +154,14 @@ const AddCity = () => {
         <TwoColFlex>
           <div>
             <label>Main Image </label>
-            <input type="file" name="thumbnail" onChange={uploadImageHandler} />
+            <input
+              type="file"
+              name="thumbnail"
+              onChange={uploadImageHandler}
+              ref={(element) => {
+                refs.current[0] = element;
+              }}
+            />
           </div>
           <div>
             <label>Country map </label>
@@ -140,6 +169,9 @@ const AddCity = () => {
               type="file"
               name="countryMap"
               onChange={uploadImageHandler}
+              ref={(element) => {
+                refs.current[1] = element;
+              }}
             />
           </div>
         </TwoColFlex>
@@ -147,7 +179,14 @@ const AddCity = () => {
         <TwoColFlex>
           <div>
             <label>City Map </label>
-            <input type="file" name="cityMap" onChange={uploadImageHandler} />
+            <input
+              type="file"
+              name="cityMap"
+              onChange={uploadImageHandler}
+              ref={(element) => {
+                refs.current[2] = element;
+              }}
+            />
           </div>
           <div>
             <label>City map with address</label>
@@ -155,6 +194,9 @@ const AddCity = () => {
               type="file"
               name="cityMapAdd"
               onChange={uploadImageHandler}
+              ref={(element) => {
+                refs.current[3] = element;
+              }}
             />
           </div>
         </TwoColFlex>
