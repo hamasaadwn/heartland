@@ -55,12 +55,13 @@ export const loadPosts = () => async (dispatch, getState) => {
 };
 
 export const loadPostsList =
-  (language, category) => async (dispatch, getState) => {
+  (language, category, pageNumber = 1) =>
+  async (dispatch, getState) => {
     try {
       dispatch({ type: LOAD_POSTS_LIST_REQUEST });
 
       const { data } = await axiosInstance(
-        `/api/posts/${language}/${category}`
+        `/api/posts/${language}/${category}?pageNumber=${pageNumber}`
       );
 
       dispatch({
@@ -133,21 +134,25 @@ export const addPost =
     }
   };
 
-export const searchPosts = (keyword) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: SEARCH_POSTS_REQUEST });
+export const searchPosts =
+  (keyword, pageNumber = "") =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: SEARCH_POSTS_REQUEST });
 
-    const { data } = await axiosInstance(`/api/posts/s?keyword=${keyword}`);
+      const { data } = await axiosInstance(
+        `/api/posts/s?keyword=${keyword}&pageNumber=${pageNumber}`
+      );
 
-    dispatch({
-      type: SEARCH_POSTS_SUCCESS,
-      payload: data,
-    });
-    return data;
-  } catch (err) {
-    if (err.message === "Network Error") console.log(err);
-    else {
-      dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+      dispatch({
+        type: SEARCH_POSTS_SUCCESS,
+        payload: data,
+      });
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+      }
     }
-  }
-};
+  };

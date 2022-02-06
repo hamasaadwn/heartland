@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 import { loadPostsList } from "../../actions/postActions";
 
@@ -9,11 +9,15 @@ import {
   changeNavbar,
 } from "../../actions/rootActions";
 import PostCards from "../../components/cards/PostCards";
+import Pagination from "../../components/pagination/Pagination";
 import { Container } from "../../components/styled/Container.style";
 
 const PostsList = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [currentPage, setCurrentPage] = useState(searchParams.get("p") || 1);
 
   const { posts } = useSelector((state) => state.postsList);
   const { language } = useSelector((state) => state.root);
@@ -23,8 +27,15 @@ const PostsList = () => {
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
-    dispatch(loadPostsList(language, category));
+    dispatch(loadPostsList(language, category, currentPage));
   }, [language, dispatch, category]);
+
+  useEffect(() => {
+    dispatch(loadPostsList(language, category, currentPage));
+    setSearchParams(`p=${currentPage}`);
+  }, [currentPage]);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <Container>
@@ -32,6 +43,13 @@ const PostsList = () => {
         posts.posts.map((p) => {
           return <PostCards key={p._id} post={p} />;
         })}
+      {posts && posts.pages && (
+        <Pagination
+          pages={posts.pages}
+          paginate={paginate}
+          current={currentPage}
+        />
+      )}
     </Container>
   );
 };

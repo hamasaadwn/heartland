@@ -28,7 +28,7 @@ const About = () => {
   }, []);
 
   useEffect(() => {
-    if (content) {
+    if (content && content.image) {
       setImg(process.env.REACT_APP_API_URL + content.image.replace("\\", "/"));
     }
   }, [content]);
