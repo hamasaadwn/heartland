@@ -2,6 +2,7 @@ import {
   LOAD_POSTS_REQUEST,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAIL,
+  REMOVE_USER_FROM_POSTLIST,
   LOAD_POSTS_LIST_REQUEST,
   LOAD_POSTS_LIST_SUCCESS,
   LOAD_POSTS_LIST_FAIL,
@@ -156,3 +157,23 @@ export const searchPosts =
       }
     }
   };
+
+export const removePost = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axiosInstance.delete(`/api/posts/${id}`, config);
+
+    dispatch({ type: REMOVE_USER_FROM_POSTLIST, payload: id });
+  } catch (err) {
+    console.log(err);
+  }
+};
