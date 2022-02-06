@@ -35,7 +35,6 @@ const ContactUs = () => {
     dispatch(changeNavbar("black"));
     dispatch(loadContactList());
     dispatch(getRatings());
-    console.log(rating);
   }, [dispatch]);
   return (
     <Container>

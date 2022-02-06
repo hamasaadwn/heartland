@@ -44,14 +44,12 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("websiteRate") === null || undefined || 0) {
       setTimeout(() => {
-        setRating(true)
-      }, 1000);
+        setRating(true);
+      }, 180000);
     } else if (localStorage.getItem("websiteRate") !== null || undefined || 0) {
-      setRating(false)
+      setRating(false);
     }
-
   }, []);
-
 
   const { black, navbar } = useSelector((state) => state.root);
 
@@ -81,7 +79,6 @@ function App() {
       ) : (
         ""
       )}
-
 
       <Routes>
         <Route exact path="/" element={<Home />} />
