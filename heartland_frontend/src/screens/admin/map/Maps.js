@@ -76,6 +76,11 @@ const Maps = () => {
                   >
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </IconButton>
+                  <Link to={`/dashboard/maps/${m._id}`}>
+                    <IconButton bg="#e3e3e3" fg="#000000">
+                      <FontAwesomeIcon icon={faEdit} />
+                    </IconButton>
+                  </Link>
                 </td>
               </tr>
             ))}

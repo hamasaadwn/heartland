@@ -36,6 +36,7 @@ import Emergency from "./screens/admin/emergancy/Emergency";
 import Test from "./Test";
 import RatingModal from "./components/modals/RatingModal";
 import EditPost from "./screens/admin/posts/EditPost";
+import EditCity from "./screens/admin/map/EditCity";
 
 function App() {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ function App() {
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
         <Route exact path="/search" element={<Search />} />
-        {/* /////////////////// */}
+        {/* /////////\/\///////// */}
         <Route exact path="/about" element={<About />} />
         <Route exact path="/international" element={<International />} />
         <Route exact path="/maps/:city" element={<Anbar />} />
@@ -123,6 +124,7 @@ const AdminRoutes = () => {
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
         {userInfo && <Route exact path="/maps" element={<Maps />} />}
         {userInfo && <Route exact path="/maps/addcity" element={<AddCity />} />}
+        {userInfo && <Route exact path="/maps/:id" element={<EditCity />} />}
         {userInfo && <Route exact path="/emergency" element={<Emergency />} />}
       </Routes>
     </Fragment>

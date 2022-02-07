@@ -13,13 +13,15 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
-import { addMap } from "../../../actions/mapsActions";
+import { addMap, loadMapByCity } from "../../../actions/mapsActions";
 import { toast, ToastContainer } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
-const AddCity = () => {
+const EditCity = () => {
   const dispatch = useDispatch();
+  const params = useParams();
   const refs = useRef([]);
 
   const { errors } = useSelector((state) => state.addedMap);
@@ -46,6 +48,7 @@ const AddCity = () => {
   useEffect(() => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
+    dispatch();
   }, [dispatch]);
 
   useEffect(() => {
@@ -350,4 +353,4 @@ const AddCity = () => {
   );
 };
 
-export default AddCity;
+export default EditCity;
