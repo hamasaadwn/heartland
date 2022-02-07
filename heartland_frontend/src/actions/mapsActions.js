@@ -2,6 +2,7 @@ import {
   LOAD_MAPS_REQUEST,
   LOAD_MAPS_SUCCESS,
   LOAD_MAPS_FAIL,
+  REMOVE_FROM_MAPS,
   ADD_MAPS_REQUEST,
   ADD_MAPS_SUCCESS,
   ADD_MAPS_FAIL,
@@ -96,3 +97,23 @@ export const addMap =
       }
     }
   };
+
+export const removeMap = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axiosInstance.delete(`/api/maps/${id}`, config);
+
+    dispatch({ type: REMOVE_FROM_MAPS, payload: id });
+  } catch (err) {
+    console.log(err);
+  }
+};

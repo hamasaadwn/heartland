@@ -132,4 +132,28 @@ const getMapByCity = async (req, res) => {
   }
 };
 
-export { createMap, updateMap, getAllMaps, getMapById, getMapByCity };
+// @desc Delete a map by id
+// @route DELETE api/maps/:id
+// @access Private admin/owner
+const deleteMapById = async (req, res) => {
+  try {
+    const map = await mapModels.findById(req.params.id);
+
+    if (req.user.isAdmin || map.user.valueOf() === req.user.id) {
+      await map.deleteOne();
+      res.json({ message: "map removed" });
+    } else {
+      res.status(400);
+      res.json({ general: "You can't change other users' maps" });
+    }
+  } catch (err) {}
+};
+
+export {
+  createMap,
+  updateMap,
+  getAllMaps,
+  getMapById,
+  getMapByCity,
+  deleteMapById,
+};

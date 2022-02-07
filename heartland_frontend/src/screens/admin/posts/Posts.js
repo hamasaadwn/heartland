@@ -36,7 +36,7 @@ const Posts = () => {
   const deleteHandler = async (id) => {
     if (
       window.confirm(
-        "Are you sure you want to delete this user?\nهل تريد بالتأكيد حذف هذا المستخدم؟"
+        "Are you sure you want to delete this document?\nهل تريد بالتأكيد حذف هذا المستند؟"
       )
     ) {
       try {

@@ -2,6 +2,7 @@ import {
   LOAD_MAPS_REQUEST,
   LOAD_MAPS_SUCCESS,
   LOAD_MAPS_FAIL,
+  REMOVE_FROM_MAPS,
   ADD_MAPS_REQUEST,
   ADD_MAPS_SUCCESS,
   ADD_MAPS_FAIL,
@@ -18,6 +19,11 @@ export const loadMapsReducer = (state = {}, action) => {
       return { loading: false, maps: action.payload };
     case LOAD_MAPS_FAIL:
       return { loading: false, errors: action.payload };
+    case REMOVE_FROM_MAPS:
+      return {
+        loading: false,
+        maps: state.maps.filter((p) => p._id !== action.payload),
+      };
     default:
       return state;
   }
