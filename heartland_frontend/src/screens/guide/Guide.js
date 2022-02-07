@@ -20,7 +20,7 @@ const Guide = () => {
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>
@@ -38,7 +38,9 @@ const Guide = () => {
               <GreenButton onClick={() => navigate("/posts/Form")}>
                 {t("form")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+              <GreenButton
+                onClick={() => navigate("/posts/Flyer And Brochure")}
+              >
                 {t("flyer_and_brochure")}
               </GreenButton>
             </div>

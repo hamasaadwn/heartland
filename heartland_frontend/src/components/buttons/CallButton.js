@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 import { CallButtons } from "./CallButton.styles";
@@ -18,6 +18,7 @@ function CallButton({ data }) {
                 ? `${process.env.REACT_APP_API_URL}${icon}`
                 : "/images/defaultIcon.png"
             }
+            alt=""
           />
         </div>
 

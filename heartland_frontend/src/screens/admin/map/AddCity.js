@@ -46,7 +46,7 @@ const AddCity = () => {
   useEffect(() => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (errors) {

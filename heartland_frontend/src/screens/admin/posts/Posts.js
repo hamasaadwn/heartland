@@ -25,7 +25,7 @@ const Posts = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadPosts());
-  }, []);
+  }, [dispatch]);
 
   const deleteHandler = async (id) => {
     if (

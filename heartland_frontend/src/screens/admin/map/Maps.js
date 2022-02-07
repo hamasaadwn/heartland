@@ -21,7 +21,7 @@ const Maps = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadAllMaps());
-  }, []);
+  }, [dispatch]);
 
   return (
     <AdminContainer>

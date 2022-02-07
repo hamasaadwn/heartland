@@ -34,7 +34,6 @@ import Search from "./screens/posts/Search";
 
 import Emergency from "./screens/admin/emergancy/Emergency";
 import Test from "./Test";
-import CallButton from "./components/buttons/CallButton";
 import RatingModal from "./components/modals/RatingModal";
 
 function App() {

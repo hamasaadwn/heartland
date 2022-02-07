@@ -29,7 +29,7 @@ const Home = () => {
     }
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("none"));
-  }, [i18next.language]);
+  }, [dispatch, currentLanguageCode]);
 
   const { t } = useTranslation();
 

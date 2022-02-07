@@ -25,7 +25,7 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(searchPosts(keyword, currentPage));
-  }, [currentPage]);
+  }, [currentPage, keyword, dispatch]);
 
   const setInput = (event) => {
     setKeyword(event.target.value);

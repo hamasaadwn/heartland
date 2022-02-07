@@ -28,12 +28,12 @@ const PostsList = () => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
     dispatch(loadPostsList(language, category, currentPage));
-  }, [language, dispatch, category]);
+  }, [language, dispatch, category, currentPage]);
 
   useEffect(() => {
     dispatch(loadPostsList(language, category, currentPage));
     setSearchParams(`p=${currentPage}`);
-  }, [currentPage]);
+  }, [currentPage, dispatch, language, category, setSearchParams]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

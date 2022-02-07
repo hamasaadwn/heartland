@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  createOrUpdateContact,
   createOrUpdateEmergency,
   loadEmergencies,
 } from "../../../actions/emergencyActions";
@@ -43,7 +42,7 @@ const Emergency = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadEmergencies());
-  }, []);
+  }, [dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();

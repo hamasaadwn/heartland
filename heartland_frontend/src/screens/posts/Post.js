@@ -45,7 +45,7 @@ const Post = () => {
             <div className="downloadPdf">
               <a
                 href={`${process.env.REACT_APP_API_URL}${post.pdf}`}
-                rel="noopener"
+                rel="noreferrer"
                 target="_blank"
               >
                 <p>
