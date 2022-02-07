@@ -135,6 +135,44 @@ export const addPost =
     }
   };
 
+export const updatePost =
+  (title, describtion, image, pictures, video, language, type, pdf, id) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: ADD_POSTS_REQUEST });
+
+      const {
+        user: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axiosInstance.put(
+        `/api/posts/${id}`,
+        { title, describtion, image, pictures, video, language, type, pdf },
+        config
+      );
+
+      dispatch({
+        type: ADD_POSTS_SUCCESS,
+        payload: data,
+      });
+
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+      }
+    }
+  };
+
 export const searchPosts =
   (keyword, pageNumber = "") =>
   async (dispatch, getState) => {

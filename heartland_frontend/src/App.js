@@ -35,6 +35,7 @@ import Search from "./screens/posts/Search";
 import Emergency from "./screens/admin/emergancy/Emergency";
 import Test from "./Test";
 import RatingModal from "./components/modals/RatingModal";
+import EditPost from "./screens/admin/posts/EditPost";
 
 function App() {
   const dispatch = useDispatch();
@@ -114,6 +115,7 @@ const AdminRoutes = () => {
       <Routes>
         {userInfo && <Route exact path="/content" element={<Content />} />}
         {userInfo && <Route exact path="/posts" element={<Posts />} />}
+        {userInfo && <Route exact path="/posts/:id" element={<EditPost />} />}
         {userInfo && (
           <Route exact path="/posts/addpost" element={<CreatePost />} />
         )}

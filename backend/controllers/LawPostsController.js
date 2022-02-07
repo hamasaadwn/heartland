@@ -47,14 +47,14 @@ const createPost = async (req, res) => {
 };
 
 // @desc Edit a post by id
-// @route Post api/posts/:id
+// @route Post api/put/:id
 // @access Private admin/owner
 const updatePost = async (req, res) => {
   const { valid, errors } = LawValidation(req.body);
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type, language } =
+  const { title, describtion, image, pictures, tags, type, language, pdf } =
     req.body;
 
   try {
@@ -69,6 +69,7 @@ const updatePost = async (req, res) => {
         post.tags = tags;
         post.type = type;
         post.language = language;
+        post.pdf = pdf;
 
         const updatedPost = await post.save();
         res.json(updatedPost);

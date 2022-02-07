@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { loadPosts, removePost } from "../../../actions/postActions";
 import {
@@ -12,11 +12,17 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { Table } from "../../../components/styled/Table.style";
 import { IconButton } from "../../../components/styled/form/IconButton.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faExternalLinkAlt,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { toast, ToastContainer } from "react-toastify";
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const postList = useSelector((state) => state.posts);
 
   const { posts } = postList;
@@ -84,10 +90,19 @@ const Posts = () => {
                   <IconButton
                     bg="#e3e3e3"
                     fg="#000000"
-                    onClick={() => deleteHandler(p._id)}
+                    onClick={() => navigate(`/dashboard/posts/${p._id}`)}
                   >
                     <FontAwesomeIcon icon={faEdit} />
                   </IconButton>
+                  <Link
+                    to={`/p/${p._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconButton bg="#e3e3e3" fg="#000000">
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </IconButton>
+                  </Link>
                 </td>
               </tr>
             ))}
