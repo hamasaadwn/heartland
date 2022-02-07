@@ -133,6 +133,15 @@ const AddCity = () => {
     }
   };
 
+  const handleRemove = (e, i) => {
+    e.preventDefault();
+
+    setFormData({
+      ...formData,
+      branch: formData.branch.filter((b) => b !== formData.branch[i]),
+    });
+  };
+
   return (
     <AdminContainer>
       <ToastContainer position="bottom-right" autoClose={5000} />
@@ -203,7 +212,16 @@ const AddCity = () => {
         <Spacer top="20px" />
         {formData.branch.map((b, i) => (
           <Border>
-            <h2>Branch Info</h2>
+            <h2>
+              Branch Info{" "}
+              <span
+                style={{ float: "right", cursor: "pointer" }}
+                onClick={(e) => handleRemove(e, i)}
+              >
+                X
+              </span>
+            </h2>
+
             <hr />
             <Spacer top="10px" />
             <TwoColFlex>
@@ -303,7 +321,8 @@ const AddCity = () => {
         <TwoColFlex>
           <div>
             <Button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 setFormData({
                   ...formData,
                   branch: [
