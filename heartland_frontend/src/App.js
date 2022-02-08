@@ -37,6 +37,7 @@ import Test from "./Test";
 import RatingModal from "./components/modals/RatingModal";
 import EditPost from "./screens/admin/posts/EditPost";
 import EditCity from "./screens/admin/map/EditCity";
+import Sos from "./components/buttons/Sos";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,8 @@ function App() {
       ) : (
         ""
       )}
+
+      {navbar !== "side" && <Sos />}
 
       <Routes>
         <Route exact path="/" element={<Home />} />
