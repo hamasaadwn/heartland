@@ -13,7 +13,12 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { Input } from "../../../components/styled/form/Input.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
-import { addMap, loadMapByCity } from "../../../actions/mapsActions";
+import {
+  addMap,
+  loadMapByCity,
+  loadMapById,
+  updateMap,
+} from "../../../actions/mapsActions";
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
 
@@ -25,6 +30,7 @@ const EditCity = () => {
   const refs = useRef([]);
 
   const { errors } = useSelector((state) => state.addedMap);
+  const { map } = useSelector((state) => state.map);
 
   const [uploading, setUploading] = useState(false);
 
@@ -48,8 +54,21 @@ const EditCity = () => {
   useEffect(() => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
-    dispatch();
-  }, [dispatch]);
+    dispatch(loadMapById(params.id));
+  }, [dispatch, params.id]);
+
+  useEffect(() => {
+    if (map) {
+      setFormData({
+        name: map.name,
+        thumbnail: map.thumbnail,
+        countryMap: map.countryMap,
+        cityMap: map.cityMap,
+        cityMapAdd: map.cityMapAdd,
+        branch: map.branch,
+      });
+    }
+  }, [map]);
 
   useEffect(() => {
     if (errors) {
@@ -102,30 +121,18 @@ const EditCity = () => {
     e.preventDefault();
     try {
       const data = await dispatch(
-        addMap(name, thumbnail, countryMap, cityMap, cityMapAdd, branch)
+        updateMap(
+          name,
+          thumbnail,
+          countryMap,
+          cityMap,
+          cityMapAdd,
+          branch,
+          params.id
+        )
       );
 
       if (data) {
-        setFormData({
-          name: "",
-          thumbnail: "",
-          countryMap: "",
-          cityMap: "",
-          cityMapAdd: "",
-          branch: [
-            {
-              address: "",
-              phone: "",
-              email: "",
-              lat: "",
-              lang: "",
-            },
-          ],
-        });
-        refs.current[0].value = "";
-        refs.current[1].value = "";
-        refs.current[2].value = "";
-        refs.current[3].value = "";
         toast.success("Successful", {
           theme: "colored",
         });

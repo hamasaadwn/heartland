@@ -60,6 +60,24 @@ export const loadMapByCity = (city) => async (dispatch, getState) => {
   }
 };
 
+export const loadMapById = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: LOAD_MAP_REQUEST });
+
+    const { data } = await axiosInstance.get(`/api/maps/${id}`);
+
+    dispatch({ type: LOAD_MAP_SUCCESS, payload: data });
+  } catch (err) {
+    dispatch({
+      type: LOAD_MAP_FAIL,
+      payload:
+        err.response && err.response.data.message
+          ? err.response.data.message
+          : err.message,
+    });
+  }
+};
+
 export const addMap =
   (name, thumbnail, countryMap, cityMap, cityMapAdd, branch) =>
   async (dispatch, getState) => {
@@ -79,6 +97,44 @@ export const addMap =
 
       const { data } = await axiosInstance.post(
         `/api/maps`,
+        { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
+        config
+      );
+
+      dispatch({
+        type: ADD_MAPS_SUCCESS,
+        payload: data,
+      });
+
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        dispatch({ type: ADD_MAPS_FAIL, payload: err.response.data });
+      }
+    }
+  };
+
+export const updateMap =
+  (name, thumbnail, countryMap, cityMap, cityMapAdd, branch, id) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: ADD_MAPS_REQUEST });
+
+      const {
+        user: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axiosInstance.post(
+        `/api/maps/${id}`,
         { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
         config
       );

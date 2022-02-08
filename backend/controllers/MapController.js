@@ -47,6 +47,10 @@ const updateMap = async (req, res) => {
   try {
     const mapModel = await mapModels.findById(req.params.id);
 
+    mapModel.branch.forEach((b) => {
+      b.remove();
+    });
+
     mapModel.name = data.name;
     mapModel.thumbnail = data.thumbnail;
     mapModel.countryMap = data.countryMap;

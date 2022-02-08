@@ -81,6 +81,15 @@ const Maps = () => {
                       <FontAwesomeIcon icon={faEdit} />
                     </IconButton>
                   </Link>
+                  <Link
+                    to={`/maps/${m.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconButton bg="#e3e3e3" fg="#000000">
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </IconButton>
+                  </Link>
                 </td>
               </tr>
             ))}
