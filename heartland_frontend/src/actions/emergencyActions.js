@@ -5,7 +5,7 @@ import {
   LOAD_EMERGENCY_SUCCESS,
   LOAD_EMERGENCY_FAIL,
   ADD_TO_EMERGENCY,
-  // REMOVE_FROM_EMERGENCY,
+  REMOVE_FROM_EMERGENCY,
   LOAD_EMERGENCY_TYPE_REQUEST,
   LOAD_EMERGENCY_TYPE_SUCCESS,
   LOAD_EMERGENCY_TYPE_FAIL,
@@ -96,5 +96,25 @@ export const loadEmergenciesByType = (type) => async (dispatch) => {
     else {
       dispatch({ type: LOAD_EMERGENCY_TYPE_FAIL, payload: err.response.data });
     }
+  }
+};
+
+export const removeEmergency = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axiosInstance.delete(`/api/emergency/${id}`, config);
+
+    dispatch({ type: REMOVE_FROM_EMERGENCY, payload: id });
+  } catch (err) {
+    console.log(err);
   }
 };

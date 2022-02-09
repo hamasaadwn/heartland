@@ -7,6 +7,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   createOrUpdateEmergency,
   loadEmergencies,
+  removeEmergency,
 } from "../../../actions/emergencyActions";
 import {
   changeBackgroundToWhite,
@@ -108,6 +109,22 @@ const Emergency = () => {
     }
   };
 
+  const deleteHandler = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this contact info?\nهل تريد بالتأكيد حذف معلومات جهة الاتصال هذه؟"
+      )
+    ) {
+      try {
+        await dispatch(removeEmergency(id));
+        // addToast("بەکارهێنەر لابرا بە سەرکەوتووی", { appearance: "success" });
+      } catch (err) {
+        console.log(err);
+        // addToast("لابردنی بەکارهێنەر سەرکەوتوو نەبوو", { appearance: "error" });
+      }
+    }
+  };
+
   return (
     <AdminContainer>
       <form onSubmit={submitHandler}>
@@ -194,7 +211,7 @@ const Emergency = () => {
                   <IconButton
                     bg="#e3e3e3"
                     fg="#000000"
-                    // onClick={() => deleteHandler(c._id)}
+                    onClick={() => deleteHandler(e._id)}
                   >
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </IconButton>

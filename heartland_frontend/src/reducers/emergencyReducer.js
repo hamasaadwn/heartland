@@ -6,6 +6,7 @@ import {
   LOAD_EMERGENCY_TYPE_SUCCESS,
   LOAD_EMERGENCY_TYPE_FAIL,
   ADD_TO_EMERGENCY,
+  REMOVE_FROM_EMERGENCY,
 } from "../constants/emergencyConstants";
 
 export const loadEmergensiesReducer = (state = {}, action) => {
@@ -18,11 +19,11 @@ export const loadEmergensiesReducer = (state = {}, action) => {
       return { loading: false, errors: action.payload };
     case ADD_TO_EMERGENCY:
       return { ...state, emergencies: [action.payload, ...state.emergencies] };
-    //   case REMOVE_FROM_CONTACTS:
-    //     return {
-    //       loading: false,
-    //       contacts: state.contacts.filter((c) => c._id !== action.payload),
-    //     };
+    case REMOVE_FROM_EMERGENCY:
+      return {
+        loading: false,
+        emergencies: state.emergencies.filter((e) => e._id !== action.payload),
+      };
     default:
       return state;
   }

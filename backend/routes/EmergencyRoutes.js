@@ -4,6 +4,7 @@ import {
   createOrUpdateEmergency,
   getEmergencyByType,
   getEmergencies,
+  deleteEmergency,
 } from "../controllers/EmergencyController.js";
 import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
@@ -14,5 +15,7 @@ router
   .post(protect, admin, createOrUpdateEmergency)
   .get(getEmergencies);
 router.route("/:type").get(getEmergencyByType);
+
+router.route("/:id").delete(protect, admin, deleteEmergency);
 
 export default router;

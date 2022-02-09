@@ -30,7 +30,7 @@ const createOrUpdateEmergency = async (req, res) => {
 };
 
 // @desc Get all emergencies
-// @route GEt api/content/
+// @route GEt api/emergency/
 // @access Public
 const getEmergencies = async (req, res) => {
   try {
@@ -45,7 +45,7 @@ const getEmergencies = async (req, res) => {
 };
 
 // @desc Get emergency by type
-// @route Post api/content/:type
+// @route Post api/emergency/:type
 // @access Public
 const getEmergencyByType = async (req, res) => {
   try {
@@ -61,4 +61,30 @@ const getEmergencyByType = async (req, res) => {
   }
 };
 
-export { createOrUpdateEmergency, getEmergencyByType, getEmergencies };
+// @desc Get emergency by type
+// @route Delete api/emergency/:id
+// @access Public
+const deleteEmergency = async (req, res) => {
+  try {
+    const emergency = await Emergency.findById(req.params.id);
+
+    if (emergency) {
+      await emergency.deleteOne();
+      res.json({ message: "emergency removed", emergency });
+    } else {
+      res.status(404);
+      throw new Error("emergency not found");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Error!" });
+  }
+};
+
+export {
+  createOrUpdateEmergency,
+  getEmergencyByType,
+  getEmergencies,
+  deleteEmergency,
+};
