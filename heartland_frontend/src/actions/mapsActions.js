@@ -19,16 +19,16 @@ export const loadAllMaps = () => async (dispatch, getState) => {
   try {
     dispatch({ type: LOAD_MAPS_REQUEST });
 
-    const {
-      user: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        authorization: "Bearer " + userInfo.token,
-      },
-    };
+    // const {
+    //   user: { userInfo },
+    // } = getState();
+    // const config = {
+    //   headers: {
+    //     authorization: "Bearer " + userInfo.token,
+    //   },
+    // };
 
-    const { data } = await axiosInstance.get("/api/maps", config);
+    const { data } = await axiosInstance.get("/api/maps");
 
     dispatch({ type: LOAD_MAPS_SUCCESS, payload: data });
   } catch (err) {
