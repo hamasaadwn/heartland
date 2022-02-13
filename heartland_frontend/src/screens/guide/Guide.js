@@ -28,20 +28,21 @@ const Guide = () => {
         <FlexRow>
           <div className="about">
             <h1 style={{ textAlign: "center" }}>{t("seeking_help")}</h1>
-            <div>
-              <GreenButton onClick={() => navigate("/posts/Training")}>
-                {t("training")}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "column",
+              }}
+            >
+              <GreenButton onClick={() => navigate("/e/Emergency")}>
+                {t("emergency_numbers")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/posts/Guide")}>
-                {t("guide")}
+              <GreenButton onClick={() => navigate("/servicemap")}>
+                {t("find_us")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/posts/Form")}>
-                {t("form")}
-              </GreenButton>
-              <GreenButton
-                onClick={() => navigate("/posts/Flyer And Brochure")}
-              >
-                {t("flyer_and_brochure")}
+              <GreenButton onClick={() => navigate("/e/VOT")}>
+                {t("vot_emergency_contacts")}
               </GreenButton>
             </div>
           </div>

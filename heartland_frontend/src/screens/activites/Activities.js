@@ -28,21 +28,20 @@ const Activities = () => {
         <FlexRow>
           <div className="about ">
             <h2> {t("useful_tools")}</h2>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <GreenButton onClick={() => navigate("/e/Emergency")}>
-                {t("emergency_numbers")}
+            <div>
+              <GreenButton onClick={() => navigate("/posts/Training")}>
+                {t("training")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/servicemap")}>
-                {t("find_us")}
+              <GreenButton onClick={() => navigate("/posts/Guide")}>
+                {t("guide")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/e/VOT")}>
-                {t("vot_emergency_contacts")}
+              <GreenButton onClick={() => navigate("/posts/Form")}>
+                {t("form")}
+              </GreenButton>
+              <GreenButton
+                onClick={() => navigate("/posts/Flyer And Brochure")}
+              >
+                {t("flyer_and_brochure")}
               </GreenButton>
             </div>
           </div>

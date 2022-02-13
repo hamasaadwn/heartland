@@ -38,6 +38,7 @@ import RatingModal from "./components/modals/RatingModal";
 import EditPost from "./screens/admin/posts/EditPost";
 import EditCity from "./screens/admin/map/EditCity";
 import Sos from "./components/buttons/Sos";
+import EmergencyList from "./screens/emergency/EmergencyList";
 
 function App() {
   const dispatch = useDispatch();
@@ -105,6 +106,7 @@ function App() {
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
         <Route exact path="/p/:id" element={<Post />} />
+        <Route exact path="/e/:type" element={<EmergencyList />} />
       </Routes>
     </Fragment>
   );
