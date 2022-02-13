@@ -48,7 +48,7 @@ function App() {
     if (localStorage.getItem("websiteRate") === null || undefined || 0) {
       setTimeout(() => {
         setRating(true);
-      }, 180000);
+      }, 60000);
     } else if (localStorage.getItem("websiteRate") !== null || undefined || 0) {
       setRating(false);
     }
