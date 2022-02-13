@@ -20,7 +20,7 @@ const Guide = () => {
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
-  }, [dispatch]);
+  }, []);
 
   return (
     <Container>
@@ -39,7 +39,7 @@ const Guide = () => {
                 {t("emergency_numbers")}
               </GreenButton>
               <GreenButton onClick={() => navigate("/servicemap")}>
-                {t("find_us")}
+                {t("service_map")}
               </GreenButton>
               <GreenButton onClick={() => navigate("/e/VOT")}>
                 {t("vot_emergency_contacts")}

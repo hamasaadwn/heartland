@@ -27,8 +27,15 @@ const Activities = () => {
       <ActivitesContainer>
         <FlexRow>
           <div className="about ">
-            <h2> {t("useful_tools")}</h2>
-            <div>
+            <h1> {t("useful_tools")}</h1>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <GreenButton onClick={() => navigate("/posts/Training")}>
                 {t("training")}
               </GreenButton>
