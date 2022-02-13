@@ -41,6 +41,22 @@ const Post = () => {
           <br />
           <p>{post && post.describtion}</p>
           <br />
+          {post && post.video ? (
+            <div>
+              <iframe
+                className="video-size"
+                src={`https://www.youtube.com/embed/${post.video}`}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          ) : (
+            ""
+          )}
+
+          <br />
           {post && post.pdf ? (
             <div className="downloadPdf">
               <a

@@ -55,6 +55,12 @@ export const PostContainer = styled.div`
       }
     }
 
+    .video-size {
+      width: 95%;
+      height: 50vh;
+      border-radius: 10px;
+    }
+
     .album {
       border: solid #cccccc 1px;
       border-radius: 10px;
