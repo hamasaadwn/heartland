@@ -11,11 +11,11 @@ const router = express.Router();
 
 router
   .route("/")
-  .post(protect, admin, createOrUpdateContact)
+  .post(protect, author, createOrUpdateContact)
   .get(getAllContactInfo);
 router
   .route("/:id")
-  .post(protect, admin, createOrUpdateContact)
-  .delete(protect, admin, deleteContact);
+  .post(protect, author, createOrUpdateContact)
+  .delete(protect, author, deleteContact);
 
 export default router;

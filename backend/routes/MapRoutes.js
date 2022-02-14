@@ -12,12 +12,12 @@ import { protect, admin, author } from "../middlewares/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.route("/").post(protect, admin, createMap).get(getAllMaps);
+router.route("/").post(protect, author, createMap).get(getAllMaps);
 router
   .route("/:id")
-  .post(protect, admin, updateMap)
+  .post(protect, author, updateMap)
   .get(getMapById)
-  .delete(protect, admin, deleteMapById);
+  .delete(protect, author, deleteMapById);
 router.route("/m/:id").get(getMapByCity);
 
 export default router;

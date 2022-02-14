@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { Button } from "../styled/form/Button.style";
@@ -10,15 +10,21 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const userLogin = useSelector((state) => state.user);
+  const { userInfo } = userLogin;
+
   return (
     <Side>
       <ul>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink to="/dashboard/users">Users</NavLink>
-        </li>
+        {userInfo && userInfo.isAdmin && (
+          <li>
+            <NavLink to="/dashboard/users">Users</NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink to="/dashboard/content">Content</NavLink>
         </li>
