@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ActivitesContainer = styled.div`
   background-color: #000;
-    
+
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
@@ -10,9 +10,9 @@ export const ActivitesContainer = styled.div`
   .about {
     color: #aa1829;
     font-size: 70px;
-   width: 40%;
+    width: 40%;
   }
-  h1{
+  h1 {
     text-align: center;
     font-size: 70px;
   }
@@ -22,10 +22,10 @@ export const ActivitesContainer = styled.div`
         rgba(245, 246, 252, 0),
         rgba(0, 0, 0, 0.93)
       ),
-      url("/images/myimage.jpg");
+      url("/images/useful.jpg");
     background-size: cover;
-    height: 40vmax;
-    width: 60vmax;
+    height: 70vh;
+    width: 60vw;
     overflow: hidden;
   }
   .paragraph {
@@ -39,11 +39,12 @@ export const ActivitesContainer = styled.div`
       font-size: 30px;
       text-align: left;
     }
-    /* .img {
+    .img {
       height: 49vw;
       margin: 0.5vh auto;
       float: none;
-    } */
+      background-position: center;
+    }
     .paragraph {
       font-size: 18px;
       padding: 0;

@@ -3,7 +3,7 @@ import { SosContainer } from "./Sos.styles";
 
 const Sos = () => {
   return (
-    <a href="tel:104">
+    <a href="tel:533">
       <SosContainer>
         <img src="/images/sos.png" />
       </SosContainer>
