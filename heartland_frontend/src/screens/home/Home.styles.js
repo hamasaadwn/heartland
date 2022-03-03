@@ -6,6 +6,7 @@ export const HomeContainer = styled.div`
   background-image: url("/images/newbackground.jpg");
   background-size: cover;
   position: relative;
+  overflow-y: hidden;
 
   .circle {
     position: absolute;
