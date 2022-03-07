@@ -61,3 +61,21 @@ const Activities = () => {
 };
 
 export default Activities;
+
+// <div
+//   style={{
+//     display: "flex",
+//     alignItems: "center",
+//     flexDirection: "column",
+//   }}
+// >
+//   <GreenButton onClick={() => navigate("/e/Emergency")}>
+//     {t("emergency_numbers")}
+//   </GreenButton>
+//   <GreenButton onClick={() => navigate("/servicemap")}>
+//     {t("find_us")}
+//   </GreenButton>
+//   <GreenButton onClick={() => navigate("/e/VOT")}>
+//     {t("vot_emergency_contacts")}
+//   </GreenButton>
+// </div>

@@ -54,3 +54,17 @@ const Guide = () => {
 };
 
 export default Guide;
+{/* <div>
+  <GreenButton onClick={() => navigate("/posts/Training")}>
+    {t("training")}
+  </GreenButton>
+  <GreenButton onClick={() => navigate("/posts/Guide")}>
+    {t("guide")}
+  </GreenButton>
+  <GreenButton onClick={() => navigate("/posts/Form")}>
+    {t("form")}
+  </GreenButton>
+  <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+    {t("flyer_and_brochure")}
+  </GreenButton>
+</div> */}
