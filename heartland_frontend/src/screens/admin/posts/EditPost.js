@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -12,16 +13,21 @@ import { TextArea } from "../../../components/styled/form/TextArea.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { Button } from "../../../components/styled/form/Button.style";
-import { addPost } from "../../../actions/postActions";
+import {
+  addPost,
+  loadSinglePost,
+  updatePost,
+} from "../../../actions/postActions";
 import { toast, ToastContainer } from "react-toastify";
 
 const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
-const CreatePost = () => {
+const EditPost = () => {
   const dispatch = useDispatch();
+  const params = useParams();
   const refs = useRef([]);
 
-  const { errors } = useSelector((state) => state.post);
+  const { post, errors } = useSelector((state) => state.post);
 
   const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
@@ -39,6 +45,25 @@ const CreatePost = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(loadSinglePost(params.id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (post) {
+      setFormData({
+        title: post.title,
+        describtion: post.describtion,
+        image: post.image,
+        pictures: post.pictures,
+        video: post.video,
+        language: post.language,
+        pdf: post.pdf,
+        type: post.type,
+      });
+    }
+  }, [post, setFormData]);
 
   useEffect(() => {
     if (errors) {
@@ -157,22 +182,32 @@ const CreatePost = () => {
     e.preventDefault();
     try {
       const data = await dispatch(
-        addPost(title, describtion, image, pictures, video, language, type, pdf)
+        updatePost(
+          title,
+          describtion,
+          image,
+          pictures,
+          video,
+          language,
+          type,
+          pdf,
+          params.id
+        )
       );
       if (data) {
-        setFormData({
-          title: "",
-          describtion: "",
-          image: "",
-          pictures: [],
-          video: "",
-          language: "en",
-          pdf: "",
-          type: "International",
-        });
-        refs.current[0].value = "";
-        refs.current[1].value = "";
-        refs.current[2].value = "";
+        // setFormData({
+        //   title: "",
+        //   describtion: "",
+        //   image: "",
+        //   pictures: [],
+        //   video: "",
+        //   language: "en",
+        //   pdf: "",
+        //   type: "International",
+        // });
+        // refs.current[0].value = "";
+        // refs.current[1].value = "";
+        // refs.current[2].value = "";
         toast.success("Successful", {
           theme: "colored",
         });
@@ -299,4 +334,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default EditPost;

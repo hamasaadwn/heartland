@@ -21,7 +21,7 @@ const HumanTrafficing = () => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
     dispatch(loadContent("Human Trafficing"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

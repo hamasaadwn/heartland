@@ -14,7 +14,7 @@ const AssessmentForm = () => {
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

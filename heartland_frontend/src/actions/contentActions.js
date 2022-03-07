@@ -6,6 +6,7 @@ import {
   UPDATE_CONTENT_REQUEST,
   UPDATE_CONTENT_SUCCESS,
   UPDATE_CONTENT_FAIL,
+  RESET_UPDATED_CONTENT,
 } from "../constants/contentConstants";
 
 import axios from "axios";
@@ -42,7 +43,7 @@ export const resetContent = () => (dispatch) => {
 };
 
 export const createOrUpdateContent =
-  (type, contentEn, contentAr) => async (dispatch, getState) => {
+  (type, contentEn, contentAr, image) => async (dispatch, getState) => {
     try {
       dispatch({ type: UPDATE_CONTENT_REQUEST });
 
@@ -59,7 +60,7 @@ export const createOrUpdateContent =
 
       const { data } = await axiosInstance.post(
         `/api/content/${type}`,
-        { type, contentEn, contentAr },
+        { type, contentEn, contentAr, image },
         config
       );
 
@@ -75,3 +76,7 @@ export const createOrUpdateContent =
       }
     }
   };
+
+export const resetUpdatedContent = () => (dispatch) => {
+  dispatch({ type: RESET_UPDATED_CONTENT });
+};

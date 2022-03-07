@@ -2,6 +2,7 @@ import {
   LOAD_POSTS_REQUEST,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAIL,
+  REMOVE_USER_FROM_POSTLIST,
   LOAD_POSTS_LIST_REQUEST,
   LOAD_POSTS_LIST_SUCCESS,
   LOAD_POSTS_LIST_FAIL,
@@ -21,6 +22,11 @@ export const loadPostsReducer = (state = {}, action) => {
       return { loading: false, posts: action.payload };
     case LOAD_POSTS_FAIL:
       return { loading: false, errors: action.payload };
+    case REMOVE_USER_FROM_POSTLIST:
+      return {
+        loading: false,
+        posts: state.posts.filter((p) => p._id !== action.payload),
+      };
     default:
       return state;
   }

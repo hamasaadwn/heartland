@@ -34,8 +34,11 @@ import Search from "./screens/posts/Search";
 
 import Emergency from "./screens/admin/emergancy/Emergency";
 import Test from "./Test";
-import CallButton from "./components/buttons/CallButton";
 import RatingModal from "./components/modals/RatingModal";
+import EditPost from "./screens/admin/posts/EditPost";
+import EditCity from "./screens/admin/map/EditCity";
+import Sos from "./components/buttons/Sos";
+import EmergencyList from "./screens/emergency/EmergencyList";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,14 +47,12 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("websiteRate") === null || undefined || 0) {
       setTimeout(() => {
-        setRating(true)
-      }, 1000);
+        setRating(true);
+      }, 60000);
     } else if (localStorage.getItem("websiteRate") !== null || undefined || 0) {
-      setRating(false)
+      setRating(false);
     }
-
   }, []);
-
 
   const { black, navbar } = useSelector((state) => state.root);
 
@@ -82,6 +83,7 @@ function App() {
         ""
       )}
 
+      {navbar !== "side" && <Sos />}
 
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -91,7 +93,7 @@ function App() {
         <Route exact path="/login_page_2022" element={<Login />} />
         <Route exact path="/dashboard/*" element={<AdminRoutes />} />
         <Route exact path="/search" element={<Search />} />
-        {/* /////////////////// */}
+        {/* /////////\/\///////// */}
         <Route exact path="/about" element={<About />} />
         <Route exact path="/international" element={<International />} />
         <Route exact path="/maps/:city" element={<Anbar />} />
@@ -104,6 +106,7 @@ function App() {
         <Route exact path="/contact" element={<ContactUs />} />
         <Route exact path="/posts/:type" element={<PostsList />} />
         <Route exact path="/p/:id" element={<Post />} />
+        <Route exact path="/e/:type" element={<EmergencyList />} />
       </Routes>
     </Fragment>
   );
@@ -118,6 +121,7 @@ const AdminRoutes = () => {
       <Routes>
         {userInfo && <Route exact path="/content" element={<Content />} />}
         {userInfo && <Route exact path="/posts" element={<Posts />} />}
+        {userInfo && <Route exact path="/posts/:id" element={<EditPost />} />}
         {userInfo && (
           <Route exact path="/posts/addpost" element={<CreatePost />} />
         )}
@@ -125,6 +129,7 @@ const AdminRoutes = () => {
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
         {userInfo && <Route exact path="/maps" element={<Maps />} />}
         {userInfo && <Route exact path="/maps/addcity" element={<AddCity />} />}
+        {userInfo && <Route exact path="/maps/:id" element={<EditCity />} />}
         {userInfo && <Route exact path="/emergency" element={<Emergency />} />}
       </Routes>
     </Fragment>

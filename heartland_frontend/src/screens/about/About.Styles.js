@@ -13,7 +13,6 @@ export const AboutContainer = styled.div`
 
     padding: 0 5px;
     width: 45%;
-
   }
   .img {
     background-image: linear-gradient(
@@ -21,7 +20,7 @@ export const AboutContainer = styled.div`
         rgba(245, 246, 252, 0),
         rgba(242, 242, 242, 0.93)
       ),
-      url("/images/myimage.jpg");
+      url(${({ img }) => img});
     background-size: cover;
     height: 600px;
     width: 1100px;
@@ -38,7 +37,6 @@ export const AboutContainer = styled.div`
       text-align: center;
 
       padding: 0;
-
     }
     .img {
       height: 49vw;
@@ -48,9 +46,6 @@ export const AboutContainer = styled.div`
     }
     .paragraph {
       font-size: 20px;
-
-
-
     }
   }
 `;

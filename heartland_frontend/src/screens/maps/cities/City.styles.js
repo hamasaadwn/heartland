@@ -8,6 +8,14 @@ export const CityContainer = styled.div`
 
   .img-map {
     text-align: center;
+
+    img {
+      width: 500px;
+
+      @media screen and (max-width: 768px) {
+        width: 300px;
+      }
+    }
   }
 
   .detail-container {

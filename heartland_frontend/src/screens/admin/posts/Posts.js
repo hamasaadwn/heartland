@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { loadPosts } from "../../../actions/postActions";
+import { loadPosts, removePost } from "../../../actions/postActions";
 import {
   changeBackgroundToWhite,
   changeNavbar,
@@ -10,9 +10,19 @@ import {
 import { AdminContainer } from "../../../components/styled/AdminContainer";
 import { Button } from "../../../components/styled/form/Button.style";
 import { Table } from "../../../components/styled/Table.style";
+import { IconButton } from "../../../components/styled/form/IconButton.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEdit,
+  faExternalLinkAlt,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { toast, ToastContainer } from "react-toastify";
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const postList = useSelector((state) => state.posts);
 
   const { posts } = postList;
@@ -21,10 +31,29 @@ const Posts = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadPosts());
-  }, []);
+  }, [dispatch]);
+
+  const deleteHandler = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this document?\nهل تريد بالتأكيد حذف هذا المستند؟"
+      )
+    ) {
+      try {
+        await dispatch(removePost(id));
+        toast.success("Post has been removed successfully", {
+          theme: "colored",
+        });
+      } catch (err) {
+        console.log(err);
+        toast.success("Error", { theme: "colored" });
+      }
+    }
+  };
 
   return (
     <AdminContainer>
+      <ToastContainer position="bottom-right" autoClose={5000} />
       <Link to="/dashboard/posts/addpost">
         <Button bg="#02a89e" fg="#ffffff">
           Add Post
@@ -50,7 +79,31 @@ const Posts = () => {
                 <td>{p.views}</td>
                 <td>{p.type}</td>
                 <td>{p.createdAt}</td>
-                <td>Actions</td>
+                <td>
+                  <IconButton
+                    bg="#e3e3e3"
+                    fg="#000000"
+                    onClick={() => deleteHandler(p._id)}
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </IconButton>
+                  <IconButton
+                    bg="#e3e3e3"
+                    fg="#000000"
+                    onClick={() => navigate(`/dashboard/posts/${p._id}`)}
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </IconButton>
+                  <Link
+                    to={`/p/${p._id}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <IconButton bg="#e3e3e3" fg="#000000">
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    </IconButton>
+                  </Link>
+                </td>
               </tr>
             ))}
         </tbody>

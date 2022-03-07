@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  createOrUpdateContact,
   createOrUpdateEmergency,
   loadEmergencies,
+  removeEmergency,
 } from "../../../actions/emergencyActions";
 import {
   changeBackgroundToWhite,
@@ -43,7 +43,7 @@ const Emergency = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(loadEmergencies());
-  }, []);
+  }, [dispatch]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -106,6 +106,22 @@ const Emergency = () => {
       //   appearance: "error",
       // });
       setUploading(false);
+    }
+  };
+
+  const deleteHandler = async (id) => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete this contact info?\nهل تريد بالتأكيد حذف معلومات جهة الاتصال هذه؟"
+      )
+    ) {
+      try {
+        await dispatch(removeEmergency(id));
+        // addToast("بەکارهێنەر لابرا بە سەرکەوتووی", { appearance: "success" });
+      } catch (err) {
+        console.log(err);
+        // addToast("لابردنی بەکارهێنەر سەرکەوتوو نەبوو", { appearance: "error" });
+      }
     }
   };
 
@@ -195,7 +211,7 @@ const Emergency = () => {
                   <IconButton
                     bg="#e3e3e3"
                     fg="#000000"
-                    // onClick={() => deleteHandler(c._id)}
+                    onClick={() => deleteHandler(e._id)}
                   >
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </IconButton>

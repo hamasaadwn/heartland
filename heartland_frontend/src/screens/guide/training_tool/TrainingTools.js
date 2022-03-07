@@ -13,7 +13,7 @@ const TrainingTools = () => {
   useEffect(() => {
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("black"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

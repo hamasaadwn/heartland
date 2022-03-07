@@ -28,7 +28,14 @@ const Activities = () => {
         <FlexRow>
           <div className="about ">
             <h1> {t("useful_tools")}</h1>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <GreenButton onClick={() => navigate("/posts/Training")}>
                 {t("training")}
               </GreenButton>
@@ -38,7 +45,9 @@ const Activities = () => {
               <GreenButton onClick={() => navigate("/posts/Form")}>
                 {t("form")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/posts/Flyer And Brochure")}>
+              <GreenButton
+                onClick={() => navigate("/posts/Flyer And Brochure")}
+              >
                 {t("flyer_and_brochure")}
               </GreenButton>
             </div>

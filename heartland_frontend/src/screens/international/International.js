@@ -19,7 +19,7 @@ const International = () => {
   useEffect(() => {
     dispatch(changeBackgroundToWhite());
     dispatch(changeNavbar("white"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

@@ -2,6 +2,7 @@ import {
   LOAD_POSTS_REQUEST,
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAIL,
+  REMOVE_USER_FROM_POSTLIST,
   LOAD_POSTS_LIST_REQUEST,
   LOAD_POSTS_LIST_SUCCESS,
   LOAD_POSTS_LIST_FAIL,
@@ -55,12 +56,13 @@ export const loadPosts = () => async (dispatch, getState) => {
 };
 
 export const loadPostsList =
-  (language, category) => async (dispatch, getState) => {
+  (language, category, pageNumber = 1) =>
+  async (dispatch, getState) => {
     try {
       dispatch({ type: LOAD_POSTS_LIST_REQUEST });
 
       const { data } = await axiosInstance(
-        `/api/posts/${language}/${category}`
+        `/api/posts/${language}/${category}?pageNumber=${pageNumber}`
       );
 
       dispatch({
@@ -122,6 +124,8 @@ export const addPost =
         type: ADD_POSTS_SUCCESS,
         payload: data,
       });
+
+      return data;
     } catch (err) {
       if (err.message === "Network Error") console.log(err);
       else {
@@ -131,21 +135,83 @@ export const addPost =
     }
   };
 
-export const searchPosts = (keyword) => async (dispatch, getState) => {
-  try {
-    dispatch({ type: SEARCH_POSTS_REQUEST });
+export const updatePost =
+  (title, describtion, image, pictures, video, language, type, pdf, id) =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: ADD_POSTS_REQUEST });
 
-    const { data } = await axiosInstance(`/api/posts/s?keyword=${keyword}`);
+      const {
+        user: { userInfo },
+      } = getState();
 
-    dispatch({
-      type: SEARCH_POSTS_SUCCESS,
-      payload: data,
-    });
-    return data;
-  } catch (err) {
-    if (err.message === "Network Error") console.log(err);
-    else {
-      dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + userInfo.token,
+        },
+      };
+
+      const { data } = await axiosInstance.put(
+        `/api/posts/${id}`,
+        { title, describtion, image, pictures, video, language, type, pdf },
+        config
+      );
+
+      dispatch({
+        type: ADD_POSTS_SUCCESS,
+        payload: data,
+      });
+
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        console.log(err);
+        dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+      }
     }
+  };
+
+export const searchPosts =
+  (keyword, pageNumber = "") =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: SEARCH_POSTS_REQUEST });
+
+      const { data } = await axiosInstance(
+        `/api/posts/s?keyword=${keyword}&pageNumber=${pageNumber}`
+      );
+
+      dispatch({
+        type: SEARCH_POSTS_SUCCESS,
+        payload: data,
+      });
+      return data;
+    } catch (err) {
+      if (err.message === "Network Error") console.log(err);
+      else {
+        dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+      }
+    }
+  };
+
+export const removePost = (id) => async (dispatch, getState) => {
+  try {
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        authorization: "Bearer " + userInfo.token,
+      },
+    };
+
+    await axiosInstance.delete(`/api/posts/${id}`, config);
+
+    dispatch({ type: REMOVE_USER_FROM_POSTLIST, payload: id });
+  } catch (err) {
+    console.log(err);
   }
 };

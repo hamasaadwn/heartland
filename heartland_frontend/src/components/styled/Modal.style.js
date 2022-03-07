@@ -18,6 +18,10 @@ export const ModalContainer = styled.div`
     border-radius: 5px;
     position: relative;
 
+    @media screen and (max-width: 768px) {
+      width: 90%;
+    }
+
     .style-fa-times {
       cursor: pointer;
       float: right;

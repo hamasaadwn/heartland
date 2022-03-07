@@ -1,6 +1,7 @@
 export const LOAD_MAPS_REQUEST = "LOAD_MAPS_REQUEST";
 export const LOAD_MAPS_SUCCESS = "LOAD_MAPS_SUCCESS";
 export const LOAD_MAPS_FAIL = "LOAD_MAPS_FAIL";
+export const REMOVE_FROM_MAPS = "REMOVE_FROM_MAPS";
 
 export const ADD_MAPS_REQUEST = "ADD_MAPS_REQUEST";
 export const ADD_MAPS_SUCCESS = "ADD_MAPS_SUCCESS";
@@ -8,4 +9,4 @@ export const ADD_MAPS_FAIL = "ADD_MAPS_FAIL";
 
 export const LOAD_MAP_REQUEST = "LOAD_MAP_REQUEST";
 export const LOAD_MAP_SUCCESS = "LOAD_MAP_SUCCESS";
-export const LOAD_MAP_FAIL = "LOAD_MAPS_FAIL";
+export const LOAD_MAP_FAIL = "LOAD_MAP_FAIL";

@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faUsersCog } from "@fortawesome/free-solid-svg-icons";
 import cookies from "js-cookie";
 
 import {
@@ -18,6 +18,9 @@ const Home = () => {
   const currentLanguageCode = cookies.get("i18next") || "en";
   const dispatch = useDispatch();
 
+  const userLogin = useSelector((state) => state.user);
+  const { userInfo } = userLogin;
+
   useEffect(() => {
     if (currentLanguageCode === "ar") {
       document.body.dir = "rtl";
@@ -26,12 +29,11 @@ const Home = () => {
     }
     dispatch(changeBackgroundToBlack());
     dispatch(changeNavbar("none"));
-  }, [i18next.language]);
+  }, [dispatch, currentLanguageCode]);
 
   const { t } = useTranslation();
 
   return (
-
     // hello
     <Fragment>
       <div dir="ltr">
@@ -65,9 +67,20 @@ const Home = () => {
               <span style={{ color: "#aa1829" }}>HT</span>
             </h1>
           </div>
-          <Link to="/search">
-            <FontAwesomeIcon icon={faSearch} className="style-fa-search" />
-          </Link>
+          <div>
+            <Link to="/search">
+              <FontAwesomeIcon icon={faSearch} className="style-fa-search" />
+            </Link>
+            {userInfo && userInfo.isAuthor && (
+              <Link to="/dashboard/posts">
+                <FontAwesomeIcon
+                  icon={faUsersCog}
+                  className="style-fa-search"
+                  onClick={() => {}}
+                />
+              </Link>
+            )}
+          </div>
         </SideMenuContainer>
       </div>
 

@@ -12,8 +12,17 @@ const createPost = async (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type, language, pdf } =
-    req.body;
+  const {
+    title,
+    describtion,
+    image,
+    pictures,
+    tags,
+    type,
+    language,
+    pdf,
+    video,
+  } = req.body;
 
   try {
     const LawPost = new LawPosts({
@@ -22,6 +31,7 @@ const createPost = async (req, res) => {
       image,
       pictures,
       tags,
+      video: video,
       type,
       user: req.user._id,
       language,
@@ -47,15 +57,24 @@ const createPost = async (req, res) => {
 };
 
 // @desc Edit a post by id
-// @route Post api/posts/:id
+// @route Post api/put/:id
 // @access Private admin/owner
 const updatePost = async (req, res) => {
   const { valid, errors } = LawValidation(req.body);
 
   if (!valid) return res.status(400).json(errors);
 
-  const { title, describtion, image, pictures, tags, type, language } =
-    req.body;
+  const {
+    title,
+    describtion,
+    image,
+    pictures,
+    tags,
+    type,
+    language,
+    pdf,
+    video,
+  } = req.body;
 
   try {
     const post = await LawPosts.findById(req.params.id);
@@ -69,6 +88,8 @@ const updatePost = async (req, res) => {
         post.tags = tags;
         post.type = type;
         post.language = language;
+        post.pdf = pdf;
+        post.video = video;
 
         const updatedPost = await post.save();
         res.json(updatedPost);
@@ -132,7 +153,7 @@ const getAllPosts = async (req, res) => {
 // @route   GET api/posts/:language/:category
 // @access  public
 const getPostsByCategoryAndLanguage = async (req, res) => {
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
   try {
     const count = await LawPosts.countDocuments({
@@ -160,7 +181,7 @@ const getPostsByCategoryAndLanguage = async (req, res) => {
 // @route   GET api/posts/t/:type
 // @access  public
 const getPostsByType = async (req, res) => {
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
   try {
     const count = await LawPosts.countDocuments({});
@@ -261,7 +282,7 @@ const postsSearch = async (req, res) => {
       }
     : {};
 
-  const pageSize = 43;
+  const pageSize = 15;
   const page = Number(req.query.pageNumber) || 1;
 
   const count = await LawPosts.countDocuments({ ...keyword });

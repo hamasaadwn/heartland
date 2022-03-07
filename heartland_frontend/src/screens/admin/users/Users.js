@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserEdit, faUserTimes } from "@fortawesome/free-solid-svg-icons";
+import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
 
 import {
   changeBackgroundToWhite,
@@ -29,7 +29,7 @@ const Users = () => {
     dispatch(changeNavbar("side"));
     dispatch(changeBackgroundToWhite());
     dispatch(allUsers());
-  }, []);
+  }, [dispatch]);
 
   const deleteHandler = async (id) => {
     if (

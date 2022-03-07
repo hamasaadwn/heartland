@@ -10,7 +10,7 @@ export const FlexRow = styled.div`
 
  @media screen and (max-width: 900px) {
       flex-direction: column;
-align-items: center;
+      align-items: center;
 
   }
 `;

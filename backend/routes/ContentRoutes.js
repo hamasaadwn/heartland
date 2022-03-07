@@ -12,6 +12,6 @@ const router = express.Router();
 router
   .route("/:type")
   .get(getContentByType)
-  .post(protect, admin, createOrUpdateContent);
+  .post(protect, author, createOrUpdateContent);
 
 export default router;
