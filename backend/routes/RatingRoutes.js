@@ -7,4 +7,5 @@ const router = express.Router();
 router.route("/:scope").post(rate).get(result);
 router.route("/").get(result);
 
+
 export default router;
