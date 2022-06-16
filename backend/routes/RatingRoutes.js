@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.route("/:scope").post(rate).get(result);
 router.route("/").get(result);
-router.route("/all").get(getAllRating);
+router.route("/all/all").get(getAllRating);
 
 
 export default router;
