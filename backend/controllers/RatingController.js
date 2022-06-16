@@ -79,4 +79,16 @@ const result = async (req, res) => {
   }
 };
 
-export { rate, result };
+
+const getAllRating = async (req, res) => {
+  try {
+    const data = await Rating.find({});
+    res.json(data);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+    res.json({ general: "Error!" });
+  }
+};
+
+export { rate, result, getAllRating };
