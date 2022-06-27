@@ -38,6 +38,7 @@ const About = () => {
       {content && (
         <AboutContainer img={content.image && img}>
           <FlexRow>
+
             <div className="about">
               <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
               <div className="paragraph" dir={language === "en" ? "ltr" : "rtl"}>
