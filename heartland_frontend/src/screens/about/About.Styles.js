@@ -9,10 +9,10 @@ export const AboutContainer = styled.div`
   .about {
     color: #02a89e;
     font-size: 70px;
-    text-align: center;
+    /* text-align: center; */
 
     padding: 0 5px;
-    width: 45%;
+    width: 90%;
   }
   .img {
     background-image: linear-gradient(

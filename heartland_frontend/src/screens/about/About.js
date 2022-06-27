@@ -40,7 +40,7 @@ const About = () => {
           <FlexRow>
             <div className="about">
               <h1 style={{ color: "#aa1829" }}>{t("about_us")}</h1>
-              <div className="paragraph">
+              <div className="paragraph" dir={language === "en" ? "ltr" : "rtl"}>
                 {language === "en" ? (
                   <p>{content.contentEn}</p>
                 ) : language === "ar" ? (
