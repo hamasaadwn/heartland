@@ -36,7 +36,7 @@ const PostCards = ({ post }) => {
     <PostCard>
       <div className="innerDiv">
         <div className="image">
-          <img src={`${process.env.REACT_APP_API_URL}${post.image}`} alt="" />
+          <img src={`${'https://api.cccht.org'}${post.image}`} alt="" />
         </div>
         <div className="contentDiv">
           <Link to={`/p/${post._id}`}>

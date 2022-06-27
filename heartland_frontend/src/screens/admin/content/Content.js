@@ -21,7 +21,9 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { TextArea } from "../../../components/styled/form/TextArea.style";
 import { Spacer } from "../../../components/styled/Spacer.style";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 const Content = () => {
   const dispatch = useDispatch();

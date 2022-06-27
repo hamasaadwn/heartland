@@ -61,15 +61,15 @@ const Anbar = () => {
         </div>
         <div className="img-map">
           <img
-            src={map && `${process.env.REACT_APP_API_URL}${map.countryMap}`}
+            src={map && `${'https://api.cccht.org'}${map.countryMap}`}
             alt=""
           />
           <img
-            src={map && `${process.env.REACT_APP_API_URL}${map.cityMap}`}
+            src={map && `${'https://api.cccht.org'}${map.cityMap}`}
             alt=""
           />
           <img
-            src={map && `${process.env.REACT_APP_API_URL}${map.cityMapAdd}`}
+            src={map && `${'https://api.cccht.org'}${map.cityMapAdd}`}
             alt=""
           />
         </div>

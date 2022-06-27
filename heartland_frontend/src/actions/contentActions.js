@@ -11,7 +11,9 @@ import {
 
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 export const loadContent = (type) => async (dispatch) => {
   try {

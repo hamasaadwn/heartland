@@ -16,7 +16,9 @@ import {
 
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 export const loadPosts = () => async (dispatch, getState) => {
   try {
@@ -57,26 +59,26 @@ export const loadPosts = () => async (dispatch, getState) => {
 
 export const loadPostsList =
   (language, category, pageNumber = 1) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: LOAD_POSTS_LIST_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: LOAD_POSTS_LIST_REQUEST });
 
-      const { data } = await axiosInstance(
-        `/api/posts/${language}/${category}?pageNumber=${pageNumber}`
-      );
+        const { data } = await axiosInstance(
+          `/api/posts/${language}/${category}?pageNumber=${pageNumber}`
+        );
 
-      dispatch({
-        type: LOAD_POSTS_LIST_SUCCESS,
-        payload: data,
-      });
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        dispatch({ type: LOAD_POSTS_LIST_FAIL, payload: err.response.data });
+        dispatch({
+          type: LOAD_POSTS_LIST_SUCCESS,
+          payload: data,
+        });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          dispatch({ type: LOAD_POSTS_LIST_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const loadSinglePost = (id) => async (dispatch, getState) => {
   try {
@@ -99,102 +101,102 @@ export const loadSinglePost = (id) => async (dispatch, getState) => {
 
 export const addPost =
   (title, describtion, image, pictures, video, language, type, pdf) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: ADD_POSTS_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: ADD_POSTS_REQUEST });
 
-      const {
-        user: { userInfo },
-      } = getState();
+        const {
+          user: { userInfo },
+        } = getState();
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + userInfo.token,
-        },
-      };
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + userInfo.token,
+          },
+        };
 
-      const { data } = await axiosInstance.post(
-        `/api/posts`,
-        { title, describtion, image, pictures, video, language, type, pdf },
-        config
-      );
+        const { data } = await axiosInstance.post(
+          `/api/posts`,
+          { title, describtion, image, pictures, video, language, type, pdf },
+          config
+        );
 
-      dispatch({
-        type: ADD_POSTS_SUCCESS,
-        payload: data,
-      });
+        dispatch({
+          type: ADD_POSTS_SUCCESS,
+          payload: data,
+        });
 
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        console.log(err);
-        dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          console.log(err);
+          dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const updatePost =
   (title, describtion, image, pictures, video, language, type, pdf, id) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: ADD_POSTS_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: ADD_POSTS_REQUEST });
 
-      const {
-        user: { userInfo },
-      } = getState();
+        const {
+          user: { userInfo },
+        } = getState();
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + userInfo.token,
-        },
-      };
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + userInfo.token,
+          },
+        };
 
-      const { data } = await axiosInstance.put(
-        `/api/posts/${id}`,
-        { title, describtion, image, pictures, video, language, type, pdf },
-        config
-      );
+        const { data } = await axiosInstance.put(
+          `/api/posts/${id}`,
+          { title, describtion, image, pictures, video, language, type, pdf },
+          config
+        );
 
-      dispatch({
-        type: ADD_POSTS_SUCCESS,
-        payload: data,
-      });
+        dispatch({
+          type: ADD_POSTS_SUCCESS,
+          payload: data,
+        });
 
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        console.log(err);
-        dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          console.log(err);
+          dispatch({ type: ADD_POSTS_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const searchPosts =
   (keyword, pageNumber = "") =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: SEARCH_POSTS_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: SEARCH_POSTS_REQUEST });
 
-      const { data } = await axiosInstance(
-        `/api/posts/s?keyword=${keyword}&pageNumber=${pageNumber}`
-      );
+        const { data } = await axiosInstance(
+          `/api/posts/s?keyword=${keyword}&pageNumber=${pageNumber}`
+        );
 
-      dispatch({
-        type: SEARCH_POSTS_SUCCESS,
-        payload: data,
-      });
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+        dispatch({
+          type: SEARCH_POSTS_SUCCESS,
+          payload: data,
+        });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          dispatch({ type: SEARCH_POSTS_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const removePost = (id) => async (dispatch, getState) => {
   try {

@@ -23,7 +23,9 @@ import { Spacer } from "../../../components/styled/Spacer.style";
 import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { Table } from "../../../components/styled/Table.style";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 const Emergency = () => {
   const dispatch = useDispatch();

@@ -15,7 +15,7 @@ function CallButton({ data }) {
           <img
             src={
               icon !== ""
-                ? `${process.env.REACT_APP_API_URL}${icon}`
+                ? `${'https://api.cccht.org'}${icon}`
                 : "/images/defaultIcon.png"
             }
             alt=""

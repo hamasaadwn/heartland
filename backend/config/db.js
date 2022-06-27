@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+require("dotenv").config({ path: "./config/.env" });
 
 const connectDB = async () => {
   try {
@@ -11,3 +12,7 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+// MONGO_URI = mongodb://localhost:27017/heartland
+// JWT_SECRET = Alright, keep your secret
+
+// REACT_APP_API_URL = https://api.cccht.org

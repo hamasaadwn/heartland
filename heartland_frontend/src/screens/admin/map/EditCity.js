@@ -22,7 +22,9 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 const EditCity = () => {
   const dispatch = useDispatch();

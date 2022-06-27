@@ -29,7 +29,7 @@ const About = () => {
 
   useEffect(() => {
     if (content && content.image) {
-      setImg(process.env.REACT_APP_API_URL + content.image.replace("\\", "/"));
+      setImg('https://api.cccht.org' + content.image.replace("\\", "/"));
     }
   }, [content]);
 

@@ -13,7 +13,9 @@ import {
 
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 export const loadAllMaps = () => async (dispatch, getState) => {
   try {
@@ -80,79 +82,79 @@ export const loadMapById = (id) => async (dispatch, getState) => {
 
 export const addMap =
   (name, thumbnail, countryMap, cityMap, cityMapAdd, branch) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: ADD_MAPS_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: ADD_MAPS_REQUEST });
 
-      const {
-        user: { userInfo },
-      } = getState();
+        const {
+          user: { userInfo },
+        } = getState();
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + userInfo.token,
-        },
-      };
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + userInfo.token,
+          },
+        };
 
-      const { data } = await axiosInstance.post(
-        `/api/maps`,
-        { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
-        config
-      );
+        const { data } = await axiosInstance.post(
+          `/api/maps`,
+          { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
+          config
+        );
 
-      dispatch({
-        type: ADD_MAPS_SUCCESS,
-        payload: data,
-      });
+        dispatch({
+          type: ADD_MAPS_SUCCESS,
+          payload: data,
+        });
 
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        console.log(err);
-        dispatch({ type: ADD_MAPS_FAIL, payload: err.response.data });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          console.log(err);
+          dispatch({ type: ADD_MAPS_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const updateMap =
   (name, thumbnail, countryMap, cityMap, cityMapAdd, branch, id) =>
-  async (dispatch, getState) => {
-    try {
-      dispatch({ type: ADD_MAPS_REQUEST });
+    async (dispatch, getState) => {
+      try {
+        dispatch({ type: ADD_MAPS_REQUEST });
 
-      const {
-        user: { userInfo },
-      } = getState();
+        const {
+          user: { userInfo },
+        } = getState();
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + userInfo.token,
-        },
-      };
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + userInfo.token,
+          },
+        };
 
-      const { data } = await axiosInstance.post(
-        `/api/maps/${id}`,
-        { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
-        config
-      );
+        const { data } = await axiosInstance.post(
+          `/api/maps/${id}`,
+          { name, thumbnail, countryMap, cityMap, cityMapAdd, branch },
+          config
+        );
 
-      dispatch({
-        type: ADD_MAPS_SUCCESS,
-        payload: data,
-      });
+        dispatch({
+          type: ADD_MAPS_SUCCESS,
+          payload: data,
+        });
 
-      return data;
-    } catch (err) {
-      if (err.message === "Network Error") console.log(err);
-      else {
-        console.log(err);
-        dispatch({ type: ADD_MAPS_FAIL, payload: err.response.data });
+        return data;
+      } catch (err) {
+        if (err.message === "Network Error") console.log(err);
+        else {
+          console.log(err);
+          dispatch({ type: ADD_MAPS_FAIL, payload: err.response.data });
+        }
       }
-    }
-  };
+    };
 
 export const removeMap = (id) => async (dispatch, getState) => {
   try {

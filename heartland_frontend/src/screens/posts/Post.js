@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { loadSinglePost } from "../../actions/postActions";
-
 import {
   changeBackgroundToWhite,
   changeNavbar,
@@ -33,7 +31,7 @@ const Post = () => {
           <br />
           <div className="image">
             <img
-              src={post && `${process.env.REACT_APP_API_URL}${post.image}`}
+              src={post && `${'https://api.cccht.org'}${post.image}`}
               alt=""
             />
           </div>
@@ -60,7 +58,7 @@ const Post = () => {
           {post && post.pdf ? (
             <div className="downloadPdf">
               <a
-                href={`${process.env.REACT_APP_API_URL}${post.pdf}`}
+                href={`${'https://api.cccht.org'}${post.pdf}`}
                 rel="noreferrer"
                 target="_blank"
               >
@@ -80,7 +78,7 @@ const Post = () => {
               <h2>Album</h2>
               {post.pictures.map((p, i) => (
                 <img
-                  src={`${process.env.REACT_APP_API_URL}${p}`}
+                  src={`${'https://api.cccht.org'}${p}`}
                   alt=""
                   key={i}
                 />
@@ -91,7 +89,7 @@ const Post = () => {
           )}
         </div>
       </PostContainer>
-    </Container>
+    </Container >
   );
 };
 

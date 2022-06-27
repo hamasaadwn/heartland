@@ -2,7 +2,9 @@ import { RATING_SUCCESSFUL, GET_RATING } from "../constants/ratingContants";
 
 import axios from "axios";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 export const rate = (scope, rate) => async (dispatch) => {
   try {

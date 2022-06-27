@@ -16,7 +16,9 @@ import { TwoColFlex } from "../../../components/styled/TwoColFlex.style";
 import { addMap } from "../../../actions/mapsActions";
 import { toast, ToastContainer } from "react-toastify";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 const AddCity = () => {
   const dispatch = useDispatch();

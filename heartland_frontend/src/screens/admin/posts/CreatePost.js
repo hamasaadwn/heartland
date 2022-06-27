@@ -15,7 +15,9 @@ import { Button } from "../../../components/styled/form/Button.style";
 import { addPost } from "../../../actions/postActions";
 import { toast, ToastContainer } from "react-toastify";
 
-const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+const axiosInstance = axios.create({
+  baseURL: 'https://api.cccht.org'
+});
 
 const CreatePost = () => {
   const dispatch = useDispatch();

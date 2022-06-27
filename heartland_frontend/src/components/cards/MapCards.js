@@ -7,10 +7,10 @@ const MapCards = ({ title, img, link }) => {
   let image = img.replace("\\", "/");
   return (
     <Link to={link}>
-      <MapsCardsStyles img={`${process.env.REACT_APP_API_URL}${image}`}>
+      <MapsCardsStyles img={`${'https://api.cccht.org'}${image}`}>
         <h3>{title}</h3>
       </MapsCardsStyles>
-    </Link>
+    </Link >
   );
 };
 
