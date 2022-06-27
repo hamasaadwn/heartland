@@ -26,6 +26,7 @@ export const CityContainer = styled.div`
   .map-detail {
     /* width: 1000px; */
     margin: 0 auto;
+    font-size: 1.3vmax;
   }
 
   .star-container-self {

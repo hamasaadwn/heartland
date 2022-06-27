@@ -5,6 +5,7 @@ import StarRatings from "react-star-ratings";
 
 import { loadMapByCity } from "../../../actions/mapsActions";
 import { rate } from "../../../actions/ratingActions";
+import { useTranslation } from "react-i18next";
 
 import {
   changeBackgroundToWhite,
@@ -25,6 +26,7 @@ const Anbar = () => {
   const [rated, setRated] = useState(0);
 
   const city = params.city;
+  const { t } = useTranslation();
 
   const { map } = useSelector((state) => state.map);
 
@@ -80,10 +82,10 @@ const Anbar = () => {
               map.branch.map((b, i) => (
                 <p key={i}>
                   <LittleBox bg="#00a79b"></LittleBox>
-                  <span style={{ color: "#02a89e" }}>name:</span> {b.address}
-                  <span style={{ color: "#02a89e" }}> P.number: </span>{" "}
+                  <span style={{ color: "#02a89e" }}>{t("name")}:</span> {b.address}
+                  <span style={{ color: "#02a89e" }}> {t("phone")}: </span>{" "}
                   {b.phone} {"  "}
-                  <span style={{ color: "#02a89e" }}>E:</span>
+                  <span style={{ color: "#02a89e" }}>{t("email")}:</span>
                   {b.email}
                   <br />
                 </p>
