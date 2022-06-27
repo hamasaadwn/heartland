@@ -36,7 +36,14 @@ app.use("/api/visitor", visitorRoutes);
 app.use("/api/emergency", emergencyRoutes);
 
 //make uploads static
-const __dirname = path.resolve();
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+//const __dirname = path.resolve("/heartland");
+//console.log(__dirname);
+//app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+
+const dirname = path.resolve();
+app.use("/uploads", express.static(path.join(dirname, "../uploads")));
+
 
 app.listen(4000, () => console.log("Server listening on port 4000!"));
+
