@@ -42,7 +42,7 @@ app.use("/api/emergency", emergencyRoutes);
 
 
 const dirname = path.resolve();
-app.use("/uploads", express.static(path.join(dirname, "../uploads")));
+app.use("/uploads", express.static(path.join(dirname, "./uploads")));
 
 
 app.listen(4000, () => console.log("Server listening on port 4000!"));

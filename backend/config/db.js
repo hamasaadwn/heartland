@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
-require("dotenv").config({ path: "./config/.env" });
-
+//require("dotenv").config({ path: "./config/.env" });
+//import dotenv from "../.env"
+//const dotenv = require('dotenv')
+//dotenv.config({ path: path.resolve('../.env') })
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect("mongodb://localhost:27017/heartland");
