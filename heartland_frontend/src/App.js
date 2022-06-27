@@ -39,6 +39,7 @@ import EditPost from "./screens/admin/posts/EditPost";
 import EditCity from "./screens/admin/map/EditCity";
 import Sos from "./components/buttons/Sos";
 import EmergencyList from "./screens/emergency/EmergencyList";
+import Rating from "./screens/admin/contact/Rating";
 
 function App() {
   const dispatch = useDispatch();
@@ -126,6 +127,7 @@ const AdminRoutes = () => {
           <Route exact path="/posts/addpost" element={<CreatePost />} />
         )}
         {userInfo && <Route exact path="/users" element={<Users />} />}
+        {userInfo && <Route exact path="/rating" element={<Rating />} />}
         {userInfo && <Route exact path="/contact" element={<Contact />} />}
         {userInfo && <Route exact path="/maps" element={<Maps />} />}
         {userInfo && <Route exact path="/maps/addcity" element={<AddCity />} />}
