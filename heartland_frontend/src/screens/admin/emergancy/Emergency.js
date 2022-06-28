@@ -198,7 +198,8 @@ const Emergency = () => {
         <thead>
           <tr>
             <th>Type</th>
-            <th>Content</th>
+            <th>Content EN</th>
+            <th>Content AR</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -208,6 +209,7 @@ const Emergency = () => {
               <tr key={e._id}>
                 <td>{e.type}</td>
                 <td>{e.nameEN}</td>
+                <td>{e.nameAR}</td>
                 <td>{e.value}</td>
                 <td>
                   <IconButton

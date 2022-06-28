@@ -42,13 +42,14 @@ const Activities = () => {
               <GreenButton onClick={() => navigate("/posts/Guide")}>
                 {t("guide")}
               </GreenButton>
-              <GreenButton onClick={() => navigate("/posts/Form")}>
-                {t("form")}
-              </GreenButton>
+
               <GreenButton
                 onClick={() => navigate("/posts/Flyer And Brochure")}
               >
                 {t("flyer_and_brochure")}
+              </GreenButton>
+              <GreenButton onClick={() => navigate("/posts/Form")}>
+                {t("form")}
               </GreenButton>
             </div>
           </div>

@@ -40,7 +40,7 @@ const PostsList = () => {
   return (
     <Container>
       {posts &&
-        posts.posts.map((p) => {
+        posts.posts.slice(0).reverse().map((p) => {
           return <PostCards key={p._id} post={p} />;
         })}
       {posts && posts.pages && (
