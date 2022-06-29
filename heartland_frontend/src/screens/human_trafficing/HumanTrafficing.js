@@ -31,17 +31,18 @@ const HumanTrafficing = () => {
             <span style={{ color: "#02a89e" }}>{t("ht_header_1")}</span>
             <br /> {t("ht_header_2")}
           </h1>
+          <div className="ht_text" dir={language === "en" ? "ltr" : "rtl"}>
+            {content &&
+              (language === "en" ? (
+                <p>{content.contentEn}</p>
+              ) : language === "ar" ? (
+                <p>{content.contentAr}</p>
+              ) : (
+                ""
+              ))}
+          </div>
         </div>
-        <div className="ht_text">
-          {content &&
-            (language === "en" ? (
-              <p>{content.contentEn}</p>
-            ) : language === "ar" ? (
-              <p>{content.contentAr}</p>
-            ) : (
-              ""
-            ))}
-        </div>
+
       </HumanTrafficingContainer>
     </Container>
   );

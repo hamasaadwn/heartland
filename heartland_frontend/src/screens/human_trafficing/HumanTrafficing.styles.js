@@ -15,39 +15,54 @@ export const HumanTrafficingContainer = styled.div`
 
     h1 {
       ${({ language }) =>
-        language === "en"
-          ? `
+    language === "en"
+      ? `
       border-left: solid 5px #aa1829;
       padding-left: 20px;
       `
-          : language === "ar"
-          ? `border-right: solid 5px #aa1829;
+      : language === "ar"
+        ? `border-right: solid 5px #aa1829;
       padding-right: 20px;`
-          : ""}
+        : ""}
 
       margin-top: 100px;
     }
   }
 
   .ht_text {
+    background-color: black;
+    padding: 20px;
+    border-radius: 20px;
     width: 90vw;
+   
     margin: 100px auto;
     p {
       color: white;
       text-align: justify;
-      font-size: 18px;
+      font-size: 20px;
     }
 
     @media screen and (max-width: 768px) {
-      margin: 50px auto;
+    width: 75vw;
+
     }
   }
 
   @media screen and (max-width: 768px) {
     .h1-text {
+    padding: 30px;
+      
       height: 50vh;
       font-size: 28px;
       line-height: 28px;
+      /* margin: 0px 20px 70px 0; */
+
+    }
+    .ht_text{
+    /* padding: 0px 20vw 0 0; */
+    padding: 0 0;
+     margin: 20px 0;
+
     }
   }
 `;
