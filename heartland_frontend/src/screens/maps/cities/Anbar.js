@@ -66,10 +66,10 @@ const Anbar = () => {
             src={map && `${'https://api.cccht.org'}${map.countryMap}`}
             alt=""
           />
-          <img
+          {/* <img
             src={map && `${'https://api.cccht.org'}${map.cityMap}`}
             alt=""
-          />
+          /> */}
           <img
             src={map && `${'https://api.cccht.org'}${map.cityMapAdd}`}
             alt=""
